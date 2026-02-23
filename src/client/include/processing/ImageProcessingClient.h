@@ -1,9 +1,10 @@
 #pragma once
+#include <interfaces/IImageEncoder.h>
+
 #include <memory>
 
 #include "interfaces/IDisplay.h"
 #include "interfaces/IGrpcStreamClient.h"
-#include "interfaces/IImageEncoder.h"
 #include "polygons/Polygons.h"
 
 class ImageProcessingClient {

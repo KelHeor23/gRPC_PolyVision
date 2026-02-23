@@ -1,8 +1,9 @@
+#include <impl/OpencvCodec.h>
+
 #include <memory>
 #include <opencv2/imgcodecs.hpp>
 
 #include "include/impl/GrpcStreamClient.h"
-#include "include/impl/OpencvCodec.h"
 #include "include/impl/OpencvDisplay.h"
 #include "include/processing/ImageProcessingClient.h"
 

@@ -6,8 +6,7 @@ add_executable(client main.cpp
     src/polygons/PolygonParser.cpp
     src/processing/ImageProcessingClient.cpp 
     src/impl/OpencvDisplay.cpp 
-    src/impl/GrpcStreamClient.cpp
-    src/impl/OpencvCodec.cpp)
+    src/impl/GrpcStreamClient.cpp)
 
 target_include_directories(client PRIVATE include)
 
@@ -22,6 +21,7 @@ endif()
 
 # Линкуем библиотеки
 target_link_libraries(client
+    common_lib
     proto_generated
     ${OpenCV_LIBS}
     Boost::json
