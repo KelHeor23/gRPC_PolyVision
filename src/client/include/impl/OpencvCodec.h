@@ -7,7 +7,9 @@
 
 class OpenCVEncoder : public IImageEncoder {
  public:
-  std::vector<uint8_t> encode(const cv::Mat& image, const std::string& format,
-                              int quality) override;
-  cv::Mat decode(const std::vector<uint8_t>& data, int flags) override;
+  std::optional<std::vector<uint8_t>> encode(const cv::Mat& image,
+                                             const std::string& format,
+                                             int quality) override;
+  std::optional<cv::Mat> decode(const std::vector<uint8_t>& data,
+                                int flags) override;
 };

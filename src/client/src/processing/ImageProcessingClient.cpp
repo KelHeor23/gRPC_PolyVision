@@ -23,13 +23,18 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   }
 
   // Кодирование изображения
-  std::vector<uint8_t> encoded = encoder_->encode(img, ".jpg", 95);
+  auto encoded = encoder_->encode(img, ".jpg", 95);
+  if (!encoded.has_value()) {
+    std::cerr << "Failed to encode image" << std::endl;
+    return false;
+  }
+
   const size_t chunkSize = 64 * 1024;
   size_t offset = 0;
-  while (offset < encoded.size()) {
+  while (offset < encoded->size()) {
     ImageDetection::ProcessRequest chunkReq;
-    size_t current = std::min(chunkSize, encoded.size() - offset);
-    chunkReq.set_image_data(encoded.data() + offset, current);
+    size_t current = std::min(chunkSize, encoded->size() - offset);
+    chunkReq.set_image_data(encoded->data() + offset, current);
     if (!stream->Write(chunkReq)) {
       std::cerr << "Failed to send chunk" << std::endl;
       return false;
@@ -57,13 +62,13 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
     return false;
   }
 
-  cv::Mat result = encoder_->decode(responseBuffer, cv::IMREAD_COLOR);
-  if (result.empty()) {
+  auto result = encoder_->decode(responseBuffer, cv::IMREAD_COLOR);
+  if (!result.has_value()) {
     std::cerr << "Failed to decode result" << std::endl;
     return false;
   }
 
-  display_->show(result, "Processed Image");
+  display_->show(result.value(), "Processed Image");
   display_->waitKey(0);
   return true;
 }
