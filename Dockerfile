@@ -19,6 +19,9 @@ RUN --mount=type=cache,target=/var/cache/apt \
     autoconf \
     automake \
     libtool \
+    # Boost для JSON
+    libboost-dev \
+    libboost-json-dev \
     # OpenCV для проекта
     libopencv-dev \
     # Protobuf и gRPC из официальных репозиториев Ubuntu 24.04
