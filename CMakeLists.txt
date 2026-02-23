@@ -16,7 +16,7 @@ find_package(Threads REQUIRED)
 # Путь к proto-файлу
 # -------------------------------------------------------------------
 set(PROTO_PATH "${CMAKE_CURRENT_SOURCE_DIR}/proto")
-set(PROTO_FILE "${PROTO_PATH}/image_analisis.proto")
+set(PROTO_FILE "${PROTO_PATH}/ImageAnalysis.proto")
 
 # -------------------------------------------------------------------
 # Поиск плагина gRPC (grpc_cpp_plugin)
@@ -48,8 +48,8 @@ protobuf_generate(
 # Генерация gRPC-файлов (.grpc.pb.cc / .grpc.pb.h) через add_custom_command
 # -------------------------------------------------------------------
 set(GRPC_OUT_DIR "${CMAKE_CURRENT_BINARY_DIR}/proto")
-set(GENERATED_GRPC_SRCS "${GRPC_OUT_DIR}/image_analisis.grpc.pb.cc")
-set(GENERATED_GRPC_HDRS "${GRPC_OUT_DIR}/image_analisis.grpc.pb.h")
+set(GENERATED_GRPC_SRCS "${GRPC_OUT_DIR}/ImageAnalysis.grpc.pb.cc")
+set(GENERATED_GRPC_HDRS "${GRPC_OUT_DIR}/ImageAnalysis.grpc.pb.h")
 
 add_custom_command(
     OUTPUT ${GENERATED_GRPC_SRCS} ${GENERATED_GRPC_HDRS}
