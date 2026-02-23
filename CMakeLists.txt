@@ -86,3 +86,4 @@ target_link_libraries(proto_generated
 # -------------------------------------------------------------------
 add_subdirectory(src/client)
 add_subdirectory(src/server)
+add_subdirectory(src/common)
