@@ -4,9 +4,11 @@ add_executable(client main.cpp
     src/polygons/FileReader.cpp
     src/polygons/JsonParser.cpp
     src/polygons/PolygonParser.cpp
-#target_include_directories(client PRIVATE
-#    ${CMAKE_CURRENT_SOURCE_DIR}/../../common   # если нужны общие утилиты
-#)
+    src/processing/ImageProcessingClient.cpp 
+    src/impl/OpencvDisplay.cpp 
+    src/impl/GrpcStreamClient.cpp
+    src/impl/OpencvCodec.cpp)
+
 target_include_directories(client PRIVATE include)
 
 # Ищем Boost с компонентом json
