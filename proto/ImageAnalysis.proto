@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package ImageDetection;
+
+message Point {
+  int32 x = 1;
+  int32 y = 2;
+}
+
+enum PolygonType {         
+  INCLUSION = 0;
+  EXCLUSION = 1;
+}
+
+message Polygon {
+  repeated Point points = 1;            // вершины полигона
+  PolygonType type = 2;                 // тип полигона
+  int32 priority = 3;                   // меньшее число - выше приоритет
+  float threshold = 4;                  // порог площади пересечения (0..1)
+}
+
+
+message PolygonList {
+  repeated Polygon polygons = 1;
+}
+
+message ProcessRequest {
+  oneof data {
+    PolygonList polygon_list = 1;       // полигоны, относящиеся к изображению
+    bytes image_data = 2;               // закодированное изображение
+  }
+}
+
+message ProcessResponse {
+  bytes image_data = 1;                 // изображение с отрисованными объектами
+}
+
+service ImageProcessing {
+  rpc ProcessImage(stream ProcessRequest) returns (stream ProcessResponse);
+}
