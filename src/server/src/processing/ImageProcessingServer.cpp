@@ -26,9 +26,6 @@ Status ImageProcessingServer::ProcessImage(
 
   std::cout << "Received " << polygons.size() << " polygons" << std::endl;
 
-  // Обработка полигонов (сортировка и т.д.)
-  processor_->processPolygons(polygons);
-
   // Сбор всех чанков изображения
   std::vector<uint8_t> imageBuffer;
   while (stream->Read(&request)) {
@@ -51,8 +48,8 @@ Status ImageProcessingServer::ProcessImage(
   cv::Mat img = std::move(*imgOpt);
   std::cout << "Image decoded: " << img.cols << "x" << img.rows << std::endl;
 
-  // Рисование полигонов
-  drawer_->draw(img, polygons);
+  // Обработка изображения
+  processor_->process(img, polygons);
 
   // Кодирование результата
   auto encodedOpt = encoder_->encode(img, ".jpg", 95);
