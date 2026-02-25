@@ -1,14 +1,15 @@
 #include <grpcpp/grpcpp.h>
 #include <impl/OpencvCodec.h>
 
-#include "impl/ImageProcessor.h"
+#include "impl/ObjectsDetecting.h"
 #include "include/processing/ImageProcessingServer.h"
 
 void RunServer() {
   std::string server_address("0.0.0.0:50051");
 
-  ImageProcessingServer service(std::move(std::make_unique<OpenCVEncoder>()),
-                                std::move(std::make_unique<ImageProcessor>()));
+  ImageProcessingServer service(
+      std::move(std::make_unique<OpenCVEncoder>()),
+      std::move(std::make_unique<ObjectsDetecting>()));
 
   grpc::ServerBuilder builder;
   builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
