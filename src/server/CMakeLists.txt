@@ -2,6 +2,7 @@ add_executable(server main.cpp
     src/processing/ImageProcessingServer.cpp
     src/impl/ObjectsDetecting.cpp
     src/impl/ClassMapper.cpp
+    src/impl/ObjectFilterByPolygon.cpp
     src/impl/Drawer.cpp
     src/impl/PolygonProcessor.cpp)
 
