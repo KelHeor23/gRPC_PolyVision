@@ -1,6 +1,7 @@
 add_executable(server main.cpp
     src/processing/ImageProcessingServer.cpp
     src/impl/ObjectsDetecting.cpp
+    src/impl/ClassMapper.cpp
     src/impl/PolygonProcessor.cpp)
 
 target_include_directories(server PRIVATE include)
