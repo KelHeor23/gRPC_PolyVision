@@ -4,19 +4,15 @@
 
 #include <memory>
 
-#include "interfaces/IDrawer.h"
-#include "interfaces/IPolygonProcessor.h"
+#include "interfaces/IImageProcessor.h"
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 class ImageProcessingServer final
     : public ImageDetection::ImageProcessing::Service {
  public:
   ImageProcessingServer(std::unique_ptr<IImageEncoder> encoder,
-                        std::unique_ptr<IDrawer> drawer,
-                        std::unique_ptr<IPolygonProcessor> processor)
-      : encoder_(std::move(encoder)),
-        drawer_(std::move(drawer)),
-        processor_(std::move(processor)) {}
+                        std::unique_ptr<IImageProcessor> processor)
+      : encoder_(std::move(encoder)), processor_(std::move(processor)) {}
 
   grpc::Status ProcessImage(
       grpc::ServerContext* context,
@@ -26,6 +22,5 @@ class ImageProcessingServer final
 
  private:
   std::unique_ptr<IImageEncoder> encoder_;
-  std::unique_ptr<IDrawer> drawer_;
-  std::unique_ptr<IPolygonProcessor> processor_;
+  std::unique_ptr<IImageProcessor> processor_;
 };

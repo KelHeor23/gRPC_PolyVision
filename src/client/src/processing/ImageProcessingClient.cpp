@@ -1,13 +1,28 @@
 #include "processing/ImageProcessingClient.h"
 
+#include <impl/OpencvCodec.h>
+
 #include <opencv2/opencv.hpp>
+
+#include "impl/GrpcStreamClient.h"
+#include "impl/OpenCVDisplay.h"
 
 using ImageDetection::ProcessRequest;
 
 bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
                                          const Polygons& polygons) {
   grpc::ClientContext context;
+
+  // Устанавливаем таймаут
+  context.set_deadline(std::chrono::system_clock::now() +
+                       std::chrono::seconds(10));
+
   auto stream = grpcClient_->CreateStream(&context);
+
+  if (!stream) {
+    std::cerr << "Failed to create gRPC stream" << std::endl;
+    return false;
+  }
 
   // Отправка полигонов
   ProcessRequest request;
