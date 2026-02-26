@@ -12,6 +12,11 @@ using ImageDetection::ProcessRequest;
 bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
                                          const Polygons& polygons) {
   grpc::ClientContext context;
+
+  // Устанавливаем таймаут
+  context.set_deadline(std::chrono::system_clock::now() +
+                       std::chrono::seconds(10));
+
   auto stream = grpcClient_->CreateStream(&context);
 
   if (!stream) {
