@@ -8,6 +8,7 @@ add_executable(run_tests
     client/JsonParserTest.cpp
     client/PolygonParserTest.cpp
     client/PolygonsTest.cpp
+    common/OpenCVEncoderTest.cpp
     ${CMAKE_SOURCE_DIR}/src/client/src/polygons/JsonParser.cpp
     ${CMAKE_SOURCE_DIR}/src/client/src/polygons/FileReader.cpp
     ${CMAKE_SOURCE_DIR}/src/client/src/polygons/PolygonParser.cpp
