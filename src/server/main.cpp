@@ -18,16 +18,20 @@ void RunServer() {
   conf.classesFile = "../../../YOLO/coco.names";
 
   auto classMapper = std::make_shared<ClassMapper>(conf.classesFile);
+  auto yoloDetector = std::make_unique<YoloDetector>(conf, classMapper);
+  auto polygonProcessor = std::make_unique<PolygonProcessor>();
+  auto objectFilter =
+      std::make_unique<ObjectFilterByPolygon>(std::move(polygonProcessor));
+  auto drawer = std::make_unique<Drawer>();
 
   auto objectDetector = std::make_unique<ObjectsDetecting>(
-      conf, classMapper, std::make_unique<YoloDetector>(conf, classMapper),
-      std::make_unique<PolygonProcessor>(),
-      std::make_unique<ObjectFilterByPolygon>(), std::make_unique<Drawer>());
+      conf, classMapper, std::move(yoloDetector), std::move(objectFilter),
+      std::move(drawer));
 
   // Включаем отрисовку полигонов для отладки
   objectDetector->setDrawPolygons(true);
 
-  ImageProcessingServer service(std::move(std::make_unique<OpenCVEncoder>()),
+  ImageProcessingServer service(std::make_unique<OpenCVEncoder>(),
                                 std::move(objectDetector));
 
   grpc::ServerBuilder builder;

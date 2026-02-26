@@ -10,15 +10,25 @@ std::vector<Detection> ObjectFilterByPolygon::apply(
     const std::string& polygonsName) {
   std::cout << "Filtering " << detections.size() << " detections with "
             << polygons.size() << std::endl;
-  std::vector<Detection> filtered;
-  std::vector<BinaryPolygon> binaryPolygons;
 
-  for (const auto& it : polygons) {
-    binaryPolygons.push_back(createBinaryPolygon(it, imageSize));
+  // Если пришел нвоый набор полигонов, пересоздаем бинарные маски
+  if (lastPolygonsName_ != polygonsName) {
+    binaryPolygons_.clear();
+    binaryPolygons_.reserve(polygons.size());
+
+    // Обработка полигонов
+    polygonProcessor_->processPolygons(polygons);
+
+    for (const auto& it : polygons) {
+      binaryPolygons_.push_back(createBinaryPolygon(it, imageSize));
+    }
+    lastPolygonsName_ = polygonsName;
   }
 
+  std::vector<Detection> filtered;
+
   for (const auto& det : detections) {
-    if (isDetectionAccepted(det, binaryPolygons)) {
+    if (isDetectionAccepted(det, binaryPolygons_)) {
       filtered.push_back(det);
     }
   }
@@ -52,7 +62,7 @@ bool ObjectFilterByPolygon::isDetectionAccepted(
     cv::Rect intersect = poly.boundingBox & detection.box;
     if (intersect.area() == 0) continue;  // нет пересечения
 
-    // Проверяем сколько пикселей центра детекции попало в полигон
+    // Проверяем долю площади бокса детекции, которая попадает в полигон
     cv::Mat roi = poly.mask(detection.box);
     int insideCount = cv::countNonZero(roi);
     float insideRatio = static_cast<float>(insideCount) / detection.box.area();

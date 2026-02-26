@@ -8,5 +8,6 @@ class IImageProcessor {
  public:
   virtual ~IImageProcessor() = default;
   virtual void process(cv::Mat& image,
-                       std::vector<ImageDetection::Polygon>& polygons) = 0;
+                       std::vector<ImageDetection::Polygon>& polygons,
+                       const std::string& fileName) = 0;
 };
