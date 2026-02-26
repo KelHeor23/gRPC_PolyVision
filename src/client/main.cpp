@@ -17,9 +17,9 @@ int main() {
   ImageProcessingClient client(std::move(grpcClient), std::move(encoder),
                                std::move(display));
 
-  cv::Mat image = cv::imread("../../../images/1.png");
+  cv::Mat image = cv::imread("../../../images/2.jpg");
   Polygons polygons;
-  if (!polygons.loadFromFile("../../../images/1.json")) {
+  if (!polygons.loadFromFile("../../../images/2.json")) {
     std::cerr << "Failed to load polygons from file" << std::endl;
     return 1;
   }
