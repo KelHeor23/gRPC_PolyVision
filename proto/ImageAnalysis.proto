@@ -21,7 +21,8 @@ message Polygon {
 
 
 message PolygonList {
-  repeated Polygon polygons = 1;
+  string name = 1;
+  repeated Polygon polygons = 2;
 }
 
 message ProcessRequest {

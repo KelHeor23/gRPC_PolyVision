@@ -27,6 +27,9 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   // Отправка полигонов
   ProcessRequest request;
   auto* polygon_list = request.mutable_polygon_list();
+
+  // Записываю имя набора полигонов
+  polygon_list->set_name(polygons.getLastFileName());
   for (const auto& p : polygons.getPolygons()) {
     auto* poly = polygon_list->add_polygons();
     poly->CopyFrom(p);

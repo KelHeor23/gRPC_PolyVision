@@ -26,6 +26,8 @@ Status ImageProcessingServer::ProcessImage(
 
   std::cout << "Received " << polygons.size() << " polygons" << std::endl;
 
+  std::string polygonsName = request.polygon_list().name();
+
   // Сбор всех чанков изображения
   std::vector<uint8_t> imageBuffer;
   while (stream->Read(&request)) {
