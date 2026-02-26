@@ -1,11 +1,13 @@
 #pragma once
-#include <interfaces/IImageEncoder.h>
-
 #include <memory>
+#include <opencv2/core.hpp>
+#include <vector>
 
-#include "interfaces/IDisplay.h"
-#include "interfaces/IGrpcStreamClient.h"
 #include "polygons/Polygons.h"
+
+class IGrpcStreamClient;
+class IImageEncoder;
+class IDisplay;
 
 class ImageProcessingClient {
  public:
