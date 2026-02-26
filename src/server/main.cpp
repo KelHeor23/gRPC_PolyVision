@@ -1,5 +1,5 @@
 #include <grpcpp/grpcpp.h>
-#include <impl/OpencvCodec.h>
+#include <impl/OpenCVEncoder.h>
 
 #include "impl/ClassMapper.h"
 #include "impl/Drawer.h"

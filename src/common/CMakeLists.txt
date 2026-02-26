@@ -1,6 +1,6 @@
 # Объявляем статическую библиотеку
 add_library(common_lib STATIC
-    src/impl/OpencvCodec.cpp
+    src/impl/OpenCVEncoder.cpp
 )
 
 # Указываем директорию с заголовками для самой библиотеки и для тех, кто её подключает
