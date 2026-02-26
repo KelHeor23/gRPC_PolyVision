@@ -51,7 +51,7 @@ Status ImageProcessingServer::ProcessImage(
   std::cout << "Image decoded: " << img.cols << "x" << img.rows << std::endl;
 
   // Обработка изображения
-  processor_->process(img, polygons);
+  processor_->process(img, polygons, polygonsName);
 
   // Кодирование результата
   auto encodedOpt = encoder_->encode(img, ".jpg", 95);

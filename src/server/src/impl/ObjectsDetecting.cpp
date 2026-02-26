@@ -21,8 +21,8 @@ ObjectsDetecting::ObjectsDetecting(
       drawer_(std::move(drawer)) {}
 
 void ObjectsDetecting::process(cv::Mat& image,
-                               std::vector<ImageDetection::Polygon>& polygons) {
-  std::cout << "Processing image with ObjectsDetecting" << std::endl;
+                               std::vector<ImageDetection::Polygon>& polygons,
+                               const std::string& polygonsName) {
   // Обработка полигонов
   polygonProcessor_->processPolygons(polygons);
 

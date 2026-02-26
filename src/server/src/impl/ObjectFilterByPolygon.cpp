@@ -6,7 +6,8 @@
 
 std::vector<Detection> ObjectFilterByPolygon::apply(
     const std::vector<Detection>& detections,
-    const std::vector<ImageDetection::Polygon>& polygons, cv::Size imageSize) {
+    std::vector<ImageDetection::Polygon>& polygons, cv::Size imageSize,
+    const std::string& polygonsName) {
   std::cout << "Filtering " << detections.size() << " detections with "
             << polygons.size() << std::endl;
   std::vector<Detection> filtered;

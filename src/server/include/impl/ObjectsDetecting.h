@@ -19,7 +19,7 @@ class ObjectsDetecting : public IImageProcessor {
                             std::unique_ptr<IDrawer> drawer);
 
   void process(cv::Mat& image,
-               std::vector<ImageDetection::Polygon>& polygons) override;
+               const std::string& fileName) override;
 
   void setDrawPolygons(bool draw) { drawPolygons_ = draw; }
 

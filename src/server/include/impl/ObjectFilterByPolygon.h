@@ -20,6 +20,8 @@ class ObjectFilterByPolygon : public IObjectFilter {
       const std::vector<Detection>& detections,
       const std::vector<ImageDetection::Polygon>& polygons,
       cv::Size imageSize) override;
+                               cv::Size imageSize,
+                               const std::string& polygonsName) override;
 
  private:
   BinaryPolygon createBinaryPolygon(const ImageDetection::Polygon& poly,
@@ -27,4 +29,5 @@ class ObjectFilterByPolygon : public IObjectFilter {
 
   bool isDetectionAccepted(const Detection& detection,
                            const std::vector<BinaryPolygon>& polygons);
+  std::string lastPolygonsName_;
 };
