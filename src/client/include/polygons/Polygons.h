@@ -23,8 +23,10 @@ class Polygons {
   bool loadFromFile(const std::string& filename);
 
   const std::vector<Polygon>& getPolygons() const { return polygons_; }
+  const std::string& getLastFileName() const { return lastFileName_; }
 
  private:
+  std::string lastFileName_;
   std::vector<Polygon> polygons_;
   std::unique_ptr<IFileReader> fileReader_;
   std::unique_ptr<IJsonParser> jsonParser_;
