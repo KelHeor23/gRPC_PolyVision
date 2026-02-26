@@ -5,17 +5,26 @@
 #include "interfaces/IObjectFilter.h"
 
 struct Detection;
+namespace {
+struct BinaryPolygon {
+  bool isInclusion;  // true для зон включения, false для исключения
+  float threshold;  // доля площади для принадлежности (0..1)
+  cv::Mat mask;  // бинарная маска полигона
+  cv::Rect boundingBox;  // охватывающий прямоугольник полигона
+};
+};  // namespace
 
 class ObjectFilterByPolygon : public IObjectFilter {
  public:
   std::vector<Detection> apply(
       const std::vector<Detection>& detections,
-      const std::vector<std::vector<cv::Point>>& includeZones,
-      const std::vector<std::vector<cv::Point>>& excludeZones) override;
+      const std::vector<ImageDetection::Polygon>& polygons,
+      cv::Size imageSize) override;
 
  private:
-  bool isCenterInZone(const cv::Rect& box, const std::vector<cv::Point>& zone);
+  BinaryPolygon createBinaryPolygon(const ImageDetection::Polygon& poly,
+                                    cv::Size imageSize);
 
-  bool isBoxExcluded(const cv::Rect& box,
-                     const std::vector<std::vector<cv::Point>>& excludeZones);
+  bool isDetectionAccepted(const Detection& detection,
+                           const std::vector<BinaryPolygon>& polygons);
 };

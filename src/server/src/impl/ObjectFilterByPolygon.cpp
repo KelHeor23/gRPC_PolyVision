@@ -6,46 +6,59 @@
 
 std::vector<Detection> ObjectFilterByPolygon::apply(
     const std::vector<Detection>& detections,
-    const std::vector<std::vector<cv::Point>>& includeZones,
-    const std::vector<std::vector<cv::Point>>& excludeZones) {
+    const std::vector<ImageDetection::Polygon>& polygons, cv::Size imageSize) {
   std::cout << "Filtering " << detections.size() << " detections with "
-            << includeZones.size() << " include zones and "
-            << excludeZones.size() << " exclude zones" << std::endl;
+            << polygons.size() << std::endl;
   std::vector<Detection> filtered;
+  std::vector<BinaryPolygon> binaryPolygons;
+
+  for (const auto& it : polygons) {
+    binaryPolygons.push_back(createBinaryPolygon(it, imageSize));
+  }
+
   for (const auto& det : detections) {
-    if (!includeZones.empty()) {
-      bool inAny = false;
-      for (const auto& zone : includeZones) {
-        if (isCenterInZone(det.box, zone)) {
-          inAny = true;
-          break;
-        }
-      }
-      if (!inAny) continue;
+    if (isDetectionAccepted(det, binaryPolygons)) {
+      filtered.push_back(det);
     }
-    if (!excludeZones.empty() && isBoxExcluded(det.box, excludeZones)) continue;
-    filtered.push_back(det);
   }
   return filtered;
 }
 
-bool ObjectFilterByPolygon::isCenterInZone(const cv::Rect& box,
-                                           const std::vector<cv::Point>& zone) {
-  cv::Point center(box.x + box.width / 2, box.y + box.height / 2);
-  return cv::pointPolygonTest(zone, center, false) >= 0;
+BinaryPolygon ObjectFilterByPolygon::createBinaryPolygon(
+    const ImageDetection::Polygon& poly, cv::Size imageSize) {
+  BinaryPolygon bp;
+  bp.isInclusion = (poly.type() == ImageDetection::PolygonType::INCLUSION);
+  bp.threshold = poly.threshold();
+  bp.mask = cv::Mat::zeros(imageSize, CV_8UC1);
+
+  std::vector<cv::Point> points;
+
+  for (auto& pt : poly.points()) {
+    points.push_back(
+        cv::Point(static_cast<int>(pt.x()), static_cast<int>(pt.y())));
+  }
+
+  cv::fillPoly(bp.mask, points, cv::Scalar(255));
+  bp.boundingBox = cv::boundingRect(points);
+  return bp;
 }
 
-bool ObjectFilterByPolygon::isBoxExcluded(
-    const cv::Rect& box,
-    const std::vector<std::vector<cv::Point>>& excludeZones) {
-  std::vector<cv::Point> boxPoly = {{box.x, box.y},
-                                    {box.x + box.width, box.y},
-                                    {box.x + box.width, box.y + box.height},
-                                    {box.x, box.y + box.height}};
-  for (const auto& zone : excludeZones) {
-    float intersectionArea =
-        cv::intersectConvexConvex(boxPoly, zone, cv::noArray());
-    if (intersectionArea > 0) return true;
+bool ObjectFilterByPolygon::isDetectionAccepted(
+    const Detection& detection, const std::vector<BinaryPolygon>& polygons) {
+  for (const auto& poly : polygons) {
+    // Быстрая проверка пересечения бокса детекции с охватывающим
+    // прямоугольником полигона
+    cv::Rect intersect = poly.boundingBox & detection.box;
+    if (intersect.area() == 0) continue;  // нет пересечения
+
+    // Проверяем сколько пикселей центра детекции попало в полигон
+    cv::Mat roi = poly.mask(detection.box);
+    int insideCount = cv::countNonZero(roi);
+    float insideRatio = static_cast<float>(insideCount) / detection.box.area();
+
+    if (insideRatio >= poly.threshold) {
+      return poly.isInclusion;
+    }
   }
-  return false;
+  return false;  // не попало ни в один полигон
 }

@@ -9,6 +9,6 @@ class IObjectFilter {
   virtual ~IObjectFilter() = default;
   virtual std::vector<Detection> apply(
       const std::vector<Detection>& detections,
-      const std::vector<std::vector<cv::Point>>& includeZones,
-      const std::vector<std::vector<cv::Point>>& excludeZones) = 0;
+      const std::vector<ImageDetection::Polygon>& polygons,
+      cv::Size imageSize) = 0;
 };
