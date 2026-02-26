@@ -14,6 +14,11 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   grpc::ClientContext context;
   auto stream = grpcClient_->CreateStream(&context);
 
+  if (!stream) {
+    std::cerr << "Failed to create gRPC stream" << std::endl;
+    return false;
+  }
+
   // Отправка полигонов
   ProcessRequest request;
   auto* polygon_list = request.mutable_polygon_list();
