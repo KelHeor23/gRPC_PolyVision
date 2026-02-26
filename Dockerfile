@@ -29,6 +29,8 @@ RUN --mount=type=cache,target=/var/cache/apt \
     protobuf-compiler \
     libgrpc++-dev \
     protobuf-compiler-grpc \
+    # Библиотека GTest из репозитория (нужна для заголовков)
+    libgtest-dev \
     # Инструмент форматирования (версия 18 доступна в репозитории)
     clang-format-18 \
     && rm -rf /var/lib/apt/lists/*
