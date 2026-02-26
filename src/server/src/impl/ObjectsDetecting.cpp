@@ -31,25 +31,11 @@ void ObjectsDetecting::process(cv::Mat& image,
     drawer_->drawPolygons(image, polygons);
   }
 
-  std::vector<std::vector<cv::Point>> includeZones, excludeZones;
-
-  for (const auto& poly : polygons) {
-    std::vector<cv::Point> points;
-    for (const auto& p : poly.points()) {
-      points.emplace_back(static_cast<int>(p.x()), static_cast<int>(p.y()));
-    }
-    if (points.size() < 3) continue;
-    if (poly.type() == ImageDetection::PolygonType::INCLUSION)
-      includeZones.push_back(std::move(points));
-    else if (poly.type() == ImageDetection::PolygonType::EXCLUSION)
-      excludeZones.push_back(std::move(points));
-  }
-
   // Детекция
   auto detections = detector_->detect(image);
 
   // Фильтрация по зонам
-  detections = objectFilter_->apply(detections, includeZones, excludeZones);
+  detections = objectFilter_->apply(detections, polygons, image.size());
 
   // Отрисовка
   drawer_->drawDetections(image, detections, classMapper_);
