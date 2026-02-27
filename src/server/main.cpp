@@ -34,9 +34,9 @@ void RunServer(int argc, char** argv) {
     std::string server_address("0.0.0.0:50051");
 
     Config conf;
-    conf.modelWeights = "../../../YOLO/yolov4.weights";
-    conf.modelConfig = "../../../YOLO/yolov4.cfg";
-    conf.classesFile = "../../../YOLO/coco.names";
+    conf.modelWeights = "YOLO/yolov4.weights";
+    conf.modelConfig = "YOLO/yolov4.cfg";
+    conf.classesFile = "YOLO/coco.names";
 
     auto classMapper = std::make_shared<ClassMapper>(conf.classesFile);
     auto yoloDetector = std::make_unique<YoloDetector>(conf, classMapper);

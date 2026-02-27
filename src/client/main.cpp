@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
       return 0;
     }
 
-    auto channel = grpc::CreateChannel("localhost:50051",
+    auto channel = grpc::CreateChannel("server:50051",
                                        grpc::InsecureChannelCredentials());
     auto grpcClient = std::make_unique<GrpcStreamClient>(channel);
     auto encoder = std::make_unique<OpenCVEncoder>();
@@ -41,8 +41,8 @@ int main(int argc, char *argv[]) {
     std::string imgFilePath = options.GetImageFile();
     std::string polygonsFilePath = options.GetPolygonsFile();
 
-    if (imgFilePath.empty()) imgFilePath = "../../../images/2.jpg";
-    if (polygonsFilePath.empty()) polygonsFilePath = "../../../images/2.json";
+    if (imgFilePath.empty()) imgFilePath = "images/2.jpg";
+    if (polygonsFilePath.empty()) polygonsFilePath = "images/2.json";
 
     cv::Mat image = cv::imread(imgFilePath);
     Polygons polygons;

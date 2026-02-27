@@ -1,0 +1,34 @@
+services:
+  server:
+    stop_signal: SIGKILL
+    build: .
+    image: grpc_polyvision:latest
+    container_name: grpc-server
+    command: /app/server
+    networks:
+      - grpc-net
+    volumes:
+      - ./YOLO:/app/YOLO:ro
+    ports:
+      - "50051:50051"
+
+  client:
+    build: .
+    image: grpc_polyvision:latest
+    container_name: grpc-client
+    command: /app/client
+    networks:
+      - grpc-net
+    environment:
+      - DISPLAY=${DISPLAY} # для Linux
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+      - ./images:/app/images:ro
+    depends_on:
+      - server
+    stdin_open: true
+    tty: true
+
+networks:
+  grpc-net:
+    driver: bridge
