@@ -10,7 +10,7 @@
 	},
 	"runArgs": [
 		"--network=grpc-shared-net",
-		"--name=grpc-server",
+		"--name=grpc-server-dev",
 		"-e",
 		"DISPLAY=:0",
 		"-v",
