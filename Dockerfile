@@ -22,6 +22,7 @@ RUN --mount=type=cache,target=/var/cache/apt \
     # Boost для JSON
     libboost-dev \
     libboost-json-dev \
+    libboost-program-options-dev \
     # OpenCV для проекта
     libopencv-dev \
     # Protobuf и gRPC из официальных репозиториев Ubuntu 24.04
