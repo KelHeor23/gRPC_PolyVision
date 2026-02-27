@@ -1,20 +1,23 @@
 #pragma once
 /**
- * @file IImageEncoder.h
- * @brief Интерфейс для кодирования/декодирования изображений.
+ * @file OpenCVEncoder.h
+ * @brief Реализация интерфейса IImageEncoder с использованием OpenCV.
  */
 #include <opencv2/core.hpp>
-#include <optional>
+#include <string>
 #include <vector>
 
+#include "interfaces/IImageEncoder.h"
+
 /**
- * @interface IImageEncoder
- * @brief Абстрактный базовый класс, определяющий методы преобразования
- *        изображения в байтовый буфер и обратно.
+ * @class OpenCVEncoder
+ * @brief Кодирует изображения в буфер и декодирует обратно с помощью OpenCV.
+ *
+ * Поддерживает форматы, определяемые OpenCV (".jpg").
  */
-class IImageEncoder {
+
+class OpenCVEncoder : public IImageEncoder {
  public:
-  virtual ~IImageEncoder() = default;
   /**
    * @brief Кодирует изображение в формат, заданный параметром format.
    * @param image Исходное изображение (cv::Mat).
@@ -23,16 +26,15 @@ class IImageEncoder {
    * @return Вектор байт с закодированным изображением или std::nullopt при
    * ошибке.
    */
-  virtual std::optional<std::vector<uint8_t>> encode(const cv::Mat& image,
-                                                     const std::string& format,
-                                                     int quality) = 0;
-
+  std::optional<std::vector<uint8_t>> encode(const cv::Mat& image,
+                                             const std::string& format,
+                                             int quality) override;
   /**
    * @brief Декодирует буфер данных в изображение cv::Mat.
    * @param data Вектор байт с закодированным изображением.
    * @param flags Флаги imdecode (например, cv::IMREAD_COLOR).
    * @return Декодированное изображение или std::nullopt при ошибке.
    */
-  virtual std::optional<cv::Mat> decode(const std::vector<uint8_t>& data,
-                                        int flags) = 0;
+  std::optional<cv::Mat> decode(const std::vector<uint8_t>& data,
+                                int flags) override;
 };

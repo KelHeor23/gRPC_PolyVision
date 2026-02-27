@@ -22,6 +22,7 @@ Polygons::Polygons()
       polygonParser_(std::make_unique<PolygonParser>()) {}
 
 bool Polygons::loadFromFile(const std::string& filename) {
+  lastFileName_ = filename;
   auto content = fileReader_->read(filename);
   if (!content) {
     return false;

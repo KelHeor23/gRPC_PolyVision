@@ -67,8 +67,7 @@ std::vector<Detection> YoloDetector::processOutput(
 
         cv::Rect box(left, top, width, height);
 
-        // Обрезаем бокс по границам изображения, если он выходит за них -
-        // пропускаем, т.к. значит что что-то пошло не так
+        // Обрезаем бокс по границам изображения
         box &= cv::Rect(0, 0, imgSize.width, imgSize.height);
         if (box.area() <= 0) continue;
 

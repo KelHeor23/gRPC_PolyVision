@@ -6,12 +6,13 @@ add_executable(client main.cpp
     src/polygons/PolygonParser.cpp
     src/processing/ImageProcessingClient.cpp 
     src/impl/OpencvDisplay.cpp 
-    src/impl/GrpcStreamClient.cpp)
+    src/impl/GrpcStreamClient.cpp
+    src/impl/CmdOptions.cpp)
 
 target_include_directories(client PRIVATE include)
 
 # Ищем Boost с компонентом json
-find_package(Boost REQUIRED COMPONENTS json)
+find_package(Boost REQUIRED COMPONENTS json program_options)
 
 if(Boost_FOUND)
     message(STATUS "Boost found. Include dirs: ${Boost_INCLUDE_DIRS}")
@@ -25,4 +26,5 @@ target_link_libraries(client
     proto_generated
     ${OpenCV_LIBS}
     Boost::json
+    Boost::program_options
 )
