@@ -41,9 +41,14 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   }
 
   // Кодирование изображения
-  auto encoded = encoder_->encode(img, ".jpg", 95);
-  if (!encoded.has_value()) {
-    std::cerr << "Failed to encode image" << std::endl;
+  std::optional<std::vector<uint8_t>> encoded;
+  try {
+    encoded = encoder_->encode(img, ".jpg", 95);
+  } catch (const cv::Exception& e) {
+    std::cerr << "OpenCV exception during encoding: " << e.what() << std::endl;
+    return false;
+  } catch (const std::exception& e) {
+    std::cerr << "Encoding error: " << e.what() << std::endl;
     return false;
   }
 
@@ -80,13 +85,26 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
     return false;
   }
 
-  auto result = encoder_->decode(responseBuffer, cv::IMREAD_COLOR);
-  if (!result.has_value()) {
-    std::cerr << "Failed to decode result" << std::endl;
+  std::optional<cv::Mat> result;
+  try {
+    result = encoder_->decode(responseBuffer, cv::IMREAD_COLOR);
+  } catch (const cv::Exception& e) {
+    std::cerr << "OpenCV exception during decoding: " << e.what() << std::endl;
+    return false;
+  } catch (const std::exception& e) {
+    std::cerr << "Decoding error: " << e.what() << std::endl;
     return false;
   }
 
-  display_->show(result.value(), "Processed Image");
-  display_->waitKey(0);
+  try {
+    display_->show(*result, "Processed Image");
+    display_->waitKey(0);
+  } catch (const cv::Exception& e) {
+    std::cerr << "OpenCV exception during display: " << e.what() << std::endl;
+    return false;
+  } catch (const std::exception& e) {
+    std::cerr << "Display error: " << e.what() << std::endl;
+    return false;
+  }
   return true;
 }
