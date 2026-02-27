@@ -6,13 +6,13 @@
 		// Sets the run context to one level up instead of the .devcontainer folder.
 		"context": "..",
 		// Update the 'dockerFile' property if you aren't using the standard 'Dockerfile' filename.
-		"dockerfile": "../Dockerfile"
+		"dockerfile": "Dockerfile"
 	},
 	"runArgs": [
 		"--network=grpc-shared-net",
 		"--name=grpc-server",
 		"-e",
-		"DISPLAY=host.docker.internal:0.0",
+		"DISPLAY=:0",
 		"-v",
 		"/tmp/.X11-unix:/tmp/.X11-unix:rw"
 	],
