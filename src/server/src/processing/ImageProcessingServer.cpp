@@ -71,10 +71,12 @@ Status ImageProcessingServer::ProcessImage(
   while (offset < outputBuffer.size()) {
     ProcessResponse response;
     size_t current = std::min(chunkSize, outputBuffer.size() - offset);
+
     response.set_image_data(outputBuffer.data() + offset, current);
     if (!stream->Write(response)) {
       std::cerr << "Failed to send chunk" << std::endl;
-      break;
+      return grpc::Status(grpc::StatusCode::INTERNAL,
+                          "Failed to send response chunk");
     }
     offset += current;
   }
