@@ -1,3 +1,10 @@
+/**
+ * @file main.cpp
+ * @brief Точка входа клиентского приложения.
+ *
+ * Программа загружает изображение и JSON с полигонами, создаёт gRPC-клиент
+ * и запускает обработку на сервере, после чего отображает результат.
+ */
 #include <impl/OpenCVEncoder.h>
 
 #include <memory>
@@ -6,6 +13,10 @@
 #include "include/impl/GrpcStreamClient.h"
 #include "include/impl/OpencvDisplay.h"
 #include "include/processing/ImageProcessingClient.h"
+
+/**
+ * @brief Главная функция.
+ */
 
 int main() {
   auto channel = grpc::CreateChannel("localhost:50051",
