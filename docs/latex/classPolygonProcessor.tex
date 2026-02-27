@@ -1,0 +1,67 @@
+\hypertarget{classPolygonProcessor}{}\section{Polygon\+Processor Class Reference}
+\label{classPolygonProcessor}\index{Polygon\+Processor@{Polygon\+Processor}}
+
+
+Выполняет предобработку полигонов (сортировку по приоритету).  
+
+
+
+
+{\ttfamily \#include $<$Polygon\+Processor.\+h$>$}
+
+
+
+Inheritance diagram for Polygon\+Processor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{classPolygonProcessor__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Polygon\+Processor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{classPolygonProcessor__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classPolygonProcessor_a70e2fc49edc0b11ec1f91b494fec3e38}{process\+Polygons} (std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons) override
+\begin{DoxyCompactList}\small\item\em Сортирует полигоны по убыванию приоритета, затем по убыванию типа. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Выполняет предобработку полигонов (сортировку по приоритету). 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPolygonProcessor_a70e2fc49edc0b11ec1f91b494fec3e38}\label{classPolygonProcessor_a70e2fc49edc0b11ec1f91b494fec3e38}} 
+\index{Polygon\+Processor@{Polygon\+Processor}!process\+Polygons@{process\+Polygons}}
+\index{process\+Polygons@{process\+Polygons}!Polygon\+Processor@{Polygon\+Processor}}
+\subsubsection{\texorpdfstring{process\+Polygons()}{processPolygons()}}
+{\footnotesize\ttfamily void Polygon\+Processor\+::process\+Polygons (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Сортирует полигоны по убыванию приоритета, затем по убыванию типа. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em polygons} & Вектор полигонов (модифицируется). \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIPolygonProcessor_a616aedfb6e556db11c8fffc266f40079}{I\+Polygon\+Processor}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{PolygonProcessor_8h}{Polygon\+Processor.\+h}\item 
+src/server/src/impl/Polygon\+Processor.\+cpp\end{DoxyCompactItemize}

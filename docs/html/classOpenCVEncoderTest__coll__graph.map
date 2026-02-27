@@ -1,0 +1,4 @@
+<map id="OpenCVEncoderTest" name="OpenCVEncoderTest">
+<area shape="rect" id="node3" href="$classOpenCVEncoder.html" title="Кодирует изображения в буфер и декодирует обратно с помощью OpenCV. " alt="" coords="109,81,235,108"/>
+<area shape="rect" id="node4" href="$classIImageEncoder.html" title="Абстрактный базовый класс, определяющий методы преобразования изображения в байтовый буфер и обратно..." alt="" coords="113,5,231,32"/>
+</map>

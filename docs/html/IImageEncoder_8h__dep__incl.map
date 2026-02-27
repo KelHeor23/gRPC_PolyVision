@@ -1,0 +1,4 @@
+<map id="src/common/include/interfaces/IImageEncoder.h" name="src/common/include/interfaces/IImageEncoder.h">
+<area shape="rect" id="node2" href="$OpenCVEncoder_8h.html" title="Реализация интерфейса IImageEncoder с использованием OpenCV. " alt="" coords="5,102,180,143"/>
+<area shape="rect" id="node3" href="$ImageProcessingServer_8h.html" title="gRPC&#45;сервер для обработки изображений. " alt="" coords="205,95,415,151"/>
+</map>

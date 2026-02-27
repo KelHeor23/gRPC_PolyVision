@@ -1,0 +1,16 @@
+var searchData=
+[
+  ['parse',['parse',['../classIJsonParser.html#a6fe12a02f852368d0d092b2a375eea5a',1,'IJsonParser::parse()'],['../classIPolygonParser.html#a577b9f4d384023fdf7c848d00cd11c0c',1,'IPolygonParser::parse()'],['../classJsonParser.html#ad307447bc4c32859f66b0ab76590c62e',1,'JsonParser::parse()'],['../classPolygonParser.html#adabff1da19ce191ab453d90a96e35ae9',1,'PolygonParser::parse()'],['../classCommandOptions.html#a638e9d04721352371a7c7bda925960a6',1,'CommandOptions::Parse(int argc, char *argv[])'],['../classCommandOptions.html#a638e9d04721352371a7c7bda925960a6',1,'CommandOptions::Parse(int argc, char *argv[])']]],
+  ['polygonparser',['PolygonParser',['../classPolygonParser.html',1,'']]],
+  ['polygonparser_2eh',['PolygonParser.h',['../PolygonParser_8h.html',1,'']]],
+  ['polygonparsertest',['PolygonParserTest',['../classPolygonParserTest.html',1,'']]],
+  ['polygonprocessor',['PolygonProcessor',['../classPolygonProcessor.html',1,'']]],
+  ['polygonprocessor_2eh',['PolygonProcessor.h',['../PolygonProcessor_8h.html',1,'']]],
+  ['polygons',['Polygons',['../classPolygons.html',1,'Polygons'],['../classPolygons.html#a6897b5d761737feb8c24c6b05a9c8408',1,'Polygons::Polygons(std::unique_ptr&lt; IFileReader &gt; fileReader, std::unique_ptr&lt; IJsonParser &gt; jsonParser, std::unique_ptr&lt; IPolygonParser &gt; polygonParser)'],['../classPolygons.html#a2af35c73cbbf4fa9aa260e089bdd1c33',1,'Polygons::Polygons()']]],
+  ['polygons_2eh',['Polygons.h',['../Polygons_8h.html',1,'']]],
+  ['polygonsrealtest',['PolygonsRealTest',['../classPolygonsRealTest.html',1,'']]],
+  ['printhelp',['printHelp',['../classCommandOptions.html#a97cf76d66c634680f9b529724437072f',1,'CommandOptions::printHelp()'],['../classCommandOptions.html#a97cf76d66c634680f9b529724437072f',1,'CommandOptions::printHelp()']]],
+  ['process',['process',['../classObjectsDetecting.html#a7e403fc34ec40642af253409a2ef8914',1,'ObjectsDetecting::process()'],['../classIImageProcessor.html#a7a94df637e0b510f9f1ce08c34dee216',1,'IImageProcessor::process()']]],
+  ['processimage',['ProcessImage',['../classImageProcessingClient.html#a121d012a4440723908870a94eb94b2ba',1,'ImageProcessingClient::ProcessImage()'],['../classImageProcessingServer.html#a3d85fd22c665f0434f91963b80788c73',1,'ImageProcessingServer::ProcessImage()']]],
+  ['processpolygons',['processPolygons',['../classPolygonProcessor.html#a70e2fc49edc0b11ec1f91b494fec3e38',1,'PolygonProcessor::processPolygons()'],['../classIPolygonProcessor.html#a616aedfb6e556db11c8fffc266f40079',1,'IPolygonProcessor::processPolygons()']]]
+];

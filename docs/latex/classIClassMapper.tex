@@ -1,0 +1,102 @@
+\hypertarget{classIClassMapper}{}\section{I\+Class\+Mapper Interface Reference}
+\label{classIClassMapper}\index{I\+Class\+Mapper@{I\+Class\+Mapper}}
+
+
+Абстрактный маппер классов.  
+
+
+
+
+{\ttfamily \#include $<$I\+Class\+Mapper.\+h$>$}
+
+
+
+Inheritance diagram for I\+Class\+Mapper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classIClassMapper__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::string \hyperlink{classIClassMapper_a75dcafcedb2bb31c4520fc06659b872b}{get\+Class\+Name} (int class\+Id) const =0
+\begin{DoxyCompactList}\small\item\em Возвращает имя класса по идентификатору. \end{DoxyCompactList}\item 
+virtual int \hyperlink{classIClassMapper_aa6948800ca549f06c04621bd8a17970a}{size} () const =0
+\begin{DoxyCompactList}\small\item\em Количество известных классов. \end{DoxyCompactList}\item 
+virtual std\+::vector$<$ int $>$ \hyperlink{classIClassMapper_aa4c2a391c5ad5093e7d11120a9352898}{get\+Allowed\+Ids} (const std\+::vector$<$ std\+::string $>$ \&allowed\+Names) const =0
+\begin{DoxyCompactList}\small\item\em Преобразует список имён в список идентификаторов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Абстрактный маппер классов. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIClassMapper_aa4c2a391c5ad5093e7d11120a9352898}\label{classIClassMapper_aa4c2a391c5ad5093e7d11120a9352898}} 
+\index{I\+Class\+Mapper@{I\+Class\+Mapper}!get\+Allowed\+Ids@{get\+Allowed\+Ids}}
+\index{get\+Allowed\+Ids@{get\+Allowed\+Ids}!I\+Class\+Mapper@{I\+Class\+Mapper}}
+\subsubsection{\texorpdfstring{get\+Allowed\+Ids()}{getAllowedIds()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$int$>$ I\+Class\+Mapper\+::get\+Allowed\+Ids (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{allowed\+Names }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Преобразует список имён в список идентификаторов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em allowed\+Names} & Имена классов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор соответствующих идентификаторов. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classClassMapper_a43e7a4f099e0b7902ca9bbc190a37b99}{Class\+Mapper}.
+
+\mbox{\Hypertarget{classIClassMapper_a75dcafcedb2bb31c4520fc06659b872b}\label{classIClassMapper_a75dcafcedb2bb31c4520fc06659b872b}} 
+\index{I\+Class\+Mapper@{I\+Class\+Mapper}!get\+Class\+Name@{get\+Class\+Name}}
+\index{get\+Class\+Name@{get\+Class\+Name}!I\+Class\+Mapper@{I\+Class\+Mapper}}
+\subsubsection{\texorpdfstring{get\+Class\+Name()}{getClassName()}}
+{\footnotesize\ttfamily virtual std\+::string I\+Class\+Mapper\+::get\+Class\+Name (\begin{DoxyParamCaption}\item[{int}]{class\+Id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Возвращает имя класса по идентификатору. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+Id} & Идентификатор класса. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Имя класса. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classClassMapper_aa85b4587cd95baeaf9d36dd0eab1d6c5}{Class\+Mapper}.
+
+\mbox{\Hypertarget{classIClassMapper_aa6948800ca549f06c04621bd8a17970a}\label{classIClassMapper_aa6948800ca549f06c04621bd8a17970a}} 
+\index{I\+Class\+Mapper@{I\+Class\+Mapper}!size@{size}}
+\index{size@{size}!I\+Class\+Mapper@{I\+Class\+Mapper}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily virtual int I\+Class\+Mapper\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Количество известных классов. 
+
+\begin{DoxyReturn}{Returns}
+Размер. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classClassMapper_ad8ff51f3b173c01a84b467af1736be9c}{Class\+Mapper}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/interfaces/\hyperlink{IClassMapper_8h}{I\+Class\+Mapper.\+h}\end{DoxyCompactItemize}

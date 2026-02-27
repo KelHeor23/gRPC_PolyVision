@@ -1,0 +1,96 @@
+\hypertarget{classObjectFilterByPolygon}{}\section{Object\+Filter\+By\+Polygon Class Reference}
+\label{classObjectFilterByPolygon}\index{Object\+Filter\+By\+Polygon@{Object\+Filter\+By\+Polygon}}
+
+
+Фильтрует детекции, оставляя только те, что удовлетворяют условиям полигонов.  
+
+
+
+
+{\ttfamily \#include $<$Object\+Filter\+By\+Polygon.\+h$>$}
+
+
+
+Inheritance diagram for Object\+Filter\+By\+Polygon\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{classObjectFilterByPolygon__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Object\+Filter\+By\+Polygon\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{classObjectFilterByPolygon__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classObjectFilterByPolygon_a1be6346aaf034874ab7a16f9b7b67619}{Object\+Filter\+By\+Polygon} (std\+::unique\+\_\+ptr$<$ \hyperlink{classIPolygonProcessor}{I\+Polygon\+Processor} $>$ polygon\+Processor)
+\begin{DoxyCompactList}\small\item\em Конструктор с внедрением процессора полигонов. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \hyperlink{classObjectFilterByPolygon_aae721a70f14fecbb049984eedd382344}{apply} (const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&detections, std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons, cv\+::\+Size image\+Size, const std\+::string \&polygons\+Name) override
+\begin{DoxyCompactList}\small\item\em Применяет фильтрацию к детекциям. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Фильтрует детекции, оставляя только те, что удовлетворяют условиям полигонов. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classObjectFilterByPolygon_a1be6346aaf034874ab7a16f9b7b67619}\label{classObjectFilterByPolygon_a1be6346aaf034874ab7a16f9b7b67619}} 
+\index{Object\+Filter\+By\+Polygon@{Object\+Filter\+By\+Polygon}!Object\+Filter\+By\+Polygon@{Object\+Filter\+By\+Polygon}}
+\index{Object\+Filter\+By\+Polygon@{Object\+Filter\+By\+Polygon}!Object\+Filter\+By\+Polygon@{Object\+Filter\+By\+Polygon}}
+\subsubsection{\texorpdfstring{Object\+Filter\+By\+Polygon()}{ObjectFilterByPolygon()}}
+{\footnotesize\ttfamily Object\+Filter\+By\+Polygon\+::\+Object\+Filter\+By\+Polygon (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIPolygonProcessor}{I\+Polygon\+Processor} $>$}]{polygon\+Processor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор с внедрением процессора полигонов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em polygon\+Processor} & Объект для предобработки полигонов. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classObjectFilterByPolygon_aae721a70f14fecbb049984eedd382344}\label{classObjectFilterByPolygon_aae721a70f14fecbb049984eedd382344}} 
+\index{Object\+Filter\+By\+Polygon@{Object\+Filter\+By\+Polygon}!apply@{apply}}
+\index{apply@{apply}!Object\+Filter\+By\+Polygon@{Object\+Filter\+By\+Polygon}}
+\subsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ Object\+Filter\+By\+Polygon\+::apply (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&}]{detections,  }\item[{std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons,  }\item[{cv\+::\+Size}]{image\+Size,  }\item[{const std\+::string \&}]{polygons\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Применяет фильтрацию к детекциям. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em detections} & Исходный вектор детекций. \\
+\hline
+{\em polygons} & Полигоны (могут быть модифицированы процессором). \\
+\hline
+{\em image\+Size} & Размер изображения. \\
+\hline
+{\em polygons\+Name} & Имя набора полигонов (для кэширования масок). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Отфильтрованный вектор детекций. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIObjectFilter_abaf4b854d5120b4d80b94209e5521786}{I\+Object\+Filter}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{ObjectFilterByPolygon_8h}{Object\+Filter\+By\+Polygon.\+h}\item 
+src/server/src/impl/Object\+Filter\+By\+Polygon.\+cpp\end{DoxyCompactItemize}

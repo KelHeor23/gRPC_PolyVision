@@ -1,0 +1,59 @@
+\hypertarget{classIJsonParser}{}\section{I\+Json\+Parser Interface Reference}
+\label{classIJsonParser}\index{I\+Json\+Parser@{I\+Json\+Parser}}
+
+
+Преобразует строку J\+S\+ON в объект Boost.\+J\+S\+ON.  
+
+
+
+
+{\ttfamily \#include $<$I\+Json\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for I\+Json\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classIJsonParser__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::optional$<$ boost\+::json\+::value $>$ \hyperlink{classIJsonParser_a6fe12a02f852368d0d092b2a375eea5a}{parse} (const std\+::string \&json)=0
+\begin{DoxyCompactList}\small\item\em Парсит J\+S\+O\+N-\/строку. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Преобразует строку J\+S\+ON в объект Boost.\+J\+S\+ON. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIJsonParser_a6fe12a02f852368d0d092b2a375eea5a}\label{classIJsonParser_a6fe12a02f852368d0d092b2a375eea5a}} 
+\index{I\+Json\+Parser@{I\+Json\+Parser}!parse@{parse}}
+\index{parse@{parse}!I\+Json\+Parser@{I\+Json\+Parser}}
+\subsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily virtual std\+::optional$<$boost\+::json\+::value$>$ I\+Json\+Parser\+::parse (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Парсит J\+S\+O\+N-\/строку. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & Строка с J\+S\+O\+N-\/данными. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Значение Boost.\+J\+S\+ON или std\+::nullopt при ошибке парсинга. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classJsonParser_ad307447bc4c32859f66b0ab76590c62e}{Json\+Parser}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/interfaces/\hyperlink{IJsonParser_8h}{I\+Json\+Parser.\+h}\end{DoxyCompactItemize}

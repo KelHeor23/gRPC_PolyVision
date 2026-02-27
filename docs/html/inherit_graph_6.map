@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classIClassMapper.html" title="Абстрактный маппер классов. " alt="" coords="5,5,115,32"/>
+<area shape="rect" id="node2" href="$classClassMapper.html" title="Загружает список имён классов из текстового файла и предоставляет доступ по индексу. " alt="" coords="163,5,268,32"/>
+</map>

@@ -1,0 +1,70 @@
+\hypertarget{classPolygonParser}{}\section{Polygon\+Parser Class Reference}
+\label{classPolygonParser}\index{Polygon\+Parser@{Polygon\+Parser}}
+
+
+Разбирает J\+S\+O\+N-\/массив \char`\"{}polygons\char`\"{} в protobuf-\/сообщения Polygon.  
+
+
+
+
+{\ttfamily \#include $<$Polygon\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for Polygon\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classPolygonParser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Polygon\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classPolygonParser__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::optional$<$ std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ $>$ \hyperlink{classPolygonParser_adabff1da19ce191ab453d90a96e35ae9}{parse} (const boost\+::json\+::value \&root) override
+\begin{DoxyCompactList}\small\item\em Основной метод парсинга. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Разбирает J\+S\+O\+N-\/массив \char`\"{}polygons\char`\"{} в protobuf-\/сообщения Polygon. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPolygonParser_adabff1da19ce191ab453d90a96e35ae9}\label{classPolygonParser_adabff1da19ce191ab453d90a96e35ae9}} 
+\index{Polygon\+Parser@{Polygon\+Parser}!parse@{parse}}
+\index{parse@{parse}!Polygon\+Parser@{Polygon\+Parser}}
+\subsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily std\+::optional$<$ std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ $>$ Polygon\+Parser\+::parse (\begin{DoxyParamCaption}\item[{const boost\+::json\+::value \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Основной метод парсинга. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Корневой J\+S\+O\+N-\/объект. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор полигонов или nullopt, если данные некорректны. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIPolygonParser_a577b9f4d384023fdf7c848d00cd11c0c}{I\+Polygon\+Parser}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/polygons/\hyperlink{PolygonParser_8h}{Polygon\+Parser.\+h}\item 
+src/client/src/polygons/Polygon\+Parser.\+cpp\end{DoxyCompactItemize}

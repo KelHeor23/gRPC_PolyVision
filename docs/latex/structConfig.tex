@@ -1,0 +1,61 @@
+\hypertarget{structConfig}{}\section{Config Struct Reference}
+\label{structConfig}\index{Config@{Config}}
+
+
+Параметры настройки Y\+O\+LO и пост-\/обработки.  
+
+
+
+
+{\ttfamily \#include $<$Config.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structConfig_ab220cdad5628b74ecf8b9df3fbdb2440}\label{structConfig_ab220cdad5628b74ecf8b9df3fbdb2440}} 
+std\+::string \hyperlink{structConfig_ab220cdad5628b74ecf8b9df3fbdb2440}{model\+Weights}
+\begin{DoxyCompactList}\small\item\em Путь к файлу весов Y\+O\+LO ( .weights) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structConfig_ac6260b7be980b7f9c9a48b631c887402}\label{structConfig_ac6260b7be980b7f9c9a48b631c887402}} 
+std\+::string \hyperlink{structConfig_ac6260b7be980b7f9c9a48b631c887402}{model\+Config}
+\begin{DoxyCompactList}\small\item\em Путь к файлу конфигурации сети ( .cfg) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structConfig_a44a87be016c75610828270bc9113afc6}\label{structConfig_a44a87be016c75610828270bc9113afc6}} 
+std\+::string \hyperlink{structConfig_a44a87be016c75610828270bc9113afc6}{classes\+File}
+\begin{DoxyCompactList}\small\item\em Путь к файлу с именами классов (coco.\+names) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structConfig_adf813349ac3a18e3520eb2267277a335}\label{structConfig_adf813349ac3a18e3520eb2267277a335}} 
+float \hyperlink{structConfig_adf813349ac3a18e3520eb2267277a335}{conf\+Threshold} = 0.\+2f
+\begin{DoxyCompactList}\small\item\em Порог уверенности для детекций \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structConfig_a8470b4f20fa21ff5c230a360df87f55e}\label{structConfig_a8470b4f20fa21ff5c230a360df87f55e}} 
+float \hyperlink{structConfig_a8470b4f20fa21ff5c230a360df87f55e}{nms\+Threshold} = 0.\+4f
+\begin{DoxyCompactList}\small\item\em Порог N\+MS (Non-\/\+Maximum Suppression) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structConfig_ae1c7d5aeba11ba69d04fa6be1be09222}\label{structConfig_ae1c7d5aeba11ba69d04fa6be1be09222}} 
+cv\+::\+Size \hyperlink{structConfig_ae1c7d5aeba11ba69d04fa6be1be09222}{input\+Size} = \{640, 640\}
+\begin{DoxyCompactList}\small\item\em Размер входного изображения для сети \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \hyperlink{structConfig_ac74084e8eb80e8539a5cad3d214df627}{allowed\+Classes}
+\begin{DoxyCompactList}\small\item\em Список классов, которые нужно обрабатывать \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Параметры настройки Y\+O\+LO и пост-\/обработки. 
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{structConfig_ac74084e8eb80e8539a5cad3d214df627}\label{structConfig_ac74084e8eb80e8539a5cad3d214df627}} 
+\index{Config@{Config}!allowed\+Classes@{allowed\+Classes}}
+\index{allowed\+Classes@{allowed\+Classes}!Config@{Config}}
+\subsubsection{\texorpdfstring{allowed\+Classes}{allowedClasses}}
+{\footnotesize\ttfamily std\+::vector$<$std\+::string$>$ Config\+::allowed\+Classes}
+
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+      \textcolor{stringliteral}{"orange"}, \textcolor{stringliteral}{"apple"}, \textcolor{stringliteral}{"person"}, \textcolor{stringliteral}{"cat"},
+      \textcolor{stringliteral}{"dog"}\}
+\end{DoxyCode}
+
+
+Список классов, которые нужно обрабатывать 
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{Config_8h}{Config.\+h}\end{DoxyCompactItemize}

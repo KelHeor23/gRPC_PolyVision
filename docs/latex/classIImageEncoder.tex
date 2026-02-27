@@ -1,0 +1,89 @@
+\hypertarget{classIImageEncoder}{}\section{I\+Image\+Encoder Interface Reference}
+\label{classIImageEncoder}\index{I\+Image\+Encoder@{I\+Image\+Encoder}}
+
+
+Абстрактный базовый класс, определяющий методы преобразования изображения в байтовый буфер и обратно.  
+
+
+
+
+{\ttfamily \#include $<$I\+Image\+Encoder.\+h$>$}
+
+
+
+Inheritance diagram for I\+Image\+Encoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classIImageEncoder__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::optional$<$ std\+::vector$<$ uint8\+\_\+t $>$ $>$ \hyperlink{classIImageEncoder_a9302e8737b13a5d721c06415c6d09b37}{encode} (const cv\+::\+Mat \&image, const std\+::string \&format, int quality)=0
+\begin{DoxyCompactList}\small\item\em Кодирует изображение в формат, заданный параметром format. \end{DoxyCompactList}\item 
+virtual std\+::optional$<$ cv\+::\+Mat $>$ \hyperlink{classIImageEncoder_a4166c542cef8223929552b77e9a8c978}{decode} (const std\+::vector$<$ uint8\+\_\+t $>$ \&data, int flags)=0
+\begin{DoxyCompactList}\small\item\em Декодирует буфер данных в изображение cv\+::\+Mat. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Абстрактный базовый класс, определяющий методы преобразования изображения в байтовый буфер и обратно. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIImageEncoder_a4166c542cef8223929552b77e9a8c978}\label{classIImageEncoder_a4166c542cef8223929552b77e9a8c978}} 
+\index{I\+Image\+Encoder@{I\+Image\+Encoder}!decode@{decode}}
+\index{decode@{decode}!I\+Image\+Encoder@{I\+Image\+Encoder}}
+\subsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily virtual std\+::optional$<$cv\+::\+Mat$>$ I\+Image\+Encoder\+::decode (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{data,  }\item[{int}]{flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Декодирует буфер данных в изображение cv\+::\+Mat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Вектор байт с закодированным изображением. \\
+\hline
+{\em flags} & Флаги imdecode (например, cv\+::\+I\+M\+R\+E\+A\+D\+\_\+\+C\+O\+L\+OR). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Декодированное изображение или std\+::nullopt при ошибке. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classOpenCVEncoder_aa06e1d9d2b9dd453d41c5a2924a78483}{Open\+C\+V\+Encoder}.
+
+\mbox{\Hypertarget{classIImageEncoder_a9302e8737b13a5d721c06415c6d09b37}\label{classIImageEncoder_a9302e8737b13a5d721c06415c6d09b37}} 
+\index{I\+Image\+Encoder@{I\+Image\+Encoder}!encode@{encode}}
+\index{encode@{encode}!I\+Image\+Encoder@{I\+Image\+Encoder}}
+\subsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily virtual std\+::optional$<$std\+::vector$<$uint8\+\_\+t$>$ $>$ I\+Image\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{image,  }\item[{const std\+::string \&}]{format,  }\item[{int}]{quality }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Кодирует изображение в формат, заданный параметром format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Исходное изображение (cv\+::\+Mat). \\
+\hline
+{\em format} & Расширение формата (например, \char`\"{}.\+jpg\char`\"{}). \\
+\hline
+{\em quality} & Качество сжатия (для J\+P\+EG от 0 до 100). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор байт с закодированным изображением или std\+::nullopt при ошибке. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classOpenCVEncoder_a1e5a602389ae673b27268ead7976bd18}{Open\+C\+V\+Encoder}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/common/include/interfaces/\hyperlink{IImageEncoder_8h}{I\+Image\+Encoder.\+h}\end{DoxyCompactItemize}

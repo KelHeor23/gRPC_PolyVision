@@ -1,0 +1,59 @@
+\hypertarget{classIGrpcStreamClient}{}\section{I\+Grpc\+Stream\+Client Interface Reference}
+\label{classIGrpcStreamClient}\index{I\+Grpc\+Stream\+Client@{I\+Grpc\+Stream\+Client}}
+
+
+Определяет метод для создания двунаправленного потока с сервером.  
+
+
+
+
+{\ttfamily \#include $<$I\+Grpc\+Stream\+Client.\+h$>$}
+
+
+
+Inheritance diagram for I\+Grpc\+Stream\+Client\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{classIGrpcStreamClient__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::unique\+\_\+ptr$<$ grpc\+::\+Client\+Reader\+Writer$<$ Image\+Detection\+::\+Process\+Request, Image\+Detection\+::\+Process\+Response $>$ $>$ \hyperlink{classIGrpcStreamClient_a876070b2b4a2da3b1ce26b39b8250012}{Create\+Stream} (grpc\+::\+Client\+Context $\ast$context)=0
+\begin{DoxyCompactList}\small\item\em Создаёт поток для обмена Process\+Request / Process\+Response. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Определяет метод для создания двунаправленного потока с сервером. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIGrpcStreamClient_a876070b2b4a2da3b1ce26b39b8250012}\label{classIGrpcStreamClient_a876070b2b4a2da3b1ce26b39b8250012}} 
+\index{I\+Grpc\+Stream\+Client@{I\+Grpc\+Stream\+Client}!Create\+Stream@{Create\+Stream}}
+\index{Create\+Stream@{Create\+Stream}!I\+Grpc\+Stream\+Client@{I\+Grpc\+Stream\+Client}}
+\subsubsection{\texorpdfstring{Create\+Stream()}{CreateStream()}}
+{\footnotesize\ttfamily virtual std\+::unique\+\_\+ptr$<$grpc\+::\+Client\+Reader\+Writer$<$ Image\+Detection\+::\+Process\+Request, Image\+Detection\+::\+Process\+Response$>$ $>$ I\+Grpc\+Stream\+Client\+::\+Create\+Stream (\begin{DoxyParamCaption}\item[{grpc\+::\+Client\+Context $\ast$}]{context }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Создаёт поток для обмена Process\+Request / Process\+Response. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & Контекст g\+R\+PC. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Поток для чтения и записи сообщений. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classGrpcStreamClient_ac29e84c02d8e31a0c0b68d4806d64fd0}{Grpc\+Stream\+Client}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/interfaces/\hyperlink{IGrpcStreamClient_8h}{I\+Grpc\+Stream\+Client.\+h}\end{DoxyCompactItemize}

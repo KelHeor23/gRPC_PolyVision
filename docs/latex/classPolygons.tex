@@ -1,0 +1,105 @@
+\hypertarget{classPolygons}{}\section{Polygons Class Reference}
+\label{classPolygons}\index{Polygons@{Polygons}}
+
+
+Управляет загрузкой и доступом к набору полигонов.  
+
+
+
+
+{\ttfamily \#include $<$Polygons.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classPolygons_a6897b5d761737feb8c24c6b05a9c8408}{Polygons} (std\+::unique\+\_\+ptr$<$ \hyperlink{classIFileReader}{I\+File\+Reader} $>$ file\+Reader, std\+::unique\+\_\+ptr$<$ \hyperlink{classIJsonParser}{I\+Json\+Parser} $>$ json\+Parser, std\+::unique\+\_\+ptr$<$ \hyperlink{classIPolygonParser}{I\+Polygon\+Parser} $>$ polygon\+Parser)
+\begin{DoxyCompactList}\small\item\em Конструктор с явным внедрением зависимостей. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPolygons_a2af35c73cbbf4fa9aa260e089bdd1c33}\label{classPolygons_a2af35c73cbbf4fa9aa260e089bdd1c33}} 
+\hyperlink{classPolygons_a2af35c73cbbf4fa9aa260e089bdd1c33}{Polygons} ()
+\begin{DoxyCompactList}\small\item\em Конструктор по умолчанию, использующий стандартные реализации. \end{DoxyCompactList}\item 
+bool \hyperlink{classPolygons_ab88c74e557938262138e74a998f58f53}{load\+From\+File} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Загружает и парсит полигоны из указанного файла. \end{DoxyCompactList}\item 
+const std\+::vector$<$ Polygon $>$ \& \hyperlink{classPolygons_a2112b20023592378a37a255356893a66}{get\+Polygons} () const
+\begin{DoxyCompactList}\small\item\em Возвращает загруженные полигоны. \end{DoxyCompactList}\item 
+const std\+::string \& \hyperlink{classPolygons_ab5d1609d1e7394ea3968a7aba21944c3}{get\+Last\+File\+Name} () const
+\begin{DoxyCompactList}\small\item\em Имя последнего загруженного файла. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Управляет загрузкой и доступом к набору полигонов. 
+
+Класс использует внедрённые зависимости для чтения файла, парсинга J\+S\+ON и преобразования в protobuf-\/объекты. Может работать с реализациями по умолчанию. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPolygons_a6897b5d761737feb8c24c6b05a9c8408}\label{classPolygons_a6897b5d761737feb8c24c6b05a9c8408}} 
+\index{Polygons@{Polygons}!Polygons@{Polygons}}
+\index{Polygons@{Polygons}!Polygons@{Polygons}}
+\subsubsection{\texorpdfstring{Polygons()}{Polygons()}}
+{\footnotesize\ttfamily Polygons\+::\+Polygons (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIFileReader}{I\+File\+Reader} $>$}]{file\+Reader,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIJsonParser}{I\+Json\+Parser} $>$}]{json\+Parser,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIPolygonParser}{I\+Polygon\+Parser} $>$}]{polygon\+Parser }\end{DoxyParamCaption})}
+
+
+
+Конструктор с явным внедрением зависимостей. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file\+Reader} & Объект для чтения файлов. \\
+\hline
+{\em json\+Parser} & Парсер J\+S\+ON. \\
+\hline
+{\em polygon\+Parser} & Парсер полигонов. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classPolygons_ab5d1609d1e7394ea3968a7aba21944c3}\label{classPolygons_ab5d1609d1e7394ea3968a7aba21944c3}} 
+\index{Polygons@{Polygons}!get\+Last\+File\+Name@{get\+Last\+File\+Name}}
+\index{get\+Last\+File\+Name@{get\+Last\+File\+Name}!Polygons@{Polygons}}
+\subsubsection{\texorpdfstring{get\+Last\+File\+Name()}{getLastFileName()}}
+{\footnotesize\ttfamily const std\+::string\& Polygons\+::get\+Last\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Имя последнего загруженного файла. 
+
+\begin{DoxyReturn}{Returns}
+Строка с именем файла. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPolygons_a2112b20023592378a37a255356893a66}\label{classPolygons_a2112b20023592378a37a255356893a66}} 
+\index{Polygons@{Polygons}!get\+Polygons@{get\+Polygons}}
+\index{get\+Polygons@{get\+Polygons}!Polygons@{Polygons}}
+\subsubsection{\texorpdfstring{get\+Polygons()}{getPolygons()}}
+{\footnotesize\ttfamily const std\+::vector$<$Polygon$>$\& Polygons\+::get\+Polygons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Возвращает загруженные полигоны. 
+
+\begin{DoxyReturn}{Returns}
+Константная ссылка на вектор полигонов. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPolygons_ab88c74e557938262138e74a998f58f53}\label{classPolygons_ab88c74e557938262138e74a998f58f53}} 
+\index{Polygons@{Polygons}!load\+From\+File@{load\+From\+File}}
+\index{load\+From\+File@{load\+From\+File}!Polygons@{Polygons}}
+\subsubsection{\texorpdfstring{load\+From\+File()}{loadFromFile()}}
+{\footnotesize\ttfamily bool Polygons\+::load\+From\+File (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})}
+
+
+
+Загружает и парсит полигоны из указанного файла. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Путь к J\+S\+O\+N-\/файлу. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true при успешной загрузке, false при ошибке. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/polygons/\hyperlink{Polygons_8h}{Polygons.\+h}\item 
+src/client/src/polygons/Polygons.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,102 @@
+\hypertarget{classOpenCVEncoder}{}\section{Open\+C\+V\+Encoder Class Reference}
+\label{classOpenCVEncoder}\index{Open\+C\+V\+Encoder@{Open\+C\+V\+Encoder}}
+
+
+Кодирует изображения в буфер и декодирует обратно с помощью Open\+CV.  
+
+
+
+
+{\ttfamily \#include $<$Open\+C\+V\+Encoder.\+h$>$}
+
+
+
+Inheritance diagram for Open\+C\+V\+Encoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classOpenCVEncoder__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Open\+C\+V\+Encoder\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=175pt]{classOpenCVEncoder__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::optional$<$ std\+::vector$<$ uint8\+\_\+t $>$ $>$ \hyperlink{classOpenCVEncoder_a1e5a602389ae673b27268ead7976bd18}{encode} (const cv\+::\+Mat \&image, const std\+::string \&format, int quality) override
+\begin{DoxyCompactList}\small\item\em Кодирует изображение в формат, заданный параметром format. \end{DoxyCompactList}\item 
+std\+::optional$<$ cv\+::\+Mat $>$ \hyperlink{classOpenCVEncoder_aa06e1d9d2b9dd453d41c5a2924a78483}{decode} (const std\+::vector$<$ uint8\+\_\+t $>$ \&data, int flags) override
+\begin{DoxyCompactList}\small\item\em Декодирует буфер данных в изображение cv\+::\+Mat. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Кодирует изображения в буфер и декодирует обратно с помощью Open\+CV. 
+
+Поддерживает форматы, определяемые Open\+CV (\char`\"{}.\+jpg\char`\"{}). 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classOpenCVEncoder_aa06e1d9d2b9dd453d41c5a2924a78483}\label{classOpenCVEncoder_aa06e1d9d2b9dd453d41c5a2924a78483}} 
+\index{Open\+C\+V\+Encoder@{Open\+C\+V\+Encoder}!decode@{decode}}
+\index{decode@{decode}!Open\+C\+V\+Encoder@{Open\+C\+V\+Encoder}}
+\subsubsection{\texorpdfstring{decode()}{decode()}}
+{\footnotesize\ttfamily std\+::optional$<$ cv\+::\+Mat $>$ Open\+C\+V\+Encoder\+::decode (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ uint8\+\_\+t $>$ \&}]{data,  }\item[{int}]{flags }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Декодирует буфер данных в изображение cv\+::\+Mat. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Вектор байт с закодированным изображением. \\
+\hline
+{\em flags} & Флаги imdecode (например, cv\+::\+I\+M\+R\+E\+A\+D\+\_\+\+C\+O\+L\+OR). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Декодированное изображение или std\+::nullopt при ошибке. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIImageEncoder_a4166c542cef8223929552b77e9a8c978}{I\+Image\+Encoder}.
+
+\mbox{\Hypertarget{classOpenCVEncoder_a1e5a602389ae673b27268ead7976bd18}\label{classOpenCVEncoder_a1e5a602389ae673b27268ead7976bd18}} 
+\index{Open\+C\+V\+Encoder@{Open\+C\+V\+Encoder}!encode@{encode}}
+\index{encode@{encode}!Open\+C\+V\+Encoder@{Open\+C\+V\+Encoder}}
+\subsubsection{\texorpdfstring{encode()}{encode()}}
+{\footnotesize\ttfamily std\+::optional$<$ std\+::vector$<$ uint8\+\_\+t $>$ $>$ Open\+C\+V\+Encoder\+::encode (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{image,  }\item[{const std\+::string \&}]{format,  }\item[{int}]{quality }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Кодирует изображение в формат, заданный параметром format. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Исходное изображение (cv\+::\+Mat). \\
+\hline
+{\em format} & Расширение формата (например, \char`\"{}.\+jpg\char`\"{}). \\
+\hline
+{\em quality} & Качество сжатия (для J\+P\+EG от 0 до 100). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор байт с закодированным изображением или std\+::nullopt при ошибке. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIImageEncoder_a9302e8737b13a5d721c06415c6d09b37}{I\+Image\+Encoder}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/common/include/impl/\hyperlink{OpenCVEncoder_8h}{Open\+C\+V\+Encoder.\+h}\item 
+src/common/src/impl/Open\+C\+V\+Encoder.\+cpp\end{DoxyCompactItemize}
