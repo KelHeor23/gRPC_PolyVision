@@ -1,3 +1,10 @@
+/**
+ * @file main.cpp
+ * @brief Точка входа серверного приложения.
+ *
+ * Инициализирует все компоненты: маппер классов, детектор YOLO, фильтр,
+ * отрисовщик и запускает gRPC-сервер.
+ */
 #include <grpcpp/grpcpp.h>
 #include <impl/OpenCVEncoder.h>
 
@@ -9,6 +16,9 @@
 #include "impl/YoloDetector.h"
 #include "include/processing/ImageProcessingServer.h"
 
+/**
+ * @brief Запускает gRPC-сервер.
+ */
 void RunServer() {
   std::string server_address("0.0.0.0:50051");
 
@@ -43,6 +53,9 @@ void RunServer() {
   server->Wait();
 }
 
+/**
+ * @brief Главная функция.
+ */
 int main(int argc, char** argv) {
   RunServer();
   return 0;
