@@ -18,18 +18,8 @@
 /**
  * @brief Главная функция.
  */
-
 int main(int argc, char *argv[]) {
   try {
-    auto channel = grpc::CreateChannel("localhost:50051",
-                                       grpc::InsecureChannelCredentials());
-    auto grpcClient = std::make_unique<GrpcStreamClient>(channel);
-    auto encoder = std::make_unique<OpenCVEncoder>();
-    auto display = std::make_unique<OpenCVDisplay>();
-
-    ImageProcessingClient client(std::move(grpcClient), std::move(encoder),
-                                 std::move(display));
-
     CommandOptions options;
 
     options.Parse(argc, argv);
@@ -38,6 +28,15 @@ int main(int argc, char *argv[]) {
       options.printHelp();
       return 0;
     }
+
+    auto channel = grpc::CreateChannel("localhost:50051",
+                                       grpc::InsecureChannelCredentials());
+    auto grpcClient = std::make_unique<GrpcStreamClient>(channel);
+    auto encoder = std::make_unique<OpenCVEncoder>();
+    auto display = std::make_unique<OpenCVDisplay>();
+
+    ImageProcessingClient client(std::move(grpcClient), std::move(encoder),
+                                 std::move(display));
 
     std::string imgFilePath = options.GetImageFile();
     std::string polygonsFilePath = options.GetPolygonsFile();
