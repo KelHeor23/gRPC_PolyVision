@@ -46,7 +46,7 @@ void RunServer(int argc, char** argv) {
     auto drawer = std::make_unique<Drawer>();
 
     auto objectDetector = std::make_unique<ObjectsDetecting>(
-        conf, classMapper, std::move(yoloDetector), std::move(objectFilter),
+        classMapper, std::move(yoloDetector), std::move(objectFilter),
         std::move(drawer));
 
     bool isShowPolygons = options.GetShowPolygons();

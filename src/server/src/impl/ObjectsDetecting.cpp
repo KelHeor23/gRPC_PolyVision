@@ -6,13 +6,11 @@
 #include "impl/ObjectFilterByPolygon.h"
 #include "impl/YoloDetector.h"
 
-ObjectsDetecting::ObjectsDetecting(const Config& config,
-                                   std::shared_ptr<IClassMapper> mapper,
+ObjectsDetecting::ObjectsDetecting(std::shared_ptr<IClassMapper> mapper,
                                    std::unique_ptr<IDetector> detector,
                                    std::unique_ptr<IObjectFilter> objectFilter,
                                    std::unique_ptr<IDrawer> drawer)
-    : config_(config),
-      classMapper_(mapper),
+    : classMapper_(mapper),
       detector_(std::move(detector)),
       objectFilter_(std::move(objectFilter)),
       drawer_(std::move(drawer)) {}
