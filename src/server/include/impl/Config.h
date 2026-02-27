@@ -10,6 +10,6 @@ struct Config {
   float confThreshold = 0.2f;
   float nmsThreshold = 0.4f;
   cv::Size inputSize = {640, 640};
-  std::vector<std::string> allowedClasses = {"orange", "banana", "apple",
-                                             "book",   "cat",    "dog"};
+  std::vector<std::string> allowedClasses = {"orange", "apple", "person", "cat",
+                                             "dog"};
 };
