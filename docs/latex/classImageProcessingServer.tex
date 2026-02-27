@@ -1,0 +1,92 @@
+\hypertarget{classImageProcessingServer}{}\section{Image\+Processing\+Server Class Reference}
+\label{classImageProcessingServer}\index{Image\+Processing\+Server@{Image\+Processing\+Server}}
+
+
+Реализация g\+R\+P\+C-\/сервиса Image\+Processing.  
+
+
+
+
+{\ttfamily \#include $<$Image\+Processing\+Server.\+h$>$}
+
+
+
+Inheritance diagram for Image\+Processing\+Server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{classImageProcessingServer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Image\+Processing\+Server\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=264pt]{classImageProcessingServer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classImageProcessingServer_aef2ebffa63db9f790103932f5d8aab9a}{Image\+Processing\+Server} (std\+::unique\+\_\+ptr$<$ \hyperlink{classIImageEncoder}{I\+Image\+Encoder} $>$ encoder, std\+::unique\+\_\+ptr$<$ \hyperlink{classIImageProcessor}{I\+Image\+Processor} $>$ processor)
+\begin{DoxyCompactList}\small\item\em Конструктор с зависимостями. \end{DoxyCompactList}\item 
+grpc\+::\+Status \hyperlink{classImageProcessingServer_a3d85fd22c665f0434f91963b80788c73}{Process\+Image} (grpc\+::\+Server\+Context $\ast$context, grpc\+::\+Server\+Reader\+Writer$<$ Image\+Detection\+::\+Process\+Response, Image\+Detection\+::\+Process\+Request $>$ $\ast$stream) override
+\begin{DoxyCompactList}\small\item\em Обработка потока Process\+Image. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Реализация g\+R\+P\+C-\/сервиса Image\+Processing. 
+
+Обрабатывает двунаправленный поток\+: получает полигоны, затем изображение чанками, выполняет обработку и возвращает результат также чанками. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classImageProcessingServer_aef2ebffa63db9f790103932f5d8aab9a}\label{classImageProcessingServer_aef2ebffa63db9f790103932f5d8aab9a}} 
+\index{Image\+Processing\+Server@{Image\+Processing\+Server}!Image\+Processing\+Server@{Image\+Processing\+Server}}
+\index{Image\+Processing\+Server@{Image\+Processing\+Server}!Image\+Processing\+Server@{Image\+Processing\+Server}}
+\subsubsection{\texorpdfstring{Image\+Processing\+Server()}{ImageProcessingServer()}}
+{\footnotesize\ttfamily Image\+Processing\+Server\+::\+Image\+Processing\+Server (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIImageEncoder}{I\+Image\+Encoder} $>$}]{encoder,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIImageProcessor}{I\+Image\+Processor} $>$}]{processor }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор с зависимостями. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em encoder} & Кодировщик/декодировщик изображений. \\
+\hline
+{\em processor} & Обработчик изображения (детекция + фильтрация). \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classImageProcessingServer_a3d85fd22c665f0434f91963b80788c73}\label{classImageProcessingServer_a3d85fd22c665f0434f91963b80788c73}} 
+\index{Image\+Processing\+Server@{Image\+Processing\+Server}!Process\+Image@{Process\+Image}}
+\index{Process\+Image@{Process\+Image}!Image\+Processing\+Server@{Image\+Processing\+Server}}
+\subsubsection{\texorpdfstring{Process\+Image()}{ProcessImage()}}
+{\footnotesize\ttfamily Status Image\+Processing\+Server\+::\+Process\+Image (\begin{DoxyParamCaption}\item[{grpc\+::\+Server\+Context $\ast$}]{context,  }\item[{grpc\+::\+Server\+Reader\+Writer$<$ Image\+Detection\+::\+Process\+Response, Image\+Detection\+::\+Process\+Request $>$ $\ast$}]{stream }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Обработка потока Process\+Image. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em context} & Контекст g\+R\+PC. \\
+\hline
+{\em stream} & Поток чтения/записи. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Статус завершения. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/processing/\hyperlink{ImageProcessingServer_8h}{Image\+Processing\+Server.\+h}\item 
+src/server/src/processing/Image\+Processing\+Server.\+cpp\end{DoxyCompactItemize}

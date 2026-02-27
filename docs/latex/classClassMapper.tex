@@ -1,0 +1,138 @@
+\hypertarget{classClassMapper}{}\section{Class\+Mapper Class Reference}
+\label{classClassMapper}\index{Class\+Mapper@{Class\+Mapper}}
+
+
+Загружает список имён классов из текстового файла и предоставляет доступ по индексу.  
+
+
+
+
+{\ttfamily \#include $<$Class\+Mapper.\+h$>$}
+
+
+
+Inheritance diagram for Class\+Mapper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classClassMapper__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Class\+Mapper\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=162pt]{classClassMapper__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classClassMapper_a055ed8f99880edd19b170b5e82270c3c}{Class\+Mapper} (const std\+::string \&filename)
+\begin{DoxyCompactList}\small\item\em Конструктор, загружающий имена классов из файла. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classClassMapper_aa85b4587cd95baeaf9d36dd0eab1d6c5}{get\+Class\+Name} (int class\+Id) const override
+\begin{DoxyCompactList}\small\item\em Возвращает имя класса по его идентификатору. \end{DoxyCompactList}\item 
+int \hyperlink{classClassMapper_ad8ff51f3b173c01a84b467af1736be9c}{size} () const override
+\begin{DoxyCompactList}\small\item\em Количество загруженных классов. \end{DoxyCompactList}\item 
+std\+::vector$<$ int $>$ \hyperlink{classClassMapper_a43e7a4f099e0b7902ca9bbc190a37b99}{get\+Allowed\+Ids} (const std\+::vector$<$ std\+::string $>$ \&allowed\+Names) const override
+\begin{DoxyCompactList}\small\item\em Преобразует список разрешённых имён в список идентификаторов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Загружает список имён классов из текстового файла и предоставляет доступ по индексу. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classClassMapper_a055ed8f99880edd19b170b5e82270c3c}\label{classClassMapper_a055ed8f99880edd19b170b5e82270c3c}} 
+\index{Class\+Mapper@{Class\+Mapper}!Class\+Mapper@{Class\+Mapper}}
+\index{Class\+Mapper@{Class\+Mapper}!Class\+Mapper@{Class\+Mapper}}
+\subsubsection{\texorpdfstring{Class\+Mapper()}{ClassMapper()}}
+{\footnotesize\ttfamily Class\+Mapper\+::\+Class\+Mapper (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Конструктор, загружающий имена классов из файла. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Путь к файлу с именами классов (по одному на строку). \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & если файл не удаётся открыть. \\
+\hline
+\end{DoxyExceptions}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classClassMapper_a43e7a4f099e0b7902ca9bbc190a37b99}\label{classClassMapper_a43e7a4f099e0b7902ca9bbc190a37b99}} 
+\index{Class\+Mapper@{Class\+Mapper}!get\+Allowed\+Ids@{get\+Allowed\+Ids}}
+\index{get\+Allowed\+Ids@{get\+Allowed\+Ids}!Class\+Mapper@{Class\+Mapper}}
+\subsubsection{\texorpdfstring{get\+Allowed\+Ids()}{getAllowedIds()}}
+{\footnotesize\ttfamily std\+::vector$<$ int $>$ Class\+Mapper\+::get\+Allowed\+Ids (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{allowed\+Names }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Преобразует список разрешённых имён в список идентификаторов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em allowed\+Names} & Вектор имён классов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор соответствующих индексов (пустые имена игнорируются с предупреждением). 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIClassMapper_aa4c2a391c5ad5093e7d11120a9352898}{I\+Class\+Mapper}.
+
+\mbox{\Hypertarget{classClassMapper_aa85b4587cd95baeaf9d36dd0eab1d6c5}\label{classClassMapper_aa85b4587cd95baeaf9d36dd0eab1d6c5}} 
+\index{Class\+Mapper@{Class\+Mapper}!get\+Class\+Name@{get\+Class\+Name}}
+\index{get\+Class\+Name@{get\+Class\+Name}!Class\+Mapper@{Class\+Mapper}}
+\subsubsection{\texorpdfstring{get\+Class\+Name()}{getClassName()}}
+{\footnotesize\ttfamily std\+::string Class\+Mapper\+::get\+Class\+Name (\begin{DoxyParamCaption}\item[{int}]{class\+Id }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Возвращает имя класса по его идентификатору. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em class\+Id} & Идентификатор класса (индекс). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Имя класса или \char`\"{}unknown\char`\"{}, если индекс вне диапазона. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIClassMapper_a75dcafcedb2bb31c4520fc06659b872b}{I\+Class\+Mapper}.
+
+\mbox{\Hypertarget{classClassMapper_ad8ff51f3b173c01a84b467af1736be9c}\label{classClassMapper_ad8ff51f3b173c01a84b467af1736be9c}} 
+\index{Class\+Mapper@{Class\+Mapper}!size@{size}}
+\index{size@{size}!Class\+Mapper@{Class\+Mapper}}
+\subsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int Class\+Mapper\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Количество загруженных классов. 
+
+\begin{DoxyReturn}{Returns}
+Размер вектора классов. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIClassMapper_aa6948800ca549f06c04621bd8a17970a}{I\+Class\+Mapper}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{ClassMapper_8h}{Class\+Mapper.\+h}\item 
+src/server/src/impl/Class\+Mapper.\+cpp\end{DoxyCompactItemize}

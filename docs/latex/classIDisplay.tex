@@ -1,0 +1,79 @@
+\hypertarget{classIDisplay}{}\section{I\+Display Interface Reference}
+\label{classIDisplay}\index{I\+Display@{I\+Display}}
+
+
+Абстрактный базовый класс для вывода изображений и обработки ввода.  
+
+
+
+
+{\ttfamily \#include $<$I\+Display.\+h$>$}
+
+
+
+Inheritance diagram for I\+Display\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classIDisplay__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classIDisplay_aff284fff35d5df10f1896f0b4a025ead}{show} (const cv\+::\+Mat \&image, const std\+::string \&window\+Name)=0
+\begin{DoxyCompactList}\small\item\em Отобразить изображение. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classIDisplay_a7c96b880593ee14d64cc61129590b37f}{wait\+Key} (int delay)=0
+\begin{DoxyCompactList}\small\item\em Ожидать нажатие клавиши. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Абстрактный базовый класс для вывода изображений и обработки ввода. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIDisplay_aff284fff35d5df10f1896f0b4a025ead}\label{classIDisplay_aff284fff35d5df10f1896f0b4a025ead}} 
+\index{I\+Display@{I\+Display}!show@{show}}
+\index{show@{show}!I\+Display@{I\+Display}}
+\subsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily virtual void I\+Display\+::show (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{image,  }\item[{const std\+::string \&}]{window\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Отобразить изображение. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение для отображения. \\
+\hline
+{\em window\+Name} & Имя окна. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classOpenCVDisplay_ac9986e39e6e64891e1e09fdee5e2d95e}{Open\+C\+V\+Display}.
+
+\mbox{\Hypertarget{classIDisplay_a7c96b880593ee14d64cc61129590b37f}\label{classIDisplay_a7c96b880593ee14d64cc61129590b37f}} 
+\index{I\+Display@{I\+Display}!wait\+Key@{wait\+Key}}
+\index{wait\+Key@{wait\+Key}!I\+Display@{I\+Display}}
+\subsubsection{\texorpdfstring{wait\+Key()}{waitKey()}}
+{\footnotesize\ttfamily virtual void I\+Display\+::wait\+Key (\begin{DoxyParamCaption}\item[{int}]{delay }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Ожидать нажатие клавиши. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delay} & Время ожидания (мс). \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classOpenCVDisplay_a57f527ccb4162e96f0148b8c4f22c4f2}{Open\+C\+V\+Display}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/interfaces/\hyperlink{IDisplay_8h}{I\+Display.\+h}\end{DoxyCompactItemize}

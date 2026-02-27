@@ -1,0 +1,83 @@
+\hypertarget{classIDrawer}{}\section{I\+Drawer Interface Reference}
+\label{classIDrawer}\index{I\+Drawer@{I\+Drawer}}
+
+
+Рисует детекции и полигоны.  
+
+
+
+
+{\ttfamily \#include $<$I\+Drawer.\+h$>$}
+
+
+
+Inheritance diagram for I\+Drawer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=135pt]{classIDrawer__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classIDrawer_a64760f3fae3316c70cc5d59991dac85f}{draw\+Detections} (cv\+::\+Mat \&image, const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&detections, std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$ mapper)=0
+\begin{DoxyCompactList}\small\item\em Рисует рамки обнаруженных объектов и подписи. \end{DoxyCompactList}\item 
+virtual void \hyperlink{classIDrawer_aed33bab5a245ee9677a96df36be36039}{draw\+Polygons} (cv\+::\+Mat \&image, const std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons)=0
+\begin{DoxyCompactList}\small\item\em Рисует контуры полигонов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Рисует детекции и полигоны. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIDrawer_a64760f3fae3316c70cc5d59991dac85f}\label{classIDrawer_a64760f3fae3316c70cc5d59991dac85f}} 
+\index{I\+Drawer@{I\+Drawer}!draw\+Detections@{draw\+Detections}}
+\index{draw\+Detections@{draw\+Detections}!I\+Drawer@{I\+Drawer}}
+\subsubsection{\texorpdfstring{draw\+Detections()}{drawDetections()}}
+{\footnotesize\ttfamily virtual void I\+Drawer\+::draw\+Detections (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{image,  }\item[{const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&}]{detections,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$}]{mapper }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Рисует рамки обнаруженных объектов и подписи. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение. \\
+\hline
+{\em detections} & Детекции. \\
+\hline
+{\em mapper} & Маппер для получения имён классов. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classDrawer_abf266e93018451aefaf0b879aee4b200}{Drawer}.
+
+\mbox{\Hypertarget{classIDrawer_aed33bab5a245ee9677a96df36be36039}\label{classIDrawer_aed33bab5a245ee9677a96df36be36039}} 
+\index{I\+Drawer@{I\+Drawer}!draw\+Polygons@{draw\+Polygons}}
+\index{draw\+Polygons@{draw\+Polygons}!I\+Drawer@{I\+Drawer}}
+\subsubsection{\texorpdfstring{draw\+Polygons()}{drawPolygons()}}
+{\footnotesize\ttfamily virtual void I\+Drawer\+::draw\+Polygons (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{image,  }\item[{const std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Рисует контуры полигонов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение. \\
+\hline
+{\em polygons} & Полигоны. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classDrawer_aae92180043f509a4d5886f8bca4f8790}{Drawer}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/interfaces/\hyperlink{IDrawer_8h}{I\+Drawer.\+h}\end{DoxyCompactItemize}

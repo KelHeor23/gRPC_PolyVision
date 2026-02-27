@@ -1,0 +1,165 @@
+\hypertarget{classCommandOptions}{}\section{Command\+Options Class Reference}
+\label{classCommandOptions}\index{Command\+Options@{Command\+Options}}
+
+
+Класс для парсинга и хранения параметров командной строки.  
+
+
+
+
+{\ttfamily \#include $<$Cmd\+Options.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classCommandOptions_aaaa40e1b501dd3e5581b63d89425fb15}\label{classCommandOptions_aaaa40e1b501dd3e5581b63d89425fb15}} 
+\hyperlink{classCommandOptions_aaaa40e1b501dd3e5581b63d89425fb15}{Command\+Options} ()
+\begin{DoxyCompactList}\small\item\em Конструктор, инициализирует описание допустимых опций. \end{DoxyCompactList}\item 
+void \hyperlink{classCommandOptions_a638e9d04721352371a7c7bda925960a6}{Parse} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Разбирает аргументы командной строки. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classCommandOptions_af32bdbdbf9327797498c6600fb13b8e5}{Get\+Image\+File} () const
+\begin{DoxyCompactList}\small\item\em Возвращает путь к файлу изображения. \end{DoxyCompactList}\item 
+std\+::string \hyperlink{classCommandOptions_a3c2dbcec90b2fd9636abdad758c37a68}{Get\+Polygons\+File} () const
+\begin{DoxyCompactList}\small\item\em Возвращает путь к файлу полигонов. \end{DoxyCompactList}\item 
+bool \hyperlink{classCommandOptions_a94ed6ff252f93cd0723fbb5c8800ba05}{is\+Help\+Requested} () const
+\begin{DoxyCompactList}\small\item\em Проверяет, был ли запрошен вывод справки. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCommandOptions_a97cf76d66c634680f9b529724437072f}\label{classCommandOptions_a97cf76d66c634680f9b529724437072f}} 
+void \hyperlink{classCommandOptions_a97cf76d66c634680f9b529724437072f}{print\+Help} ()
+\begin{DoxyCompactList}\small\item\em Выводит справку по использованию программы в std\+::cout. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCommandOptions_aaaa40e1b501dd3e5581b63d89425fb15}\label{classCommandOptions_aaaa40e1b501dd3e5581b63d89425fb15}} 
+\hyperlink{classCommandOptions_aaaa40e1b501dd3e5581b63d89425fb15}{Command\+Options} ()
+\begin{DoxyCompactList}\small\item\em Конструктор, инициализирует описание допустимых опций. \end{DoxyCompactList}\item 
+void \hyperlink{classCommandOptions_a638e9d04721352371a7c7bda925960a6}{Parse} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Разбирает аргументы командной строки. \end{DoxyCompactList}\item 
+bool \hyperlink{classCommandOptions_aaab01b2ecdcae5e811227900367c2dc4}{Get\+Show\+Polygons} () const
+\begin{DoxyCompactList}\small\item\em Возвращает значение флага запроса на отрисовку полигонов \end{DoxyCompactList}\item 
+bool \hyperlink{classCommandOptions_a94ed6ff252f93cd0723fbb5c8800ba05}{is\+Help\+Requested} () const
+\begin{DoxyCompactList}\small\item\em Проверяет, был ли запрошен вывод справки. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classCommandOptions_a97cf76d66c634680f9b529724437072f}\label{classCommandOptions_a97cf76d66c634680f9b529724437072f}} 
+void \hyperlink{classCommandOptions_a97cf76d66c634680f9b529724437072f}{print\+Help} ()
+\begin{DoxyCompactList}\small\item\em Выводит справку по использованию программы в std\+::cout. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Класс для парсинга и хранения параметров командной строки. 
+
+Позволяет получить пути к файлу изображения и файлу полигонов, а также проверить, был ли запрошен вывод справки.
+
+Позволяет получить флаг запроса на отрисовку полигонов, а также проверить, был ли запрошен вывод справки. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classCommandOptions_af32bdbdbf9327797498c6600fb13b8e5}\label{classCommandOptions_af32bdbdbf9327797498c6600fb13b8e5}} 
+\index{Command\+Options@{Command\+Options}!Get\+Image\+File@{Get\+Image\+File}}
+\index{Get\+Image\+File@{Get\+Image\+File}!Command\+Options@{Command\+Options}}
+\subsubsection{\texorpdfstring{Get\+Image\+File()}{GetImageFile()}}
+{\footnotesize\ttfamily std\+::string Command\+Options\+::\+Get\+Image\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Возвращает путь к файлу изображения. 
+
+\begin{DoxyReturn}{Returns}
+Строка с путём. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCommandOptions_a3c2dbcec90b2fd9636abdad758c37a68}\label{classCommandOptions_a3c2dbcec90b2fd9636abdad758c37a68}} 
+\index{Command\+Options@{Command\+Options}!Get\+Polygons\+File@{Get\+Polygons\+File}}
+\index{Get\+Polygons\+File@{Get\+Polygons\+File}!Command\+Options@{Command\+Options}}
+\subsubsection{\texorpdfstring{Get\+Polygons\+File()}{GetPolygonsFile()}}
+{\footnotesize\ttfamily std\+::string Command\+Options\+::\+Get\+Polygons\+File (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Возвращает путь к файлу полигонов. 
+
+\begin{DoxyReturn}{Returns}
+Строка с путём. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCommandOptions_aaab01b2ecdcae5e811227900367c2dc4}\label{classCommandOptions_aaab01b2ecdcae5e811227900367c2dc4}} 
+\index{Command\+Options@{Command\+Options}!Get\+Show\+Polygons@{Get\+Show\+Polygons}}
+\index{Get\+Show\+Polygons@{Get\+Show\+Polygons}!Command\+Options@{Command\+Options}}
+\subsubsection{\texorpdfstring{Get\+Show\+Polygons()}{GetShowPolygons()}}
+{\footnotesize\ttfamily bool Command\+Options\+::\+Get\+Show\+Polygons (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Возвращает значение флага запроса на отрисовку полигонов 
+
+\begin{DoxyReturn}{Returns}
+Строка с путём. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCommandOptions_a94ed6ff252f93cd0723fbb5c8800ba05}\label{classCommandOptions_a94ed6ff252f93cd0723fbb5c8800ba05}} 
+\index{Command\+Options@{Command\+Options}!is\+Help\+Requested@{is\+Help\+Requested}}
+\index{is\+Help\+Requested@{is\+Help\+Requested}!Command\+Options@{Command\+Options}}
+\subsubsection{\texorpdfstring{is\+Help\+Requested()}{isHelpRequested()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily bool Command\+Options\+::is\+Help\+Requested (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Проверяет, был ли запрошен вывод справки. 
+
+\begin{DoxyReturn}{Returns}
+true, если указан флаг --help или -\/h. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCommandOptions_a94ed6ff252f93cd0723fbb5c8800ba05}\label{classCommandOptions_a94ed6ff252f93cd0723fbb5c8800ba05}} 
+\index{Command\+Options@{Command\+Options}!is\+Help\+Requested@{is\+Help\+Requested}}
+\index{is\+Help\+Requested@{is\+Help\+Requested}!Command\+Options@{Command\+Options}}
+\subsubsection{\texorpdfstring{is\+Help\+Requested()}{isHelpRequested()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily bool Command\+Options\+::is\+Help\+Requested (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Проверяет, был ли запрошен вывод справки. 
+
+\begin{DoxyReturn}{Returns}
+true, если указан флаг --help или -\/h. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classCommandOptions_a638e9d04721352371a7c7bda925960a6}\label{classCommandOptions_a638e9d04721352371a7c7bda925960a6}} 
+\index{Command\+Options@{Command\+Options}!Parse@{Parse}}
+\index{Parse@{Parse}!Command\+Options@{Command\+Options}}
+\subsubsection{\texorpdfstring{Parse()}{Parse()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Command\+Options\+::\+Parse (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Разбирает аргументы командной строки. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Количество аргументов. \\
+\hline
+{\em argv} & Массив аргументов. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & при ошибках разбора (неизвестные опции, отсутствие обязательных значений и т.\+д.). \\
+\hline
+\end{DoxyExceptions}
+\mbox{\Hypertarget{classCommandOptions_a638e9d04721352371a7c7bda925960a6}\label{classCommandOptions_a638e9d04721352371a7c7bda925960a6}} 
+\index{Command\+Options@{Command\+Options}!Parse@{Parse}}
+\index{Parse@{Parse}!Command\+Options@{Command\+Options}}
+\subsubsection{\texorpdfstring{Parse()}{Parse()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Command\+Options\+::\+Parse (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Разбирает аргументы командной строки. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Количество аргументов. \\
+\hline
+{\em argv} & Массив аргументов. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & при ошибках разбора (неизвестные опции, отсутствие обязательных значений и т.\+д.). \\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/impl/Cmd\+Options.\+h\item 
+src/client/src/impl/Cmd\+Options.\+cpp\end{DoxyCompactItemize}

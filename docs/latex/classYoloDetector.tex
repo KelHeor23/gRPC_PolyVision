@@ -1,0 +1,97 @@
+\hypertarget{classYoloDetector}{}\section{Yolo\+Detector Class Reference}
+\label{classYoloDetector}\index{Yolo\+Detector@{Yolo\+Detector}}
+
+
+Выполняет детекцию объектов с помощью нейросети Y\+O\+LO.  
+
+
+
+
+{\ttfamily \#include $<$Yolo\+Detector.\+h$>$}
+
+
+
+Inheritance diagram for Yolo\+Detector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classYoloDetector__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Yolo\+Detector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classYoloDetector__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classYoloDetector_ad75efed65384736c867d6cb9fa05b856}{Yolo\+Detector} (const \hyperlink{structConfig}{Config} \&cfg, std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$ mapper)
+\begin{DoxyCompactList}\small\item\em Конструктор, загружающий сеть и настраивающий разрешённые классы. \end{DoxyCompactList}\item 
+std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \hyperlink{classYoloDetector_a1eeb01ea7bd0990c4c7aad24d4df0018}{detect} (const cv\+::\+Mat \&image) override
+\begin{DoxyCompactList}\small\item\em Детектирует объекты на изображении. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Выполняет детекцию объектов с помощью нейросети Y\+O\+LO. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classYoloDetector_ad75efed65384736c867d6cb9fa05b856}\label{classYoloDetector_ad75efed65384736c867d6cb9fa05b856}} 
+\index{Yolo\+Detector@{Yolo\+Detector}!Yolo\+Detector@{Yolo\+Detector}}
+\index{Yolo\+Detector@{Yolo\+Detector}!Yolo\+Detector@{Yolo\+Detector}}
+\subsubsection{\texorpdfstring{Yolo\+Detector()}{YoloDetector()}}
+{\footnotesize\ttfamily Yolo\+Detector\+::\+Yolo\+Detector (\begin{DoxyParamCaption}\item[{const \hyperlink{structConfig}{Config} \&}]{cfg,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$}]{mapper }\end{DoxyParamCaption})}
+
+
+
+Конструктор, загружающий сеть и настраивающий разрешённые классы. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cfg} & Конфигурация. \\
+\hline
+{\em mapper} & Маппер классов. \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em std\+::runtime\+\_\+error} & если сеть не загружена. \\
+\hline
+\end{DoxyExceptions}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classYoloDetector_a1eeb01ea7bd0990c4c7aad24d4df0018}\label{classYoloDetector_a1eeb01ea7bd0990c4c7aad24d4df0018}} 
+\index{Yolo\+Detector@{Yolo\+Detector}!detect@{detect}}
+\index{detect@{detect}!Yolo\+Detector@{Yolo\+Detector}}
+\subsubsection{\texorpdfstring{detect()}{detect()}}
+{\footnotesize\ttfamily std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ Yolo\+Detector\+::detect (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{image }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Детектирует объекты на изображении. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Входное изображение. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор обнаруженных объектов. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIDetector_aa0453a08acf61cac244fe56636a5feef}{I\+Detector}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{YoloDetector_8h}{Yolo\+Detector.\+h}\item 
+src/server/src/impl/Yolo\+Detector.\+cpp\end{DoxyCompactItemize}

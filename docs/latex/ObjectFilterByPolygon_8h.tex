@@ -1,0 +1,31 @@
+\hypertarget{ObjectFilterByPolygon_8h}{}\section{src/server/include/impl/\+Object\+Filter\+By\+Polygon.h File Reference}
+\label{ObjectFilterByPolygon_8h}\index{src/server/include/impl/\+Object\+Filter\+By\+Polygon.\+h@{src/server/include/impl/\+Object\+Filter\+By\+Polygon.\+h}}
+
+
+Фильтрация детекций на основе полигонов.  
+
+
+{\ttfamily \#include $<$opencv2/core.\+hpp$>$}\newline
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include \char`\"{}interfaces/\+I\+Object\+Filter.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}interfaces/\+I\+Polygon\+Processor.\+h\char`\"{}}\newline
+Include dependency graph for Object\+Filter\+By\+Polygon.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{ObjectFilterByPolygon_8h__incl}
+\end{center}
+\end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \hyperlink{structBinaryPolygon}{Binary\+Polygon}
+\begin{DoxyCompactList}\small\item\em Внутреннее представление полигона для быстрой проверки. \end{DoxyCompactList}\item 
+class \hyperlink{classObjectFilterByPolygon}{Object\+Filter\+By\+Polygon}
+\begin{DoxyCompactList}\small\item\em Фильтрует детекции, оставляя только те, что удовлетворяют условиям полигонов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Фильтрация детекций на основе полигонов. 
+

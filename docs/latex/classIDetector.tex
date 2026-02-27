@@ -1,0 +1,59 @@
+\hypertarget{classIDetector}{}\section{I\+Detector Interface Reference}
+\label{classIDetector}\index{I\+Detector@{I\+Detector}}
+
+
+Обнаруживает объекты на изображении.  
+
+
+
+
+{\ttfamily \#include $<$I\+Detector.\+h$>$}
+
+
+
+Inheritance diagram for I\+Detector\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=158pt]{classIDetector__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \hyperlink{classIDetector_aa0453a08acf61cac244fe56636a5feef}{detect} (const cv\+::\+Mat \&image)=0
+\begin{DoxyCompactList}\small\item\em Выполняет детекцию. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Обнаруживает объекты на изображении. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIDetector_aa0453a08acf61cac244fe56636a5feef}\label{classIDetector_aa0453a08acf61cac244fe56636a5feef}} 
+\index{I\+Detector@{I\+Detector}!detect@{detect}}
+\index{detect@{detect}!I\+Detector@{I\+Detector}}
+\subsubsection{\texorpdfstring{detect()}{detect()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$\hyperlink{structDetection}{Detection}$>$ I\+Detector\+::detect (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{image }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Выполняет детекцию. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Входное изображение. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор обнаруженных объектов. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classYoloDetector_a1eeb01ea7bd0990c4c7aad24d4df0018}{Yolo\+Detector}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/interfaces/\hyperlink{IDetector_8h}{I\+Detector.\+h}\end{DoxyCompactItemize}

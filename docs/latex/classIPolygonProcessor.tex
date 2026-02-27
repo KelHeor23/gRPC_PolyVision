@@ -1,0 +1,56 @@
+\hypertarget{classIPolygonProcessor}{}\section{I\+Polygon\+Processor Interface Reference}
+\label{classIPolygonProcessor}\index{I\+Polygon\+Processor@{I\+Polygon\+Processor}}
+
+
+Выполняет операции над полигонами перед их использованием.  
+
+
+
+
+{\ttfamily \#include $<$I\+Polygon\+Processor.\+h$>$}
+
+
+
+Inheritance diagram for I\+Polygon\+Processor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{classIPolygonProcessor__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classIPolygonProcessor_a616aedfb6e556db11c8fffc266f40079}{process\+Polygons} (std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons)=0
+\begin{DoxyCompactList}\small\item\em Обрабатывает полигоны (например, сортирует). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Выполняет операции над полигонами перед их использованием. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIPolygonProcessor_a616aedfb6e556db11c8fffc266f40079}\label{classIPolygonProcessor_a616aedfb6e556db11c8fffc266f40079}} 
+\index{I\+Polygon\+Processor@{I\+Polygon\+Processor}!process\+Polygons@{process\+Polygons}}
+\index{process\+Polygons@{process\+Polygons}!I\+Polygon\+Processor@{I\+Polygon\+Processor}}
+\subsubsection{\texorpdfstring{process\+Polygons()}{processPolygons()}}
+{\footnotesize\ttfamily virtual void I\+Polygon\+Processor\+::process\+Polygons (\begin{DoxyParamCaption}\item[{std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Обрабатывает полигоны (например, сортирует). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em polygons} & Вектор полигонов (модифицируется). \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classPolygonProcessor_a70e2fc49edc0b11ec1f91b494fec3e38}{Polygon\+Processor}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/interfaces/\hyperlink{IPolygonProcessor_8h}{I\+Polygon\+Processor.\+h}\end{DoxyCompactItemize}

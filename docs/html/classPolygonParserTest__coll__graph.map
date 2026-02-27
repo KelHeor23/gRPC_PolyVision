@@ -1,0 +1,4 @@
+<map id="PolygonParserTest" name="PolygonParserTest">
+<area shape="rect" id="node3" href="$classPolygonParser.html" title="Разбирает JSON&#45;массив &quot;polygons&quot; в protobuf&#45;сообщения Polygon. " alt="" coords="86,81,201,108"/>
+<area shape="rect" id="node4" href="$classIPolygonParser.html" title="Извлекает список полигонов из корневого JSON&#45;объекта. " alt="" coords="84,5,203,32"/>
+</map>

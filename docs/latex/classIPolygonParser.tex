@@ -1,0 +1,59 @@
+\hypertarget{classIPolygonParser}{}\section{I\+Polygon\+Parser Interface Reference}
+\label{classIPolygonParser}\index{I\+Polygon\+Parser@{I\+Polygon\+Parser}}
+
+
+Извлекает список полигонов из корневого J\+S\+O\+N-\/объекта.  
+
+
+
+
+{\ttfamily \#include $<$I\+Polygon\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for I\+Polygon\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=169pt]{classIPolygonParser__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::optional$<$ std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ $>$ \hyperlink{classIPolygonParser_a577b9f4d384023fdf7c848d00cd11c0c}{parse} (const boost\+::json\+::value \&root)=0
+\begin{DoxyCompactList}\small\item\em Парсит J\+S\+O\+N-\/объект и возвращает вектор полигонов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Извлекает список полигонов из корневого J\+S\+O\+N-\/объекта. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIPolygonParser_a577b9f4d384023fdf7c848d00cd11c0c}\label{classIPolygonParser_a577b9f4d384023fdf7c848d00cd11c0c}} 
+\index{I\+Polygon\+Parser@{I\+Polygon\+Parser}!parse@{parse}}
+\index{parse@{parse}!I\+Polygon\+Parser@{I\+Polygon\+Parser}}
+\subsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily virtual std\+::optional$<$std\+::vector$<$Image\+Detection\+::\+Polygon$>$ $>$ I\+Polygon\+Parser\+::parse (\begin{DoxyParamCaption}\item[{const boost\+::json\+::value \&}]{root }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Парсит J\+S\+O\+N-\/объект и возвращает вектор полигонов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Корневой J\+S\+O\+N-\/объект (должен содержать массив \char`\"{}polygons\char`\"{}). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Вектор полигонов или std\+::nullopt, если данные невалидны. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classPolygonParser_adabff1da19ce191ab453d90a96e35ae9}{Polygon\+Parser}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/interfaces/\hyperlink{IPolygonParser_8h}{I\+Polygon\+Parser.\+h}\end{DoxyCompactItemize}

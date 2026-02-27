@@ -1,0 +1,5 @@
+<map id="src/client/include/interfaces/IPolygonParser.h" name="src/client/include/interfaces/IPolygonParser.h">
+<area shape="rect" id="node2" href="$PolygonParser_8h.html" title="Реализация IPolygonParser для извлечения полигонов из JSON. " alt="" coords="5,95,197,136"/>
+<area shape="rect" id="node3" href="$Polygons_8h.html" title="Высокоуровневый класс для загрузки и хранения полигонов из JSON&#45;файла. " alt="" coords="221,95,381,136"/>
+<area shape="rect" id="node4" href="$ImageProcessingClient_8h.html" title="Клиент для обработки изображений через gRPC. " alt="" coords="196,184,407,240"/>
+</map>

@@ -1,0 +1,70 @@
+\hypertarget{classFileReader}{}\section{File\+Reader Class Reference}
+\label{classFileReader}\index{File\+Reader@{File\+Reader}}
+
+
+Читает файл целиком в строку.  
+
+
+
+
+{\ttfamily \#include $<$File\+Reader.\+h$>$}
+
+
+
+Inheritance diagram for File\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classFileReader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for File\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classFileReader__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::optional$<$ std\+::string $>$ \hyperlink{classFileReader_a2a322c3d9eb456b2408c9e2389495a9a}{read} (const std\+::string \&filename) override
+\begin{DoxyCompactList}\small\item\em Открывает файл и читает его содержимое. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Читает файл целиком в строку. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classFileReader_a2a322c3d9eb456b2408c9e2389495a9a}\label{classFileReader_a2a322c3d9eb456b2408c9e2389495a9a}} 
+\index{File\+Reader@{File\+Reader}!read@{read}}
+\index{read@{read}!File\+Reader@{File\+Reader}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily std\+::optional$<$ std\+::string $>$ File\+Reader\+::read (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Открывает файл и читает его содержимое. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Имя файла. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Содержимое или std\+::nullopt, если файл не открыт. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIFileReader_ae702e936f7e5bb4149bb6e370d64bb9b}{I\+File\+Reader}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/polygons/\hyperlink{FileReader_8h}{File\+Reader.\+h}\item 
+src/client/src/polygons/File\+Reader.\+cpp\end{DoxyCompactItemize}

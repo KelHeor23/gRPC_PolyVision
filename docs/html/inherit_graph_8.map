@@ -1,0 +1,4 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classIDisplay.html" title="Абстрактный базовый класс для вывода изображений и обработки ввода. " alt="" coords="5,5,80,32"/>
+<area shape="rect" id="node2" href="$classOpenCVDisplay.html" title="Отображает изображения в окнах OpenCV и обрабатывает клавиши. " alt="" coords="128,5,251,32"/>
+</map>

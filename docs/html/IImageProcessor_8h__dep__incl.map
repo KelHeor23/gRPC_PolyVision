@@ -1,0 +1,4 @@
+<map id="src/server/include/interfaces/IImageProcessor.h" name="src/server/include/interfaces/IImageProcessor.h">
+<area shape="rect" id="node2" href="$ObjectsDetecting_8h.html" title="Основной класс обработки изображения: детекция + фильтрация + отрисовка. " alt="" coords="5,102,188,143"/>
+<area shape="rect" id="node3" href="$ImageProcessingServer_8h.html" title="gRPC&#45;сервер для обработки изображений. " alt="" coords="213,95,423,151"/>
+</map>
