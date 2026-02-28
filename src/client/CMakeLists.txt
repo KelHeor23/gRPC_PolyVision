@@ -1,6 +1,6 @@
 # Исполняемый файл клиента
 add_executable(client main.cpp 
-    src/polygons/polygons.cpp 
+    src/polygons/Polygons.cpp 
     src/polygons/FileReader.cpp
     src/polygons/JsonParser.cpp
     src/polygons/PolygonParser.cpp
