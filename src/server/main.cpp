@@ -64,7 +64,7 @@ void RunServer(int argc, char** argv) {
     std::cout << "Server listening on " << server_address << std::endl;
     server->Wait();
   } catch (const std::exception& e) {
-    throw e;
+    throw;
   }
 }
 
