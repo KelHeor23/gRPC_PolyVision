@@ -8,6 +8,7 @@ xhost +local:docker #разрешение подключения к X-серве
 ```
 ###Cборка проекта в режиме разработки
 Для сборки в режиме разработки понадобится docker и vscode с установленным расширением Dev Containers от Microsoft.
+Так же необходимо отдельно скачать `yolov4.weights` file 245 MB: [yolov4.weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights) и поместитьт его в корень проекта, в папку YOLO.
 
 Откройте проект в `Visual Studio Code`.
 Нажмите `F1` и откройте проект в dev-контейнере командой `Dev Containers: Reopen in Container`.
