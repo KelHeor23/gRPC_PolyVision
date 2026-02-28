@@ -1,11 +1,11 @@
 # Исполняемый файл клиента
 add_executable(client main.cpp 
-    src/polygons/polygons.cpp 
+    src/polygons/Polygons.cpp 
     src/polygons/FileReader.cpp
     src/polygons/JsonParser.cpp
     src/polygons/PolygonParser.cpp
     src/processing/ImageProcessingClient.cpp 
-    src/impl/OpencvDisplay.cpp 
+    src/impl/OpenCVDisplay.cpp 
     src/impl/GrpcStreamClient.cpp
     src/impl/CmdOptions.cpp)
 

@@ -12,7 +12,7 @@
 
 #include "impl/CmdOptions.h"
 #include "include/impl/GrpcStreamClient.h"
-#include "include/impl/OpencvDisplay.h"
+#include "include/impl/OpenCVDisplay.h"
 #include "include/processing/ImageProcessingClient.h"
 
 /**
