@@ -8,6 +8,7 @@ xhost +local:docker #разрешение подключения к X-серве
 ```
 ###Cборка проекта в режиме разработки
 Для сборки в режиме разработки понадобится docker и vscode с установленным расширением Dev Containers от Microsoft.
+Так же необходимо отдельно скачать `yolov4.weights` file 245 MB: [yolov4.weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights) и поместитьт его в корень проекта, в папку YOLO.
 
 Откройте проект в `Visual Studio Code`.
 Нажмите `F1` и откройте проект в dev-контейнере командой `Dev Containers: Reopen in Container`.
@@ -49,7 +50,7 @@ cd build/src/client/
 
 ###Набор полигонов JSON
 Каждый полигон описывается объектом со следующими полями:
-- `type` (integer) — тип полигона: 0 – прямоугольник, 1 – многоугольник.
+- `type` (integer) — тип полигона: 0 – включающий, 1 – исключающий.
 - `priority` (integer) – приоритет обработки (чем больше, тем выше).
 - `threshold` (float) – пороговое значение для детекции.
 - `points` (array) – массив точек с координатами `x` и `y`.
