@@ -34,6 +34,9 @@ RUN --mount=type=cache,target=/var/cache/apt \
     libgtest-dev \
     # Инструмент форматирования (версия 18 доступна в репозитории)
     clang-format-18 \
+    x11-apps \
+    libgtk-3-0 \
+    libcanberra-gtk3-module \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /workspace
