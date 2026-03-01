@@ -7,7 +7,6 @@
 
 ClassMapper::ClassMapper(const std::string& filename) {
   std::ifstream file(filename);
-  std::cout << "Loading classes from " << filename << std::endl;
   if (!file.is_open()) {
     throw std::runtime_error("Cannot open classes file: " + filename);
   }
