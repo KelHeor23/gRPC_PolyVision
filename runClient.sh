@@ -1,2 +1,2 @@
 #!/bin/bash
-docker-compose run client /app/client "$@"
+docker compose run client /app/client "$@"
