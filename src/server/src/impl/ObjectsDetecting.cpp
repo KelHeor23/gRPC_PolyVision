@@ -20,9 +20,6 @@ ObjectsDetecting::ObjectsDetecting(const Config& config,
 void ObjectsDetecting::process(cv::Mat& image,
                                std::vector<ImageDetection::Polygon>& polygons,
                                const std::string& polygonsName) {
-  std::cout << "Processing image with ObjectsDetecting for polygons: "
-            << polygonsName << std::endl;
-
   // Если нужно, можно отрисовать полигоны на изображении
   if (drawPolygons_) {
     drawer_->drawPolygons(image, polygons);

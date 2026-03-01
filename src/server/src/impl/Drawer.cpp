@@ -9,7 +9,6 @@
 void Drawer::drawDetections(cv::Mat& image,
                             const std::vector<Detection>& detections,
                             std::shared_ptr<IClassMapper> mapper) {
-  std::cout << "Drawing " << detections.size() << " detections" << std::endl;
   for (const auto& det : detections) {
     std::string label = std::format(
         "{}: {:.2f}", mapper->getClassName(det.classId), det.confidence);
@@ -21,7 +20,6 @@ void Drawer::drawDetections(cv::Mat& image,
 
 void Drawer::drawPolygons(
     cv::Mat& image, const std::vector<ImageDetection::Polygon>& polygons) {
-  std::cout << "Drawing " << polygons.size() << " polygons" << std::endl;
   for (const auto& poly : polygons) {
     std::vector<cv::Point> points;
     for (const auto& p : poly.points()) {

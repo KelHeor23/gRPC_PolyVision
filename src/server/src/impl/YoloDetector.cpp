@@ -19,8 +19,6 @@ YoloDetector::YoloDetector(const Config& cfg,
 }
 
 std::vector<Detection> YoloDetector::detect(const cv::Mat& image) {
-  std::cout << "Running YOLO detection on image of size " << image.size()
-            << std::endl;
   cv::Mat blob;
   cv::dnn::blobFromImage(image, blob, 1 / 255.0, inputSize_, cv::Scalar(), true,
                          false);
