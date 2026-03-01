@@ -1,0 +1,114 @@
+\hypertarget{classObjectsDetecting}{}\section{Objects\+Detecting Class Reference}
+\label{classObjectsDetecting}\index{Objects\+Detecting@{Objects\+Detecting}}
+
+
+Координирует процесс детекции объектов, фильтрации по полигонам и отрисовки.  
+
+
+
+
+{\ttfamily \#include $<$Objects\+Detecting.\+h$>$}
+
+
+
+Inheritance diagram for Objects\+Detecting\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classObjectsDetecting__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Objects\+Detecting\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classObjectsDetecting__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classObjectsDetecting_a7c5bb2fd9b350bbf33503609698bba78}{Objects\+Detecting} (std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$ mapper, std\+::unique\+\_\+ptr$<$ \hyperlink{classIDetector}{I\+Detector} $>$ detector, std\+::unique\+\_\+ptr$<$ \hyperlink{classIObjectFilter}{I\+Object\+Filter} $>$ object\+Filter, std\+::unique\+\_\+ptr$<$ \hyperlink{classIDrawer}{I\+Drawer} $>$ drawer)
+\begin{DoxyCompactList}\small\item\em Конструктор с внедрением всех зависимостей. \end{DoxyCompactList}\item 
+void \hyperlink{classObjectsDetecting_a7e403fc34ec40642af253409a2ef8914}{process} (cv\+::\+Mat \&image, std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons, const std\+::string \&file\+Name) override
+\begin{DoxyCompactList}\small\item\em Выполняет полный цикл обработки изображения. \end{DoxyCompactList}\item 
+void \hyperlink{classObjectsDetecting_a8811baed2b8d5de522c0b3d226d2b5a4}{set\+Draw\+Polygons} (bool draw)
+\begin{DoxyCompactList}\small\item\em Включает/отключает отрисовку полигонов (для отладки). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Координирует процесс детекции объектов, фильтрации по полигонам и отрисовки. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classObjectsDetecting_a7c5bb2fd9b350bbf33503609698bba78}\label{classObjectsDetecting_a7c5bb2fd9b350bbf33503609698bba78}} 
+\index{Objects\+Detecting@{Objects\+Detecting}!Objects\+Detecting@{Objects\+Detecting}}
+\index{Objects\+Detecting@{Objects\+Detecting}!Objects\+Detecting@{Objects\+Detecting}}
+\subsubsection{\texorpdfstring{Objects\+Detecting()}{ObjectsDetecting()}}
+{\footnotesize\ttfamily Objects\+Detecting\+::\+Objects\+Detecting (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$}]{mapper,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIDetector}{I\+Detector} $>$}]{detector,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIObjectFilter}{I\+Object\+Filter} $>$}]{object\+Filter,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIDrawer}{I\+Drawer} $>$}]{drawer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Конструктор с внедрением всех зависимостей. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mapper} & Маппер классов. \\
+\hline
+{\em detector} & Детектор объектов. \\
+\hline
+{\em object\+Filter} & Фильтр по полигонам. \\
+\hline
+{\em drawer} & Отрисовщик. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classObjectsDetecting_a7e403fc34ec40642af253409a2ef8914}\label{classObjectsDetecting_a7e403fc34ec40642af253409a2ef8914}} 
+\index{Objects\+Detecting@{Objects\+Detecting}!process@{process}}
+\index{process@{process}!Objects\+Detecting@{Objects\+Detecting}}
+\subsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily void Objects\+Detecting\+::process (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{image,  }\item[{std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons,  }\item[{const std\+::string \&}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Выполняет полный цикл обработки изображения. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение (модифицируется – на нём рисуются результаты). \\
+\hline
+{\em polygons} & Вектор полигонов. \\
+\hline
+{\em file\+Name} & Имя набора полигонов (для кэширования). \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIImageProcessor_a7a94df637e0b510f9f1ce08c34dee216}{I\+Image\+Processor}.
+
+\mbox{\Hypertarget{classObjectsDetecting_a8811baed2b8d5de522c0b3d226d2b5a4}\label{classObjectsDetecting_a8811baed2b8d5de522c0b3d226d2b5a4}} 
+\index{Objects\+Detecting@{Objects\+Detecting}!set\+Draw\+Polygons@{set\+Draw\+Polygons}}
+\index{set\+Draw\+Polygons@{set\+Draw\+Polygons}!Objects\+Detecting@{Objects\+Detecting}}
+\subsubsection{\texorpdfstring{set\+Draw\+Polygons()}{setDrawPolygons()}}
+{\footnotesize\ttfamily void Objects\+Detecting\+::set\+Draw\+Polygons (\begin{DoxyParamCaption}\item[{bool}]{draw }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Включает/отключает отрисовку полигонов (для отладки). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em draw} & true – рисовать полигоны false -\/ нет, необходимо для проверки \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{ObjectsDetecting_8h}{Objects\+Detecting.\+h}\item 
+src/server/src/impl/Objects\+Detecting.\+cpp\end{DoxyCompactItemize}

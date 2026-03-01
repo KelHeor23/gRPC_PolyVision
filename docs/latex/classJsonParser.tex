@@ -1,0 +1,70 @@
+\hypertarget{classJsonParser}{}\section{Json\+Parser Class Reference}
+\label{classJsonParser}\index{Json\+Parser@{Json\+Parser}}
+
+
+Парсит строку J\+S\+ON в объект Boost.\+J\+S\+ON.  
+
+
+
+
+{\ttfamily \#include $<$Json\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for Json\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classJsonParser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Json\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classJsonParser__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::optional$<$ boost\+::json\+::value $>$ \hyperlink{classJsonParser_ad307447bc4c32859f66b0ab76590c62e}{parse} (const std\+::string \&json) override
+\begin{DoxyCompactList}\small\item\em Пытается разобрать строку как J\+S\+ON. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Парсит строку J\+S\+ON в объект Boost.\+J\+S\+ON. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classJsonParser_ad307447bc4c32859f66b0ab76590c62e}\label{classJsonParser_ad307447bc4c32859f66b0ab76590c62e}} 
+\index{Json\+Parser@{Json\+Parser}!parse@{parse}}
+\index{parse@{parse}!Json\+Parser@{Json\+Parser}}
+\subsubsection{\texorpdfstring{parse()}{parse()}}
+{\footnotesize\ttfamily std\+::optional$<$ boost\+::json\+::value $>$ Json\+Parser\+::parse (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{json }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Пытается разобрать строку как J\+S\+ON. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em json} & Входная строка. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Объект J\+S\+ON или nullopt при ошибке. 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{classIJsonParser_a6fe12a02f852368d0d092b2a375eea5a}{I\+Json\+Parser}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/polygons/\hyperlink{JsonParser_8h}{Json\+Parser.\+h}\item 
+src/client/src/polygons/Json\+Parser.\+cpp\end{DoxyCompactItemize}

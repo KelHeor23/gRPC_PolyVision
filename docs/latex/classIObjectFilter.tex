@@ -1,0 +1,65 @@
+\hypertarget{classIObjectFilter}{}\section{I\+Object\+Filter Interface Reference}
+\label{classIObjectFilter}\index{I\+Object\+Filter@{I\+Object\+Filter}}
+
+
+Фильтрует список обнаружений в соответствии с заданными полигонами.  
+
+
+
+
+{\ttfamily \#include $<$I\+Object\+Filter.\+h$>$}
+
+
+
+Inheritance diagram for I\+Object\+Filter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{classIObjectFilter__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \hyperlink{classIObjectFilter_abaf4b854d5120b4d80b94209e5521786}{apply} (const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&detections, std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons, cv\+::\+Size image\+Size, const std\+::string \&polygons\+Name)=0
+\begin{DoxyCompactList}\small\item\em Применяет фильтрацию. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Фильтрует список обнаружений в соответствии с заданными полигонами. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIObjectFilter_abaf4b854d5120b4d80b94209e5521786}\label{classIObjectFilter_abaf4b854d5120b4d80b94209e5521786}} 
+\index{I\+Object\+Filter@{I\+Object\+Filter}!apply@{apply}}
+\index{apply@{apply}!I\+Object\+Filter@{I\+Object\+Filter}}
+\subsubsection{\texorpdfstring{apply()}{apply()}}
+{\footnotesize\ttfamily virtual std\+::vector$<$\hyperlink{structDetection}{Detection}$>$ I\+Object\+Filter\+::apply (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&}]{detections,  }\item[{std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons,  }\item[{cv\+::\+Size}]{image\+Size,  }\item[{const std\+::string \&}]{polygons\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Применяет фильтрацию. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em detections} & Исходные детекции. \\
+\hline
+{\em polygons} & Полигоны \\
+\hline
+{\em image\+Size} & Размер изображения. \\
+\hline
+{\em polygons\+Name} & Имя набора полигонов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Отфильтрованные детекции. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classObjectFilterByPolygon_aae721a70f14fecbb049984eedd382344}{Object\+Filter\+By\+Polygon}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/interfaces/\hyperlink{IObjectFilter_8h}{I\+Object\+Filter.\+h}\end{DoxyCompactItemize}

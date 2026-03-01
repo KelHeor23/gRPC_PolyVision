@@ -1,0 +1,59 @@
+\hypertarget{classIFileReader}{}\section{I\+File\+Reader Interface Reference}
+\label{classIFileReader}\index{I\+File\+Reader@{I\+File\+Reader}}
+
+
+Позволяет читать текстовые файлы.  
+
+
+
+
+{\ttfamily \#include $<$I\+File\+Reader.\+h$>$}
+
+
+
+Inheritance diagram for I\+File\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=150pt]{classIFileReader__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual std\+::optional$<$ std\+::string $>$ \hyperlink{classIFileReader_ae702e936f7e5bb4149bb6e370d64bb9b}{read} (const std\+::string \&filename)=0
+\begin{DoxyCompactList}\small\item\em Читает файл и возвращает его содержимое. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Позволяет читать текстовые файлы. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIFileReader_ae702e936f7e5bb4149bb6e370d64bb9b}\label{classIFileReader_ae702e936f7e5bb4149bb6e370d64bb9b}} 
+\index{I\+File\+Reader@{I\+File\+Reader}!read@{read}}
+\index{read@{read}!I\+File\+Reader@{I\+File\+Reader}}
+\subsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily virtual std\+::optional$<$std\+::string$>$ I\+File\+Reader\+::read (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{filename }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Читает файл и возвращает его содержимое. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & Путь к файлу. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Содержимое файла или std\+::nullopt при ошибке. 
+\end{DoxyReturn}
+
+
+Implemented in \hyperlink{classFileReader_a2a322c3d9eb456b2408c9e2389495a9a}{File\+Reader}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/interfaces/\hyperlink{IFileReader_8h}{I\+File\+Reader.\+h}\end{DoxyCompactItemize}

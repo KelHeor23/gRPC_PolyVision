@@ -24,6 +24,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     protobuf-compiler-grpc \
     libgtest-dev \
     clang-format-18 \
+    x11-apps \
+    libgtk-3-0 \
+    libcanberra-gtk3-module \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /build

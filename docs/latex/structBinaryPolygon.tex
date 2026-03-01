@@ -1,0 +1,34 @@
+\hypertarget{structBinaryPolygon}{}\section{Binary\+Polygon Struct Reference}
+\label{structBinaryPolygon}\index{Binary\+Polygon@{Binary\+Polygon}}
+
+
+Внутреннее представление полигона для быстрой проверки.  
+
+
+
+
+{\ttfamily \#include $<$Object\+Filter\+By\+Polygon.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structBinaryPolygon_ae311d39652ddb7e0a99c28202e329bc0}\label{structBinaryPolygon_ae311d39652ddb7e0a99c28202e329bc0}} 
+bool \hyperlink{structBinaryPolygon_ae311d39652ddb7e0a99c28202e329bc0}{is\+Inclusion}
+\begin{DoxyCompactList}\small\item\em true – зона включения, false – исключения \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structBinaryPolygon_ad1ae7b70c4657ae55eca7f26b2a4a389}\label{structBinaryPolygon_ad1ae7b70c4657ae55eca7f26b2a4a389}} 
+float \hyperlink{structBinaryPolygon_ad1ae7b70c4657ae55eca7f26b2a4a389}{threshold}
+\begin{DoxyCompactList}\small\item\em доля площади для принадлежности (0..1) \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structBinaryPolygon_a29f2e11917496663a807453413733ac9}\label{structBinaryPolygon_a29f2e11917496663a807453413733ac9}} 
+cv\+::\+Mat \hyperlink{structBinaryPolygon_a29f2e11917496663a807453413733ac9}{mask}
+\begin{DoxyCompactList}\small\item\em бинарная маска полигона \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{structBinaryPolygon_a0476796b5488c5371c3ccedc5b8c3831}\label{structBinaryPolygon_a0476796b5488c5371c3ccedc5b8c3831}} 
+cv\+::\+Rect \hyperlink{structBinaryPolygon_a0476796b5488c5371c3ccedc5b8c3831}{bounding\+Box}
+\begin{DoxyCompactList}\small\item\em охватывающий прямоугольник полигона \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Внутреннее представление полигона для быстрой проверки. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{ObjectFilterByPolygon_8h}{Object\+Filter\+By\+Polygon.\+h}\end{DoxyCompactItemize}

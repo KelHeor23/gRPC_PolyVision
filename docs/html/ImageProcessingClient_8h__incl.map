@@ -1,0 +1,6 @@
+<map id="src/client/include/processing/ImageProcessingClient.h" name="src/client/include/processing/ImageProcessingClient.h">
+<area shape="rect" id="node5" href="$Polygons_8h.html" title="Высокоуровневый класс для загрузки и хранения полигонов из JSON&#45;файла. " alt="" coords="510,109,666,136"/>
+<area shape="rect" id="node8" href="$IFileReader_8h.html" title="Интерфейс для чтения содержимого файла. " alt="" coords="941,184,1115,211"/>
+<area shape="rect" id="node10" href="$IJsonParser_8h.html" title="Интерфейс для парсинга JSON&#45;строк. " alt="" coords="744,184,917,211"/>
+<area shape="rect" id="node11" href="$IPolygonParser_8h.html" title="Интерфейс парсера полигонов из JSON. " alt="" coords="421,184,619,211"/>
+</map>

@@ -1,0 +1,72 @@
+\hypertarget{classImageProcessingClient}{}\section{Image\+Processing\+Client Class Reference}
+\label{classImageProcessingClient}\index{Image\+Processing\+Client@{Image\+Processing\+Client}}
+
+
+Координирует отправку изображения и полигонов на сервер, получение результата и его отображение.  
+
+
+
+
+{\ttfamily \#include $<$Image\+Processing\+Client.\+h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classImageProcessingClient_af59fee846a26e9329bad59b4f1e04da8}{Image\+Processing\+Client} (std\+::unique\+\_\+ptr$<$ \hyperlink{classIGrpcStreamClient}{I\+Grpc\+Stream\+Client} $>$ grpc\+Client, std\+::unique\+\_\+ptr$<$ \hyperlink{classIImageEncoder}{I\+Image\+Encoder} $>$ encoder, std\+::unique\+\_\+ptr$<$ \hyperlink{classIDisplay}{I\+Display} $>$ display)
+\begin{DoxyCompactList}\small\item\em Конструктор с внедрением зависимостей. \end{DoxyCompactList}\item 
+bool \hyperlink{classImageProcessingClient_a121d012a4440723908870a94eb94b2ba}{Process\+Image} (const cv\+::\+Mat \&img, const \hyperlink{classPolygons}{Polygons} \&polygons)
+\begin{DoxyCompactList}\small\item\em Отправляет изображение и полигоны на сервер, получает обработанное изображение. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Координирует отправку изображения и полигонов на сервер, получение результата и его отображение. 
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classImageProcessingClient_af59fee846a26e9329bad59b4f1e04da8}\label{classImageProcessingClient_af59fee846a26e9329bad59b4f1e04da8}} 
+\index{Image\+Processing\+Client@{Image\+Processing\+Client}!Image\+Processing\+Client@{Image\+Processing\+Client}}
+\index{Image\+Processing\+Client@{Image\+Processing\+Client}!Image\+Processing\+Client@{Image\+Processing\+Client}}
+\subsubsection{\texorpdfstring{Image\+Processing\+Client()}{ImageProcessingClient()}}
+{\footnotesize\ttfamily Image\+Processing\+Client\+::\+Image\+Processing\+Client (\begin{DoxyParamCaption}\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIGrpcStreamClient}{I\+Grpc\+Stream\+Client} $>$}]{grpc\+Client,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIImageEncoder}{I\+Image\+Encoder} $>$}]{encoder,  }\item[{std\+::unique\+\_\+ptr$<$ \hyperlink{classIDisplay}{I\+Display} $>$}]{display }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Конструктор с внедрением зависимостей. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em grpc\+Client} & Клиент g\+R\+P\+C-\/потока. \\
+\hline
+{\em encoder} & Кодировщик/декодировщик изображений. \\
+\hline
+{\em display} & Отображение результата. \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classImageProcessingClient_a121d012a4440723908870a94eb94b2ba}\label{classImageProcessingClient_a121d012a4440723908870a94eb94b2ba}} 
+\index{Image\+Processing\+Client@{Image\+Processing\+Client}!Process\+Image@{Process\+Image}}
+\index{Process\+Image@{Process\+Image}!Image\+Processing\+Client@{Image\+Processing\+Client}}
+\subsubsection{\texorpdfstring{Process\+Image()}{ProcessImage()}}
+{\footnotesize\ttfamily bool Image\+Processing\+Client\+::\+Process\+Image (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{img,  }\item[{const \hyperlink{classPolygons}{Polygons} \&}]{polygons }\end{DoxyParamCaption})}
+
+
+
+Отправляет изображение и полигоны на сервер, получает обработанное изображение. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em img} & Исходное изображение (cv\+::\+Mat). \\
+\hline
+{\em polygons} & Набор полигонов. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true при успешной обработке, false при ошибке. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/processing/\hyperlink{ImageProcessingClient_8h}{Image\+Processing\+Client.\+h}\item 
+src/client/src/processing/Image\+Processing\+Client.\+cpp\end{DoxyCompactItemize}

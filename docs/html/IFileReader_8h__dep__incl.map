@@ -1,0 +1,5 @@
+<map id="src/client/include/interfaces/IFileReader.h" name="src/client/include/interfaces/IFileReader.h">
+<area shape="rect" id="node2" href="$FileReader_8h.html" title="Реализация IFileReader с использованием std::ifstream. " alt="" coords="5,95,172,136"/>
+<area shape="rect" id="node3" href="$Polygons_8h.html" title="Высокоуровневый класс для загрузки и хранения полигонов из JSON&#45;файла. " alt="" coords="197,95,357,136"/>
+<area shape="rect" id="node4" href="$ImageProcessingClient_8h.html" title="Клиент для обработки изображений через gRPC. " alt="" coords="171,184,382,240"/>
+</map>

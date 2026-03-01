@@ -1,0 +1,94 @@
+\hypertarget{classDrawer}{}\section{Drawer Class Reference}
+\label{classDrawer}\index{Drawer@{Drawer}}
+
+
+Рисует рамки детекций и контуры полигонов.  
+
+
+
+
+{\ttfamily \#include $<$Drawer.\+h$>$}
+
+
+
+Inheritance diagram for Drawer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=135pt]{classDrawer__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Drawer\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=135pt]{classDrawer__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classDrawer_abf266e93018451aefaf0b879aee4b200}{draw\+Detections} (cv\+::\+Mat \&image, const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&detections, std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$ mapper) override
+\begin{DoxyCompactList}\small\item\em Рисует все детекции на изображении. \end{DoxyCompactList}\item 
+void \hyperlink{classDrawer_aae92180043f509a4d5886f8bca4f8790}{draw\+Polygons} (cv\+::\+Mat \&image, const std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons) override
+\begin{DoxyCompactList}\small\item\em Рисует полигоны (зелёным для включения, красным для исключения). \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Рисует рамки детекций и контуры полигонов. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classDrawer_abf266e93018451aefaf0b879aee4b200}\label{classDrawer_abf266e93018451aefaf0b879aee4b200}} 
+\index{Drawer@{Drawer}!draw\+Detections@{draw\+Detections}}
+\index{draw\+Detections@{draw\+Detections}!Drawer@{Drawer}}
+\subsubsection{\texorpdfstring{draw\+Detections()}{drawDetections()}}
+{\footnotesize\ttfamily void Drawer\+::draw\+Detections (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{image,  }\item[{const std\+::vector$<$ \hyperlink{structDetection}{Detection} $>$ \&}]{detections,  }\item[{std\+::shared\+\_\+ptr$<$ \hyperlink{classIClassMapper}{I\+Class\+Mapper} $>$}]{mapper }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Рисует все детекции на изображении. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение. \\
+\hline
+{\em detections} & Вектор обнаружений. \\
+\hline
+{\em mapper} & Маппер классов для получения имён. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIDrawer_a64760f3fae3316c70cc5d59991dac85f}{I\+Drawer}.
+
+\mbox{\Hypertarget{classDrawer_aae92180043f509a4d5886f8bca4f8790}\label{classDrawer_aae92180043f509a4d5886f8bca4f8790}} 
+\index{Drawer@{Drawer}!draw\+Polygons@{draw\+Polygons}}
+\index{draw\+Polygons@{draw\+Polygons}!Drawer@{Drawer}}
+\subsubsection{\texorpdfstring{draw\+Polygons()}{drawPolygons()}}
+{\footnotesize\ttfamily void Drawer\+::draw\+Polygons (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{image,  }\item[{const std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Рисует полигоны (зелёным для включения, красным для исключения). 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение. \\
+\hline
+{\em polygons} & Вектор полигонов в protobuf-\/формате. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIDrawer_aed33bab5a245ee9677a96df36be36039}{I\+Drawer}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/impl/\hyperlink{Drawer_8h}{Drawer.\+h}\item 
+src/server/src/impl/Drawer.\+cpp\end{DoxyCompactItemize}

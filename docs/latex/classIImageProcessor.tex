@@ -1,0 +1,60 @@
+\hypertarget{classIImageProcessor}{}\section{I\+Image\+Processor Interface Reference}
+\label{classIImageProcessor}\index{I\+Image\+Processor@{I\+Image\+Processor}}
+
+
+Выполняет основную логику обработки (детекцию, фильтрацию, отрисовку).  
+
+
+
+
+{\ttfamily \#include $<$I\+Image\+Processor.\+h$>$}
+
+
+
+Inheritance diagram for I\+Image\+Processor\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=181pt]{classIImageProcessor__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \hyperlink{classIImageProcessor_a7a94df637e0b510f9f1ce08c34dee216}{process} (cv\+::\+Mat \&image, std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&polygons, const std\+::string \&file\+Name)=0
+\begin{DoxyCompactList}\small\item\em Обрабатывает изображение с учётом полигонов. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Выполняет основную логику обработки (детекцию, фильтрацию, отрисовку). 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classIImageProcessor_a7a94df637e0b510f9f1ce08c34dee216}\label{classIImageProcessor_a7a94df637e0b510f9f1ce08c34dee216}} 
+\index{I\+Image\+Processor@{I\+Image\+Processor}!process@{process}}
+\index{process@{process}!I\+Image\+Processor@{I\+Image\+Processor}}
+\subsubsection{\texorpdfstring{process()}{process()}}
+{\footnotesize\ttfamily virtual void I\+Image\+Processor\+::process (\begin{DoxyParamCaption}\item[{cv\+::\+Mat \&}]{image,  }\item[{std\+::vector$<$ Image\+Detection\+::\+Polygon $>$ \&}]{polygons,  }\item[{const std\+::string \&}]{file\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Обрабатывает изображение с учётом полигонов. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение (может быть модифицировано). \\
+\hline
+{\em polygons} & Полигоны для фильтрации. \\
+\hline
+{\em file\+Name} & Имя набора полигонов (для кэширования). \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \hyperlink{classObjectsDetecting_a7e403fc34ec40642af253409a2ef8914}{Objects\+Detecting}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/server/include/interfaces/\hyperlink{IImageProcessor_8h}{I\+Image\+Processor.\+h}\end{DoxyCompactItemize}

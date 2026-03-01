@@ -1,0 +1,90 @@
+\hypertarget{classOpenCVDisplay}{}\section{Open\+C\+V\+Display Class Reference}
+\label{classOpenCVDisplay}\index{Open\+C\+V\+Display@{Open\+C\+V\+Display}}
+
+
+Отображает изображения в окнах Open\+CV и обрабатывает клавиши.  
+
+
+
+
+{\ttfamily \#include $<$Open\+C\+V\+Display.\+h$>$}
+
+
+
+Inheritance diagram for Open\+C\+V\+Display\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classOpenCVDisplay__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Open\+C\+V\+Display\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=172pt]{classOpenCVDisplay__coll__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classOpenCVDisplay_ac9986e39e6e64891e1e09fdee5e2d95e}{show} (const cv\+::\+Mat \&image, const std\+::string \&window\+Name) override
+\begin{DoxyCompactList}\small\item\em Показывает изображение в окне. \end{DoxyCompactList}\item 
+void \hyperlink{classOpenCVDisplay_a57f527ccb4162e96f0148b8c4f22c4f2}{wait\+Key} (int delay) override
+\begin{DoxyCompactList}\small\item\em Ожидает нажатие клавиши в течение заданного времени. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Отображает изображения в окнах Open\+CV и обрабатывает клавиши. 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classOpenCVDisplay_ac9986e39e6e64891e1e09fdee5e2d95e}\label{classOpenCVDisplay_ac9986e39e6e64891e1e09fdee5e2d95e}} 
+\index{Open\+C\+V\+Display@{Open\+C\+V\+Display}!show@{show}}
+\index{show@{show}!Open\+C\+V\+Display@{Open\+C\+V\+Display}}
+\subsubsection{\texorpdfstring{show()}{show()}}
+{\footnotesize\ttfamily void Open\+C\+V\+Display\+::show (\begin{DoxyParamCaption}\item[{const cv\+::\+Mat \&}]{image,  }\item[{const std\+::string \&}]{window\+Name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Показывает изображение в окне. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em image} & Изображение (cv\+::\+Mat). \\
+\hline
+{\em window\+Name} & Имя окна. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIDisplay_aff284fff35d5df10f1896f0b4a025ead}{I\+Display}.
+
+\mbox{\Hypertarget{classOpenCVDisplay_a57f527ccb4162e96f0148b8c4f22c4f2}\label{classOpenCVDisplay_a57f527ccb4162e96f0148b8c4f22c4f2}} 
+\index{Open\+C\+V\+Display@{Open\+C\+V\+Display}!wait\+Key@{wait\+Key}}
+\index{wait\+Key@{wait\+Key}!Open\+C\+V\+Display@{Open\+C\+V\+Display}}
+\subsubsection{\texorpdfstring{wait\+Key()}{waitKey()}}
+{\footnotesize\ttfamily void Open\+C\+V\+Display\+::wait\+Key (\begin{DoxyParamCaption}\item[{int}]{delay }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Ожидает нажатие клавиши в течение заданного времени. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em delay} & Время ожидания в миллисекундах (0 – бесконечно). \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classIDisplay_a7c96b880593ee14d64cc61129590b37f}{I\+Display}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/client/include/impl/Open\+C\+V\+Display.\+h\item 
+src/client/src/impl/Open\+C\+V\+Display.\+cpp\end{DoxyCompactItemize}

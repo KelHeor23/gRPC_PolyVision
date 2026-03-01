@@ -25,8 +25,6 @@ Status ImageProcessingServer::ProcessImage(
     const auto& src = request.polygon_list().polygons();
     std::vector<ImageDetection::Polygon> polygons(src.begin(), src.end());
 
-    std::cout << "Received " << polygons.size() << " polygons" << std::endl;
-
     std::string polygonsName = request.polygon_list().name();
 
     // Сбор всех чанков изображения
@@ -41,9 +39,6 @@ Status ImageProcessingServer::ProcessImage(
       }
     }
 
-    std::cout << "Total image size: " << imageBuffer.size() << " bytes"
-              << std::endl;
-
     // Декодирование
     auto imgOpt = encoder_->decode(imageBuffer, cv::IMREAD_COLOR);
     if (!imgOpt) {
@@ -51,7 +46,6 @@ Status ImageProcessingServer::ProcessImage(
                     "Failed to decode image");
     }
     cv::Mat img = std::move(*imgOpt);
-    std::cout << "Image decoded: " << img.cols << "x" << img.rows << std::endl;
 
     // Обработка изображения
     processor_->process(img, polygons, polygonsName);
@@ -64,8 +58,6 @@ Status ImageProcessingServer::ProcessImage(
     }
 
     const auto& outputBuffer = *encodedOpt;
-    std::cout << "Encoded image size: " << outputBuffer.size() << " bytes"
-              << std::endl;
 
     // Отправка чанками
     const size_t chunkSize = 64 * 1024;
@@ -84,8 +76,6 @@ Status ImageProcessingServer::ProcessImage(
       offset += current;
     }
 
-    std::cout << "Processing finished, sent " << outputBuffer.size()
-              << " bytes back" << std::endl;
     return Status::OK;
   } catch (const cv::Exception& e) {
     return grpc::Status(grpc::StatusCode::INTERNAL,
