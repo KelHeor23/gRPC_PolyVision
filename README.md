@@ -6,6 +6,9 @@
 ```bash
 xhost +local:docker #разрешение подключения к X-серверу из контейнеров
 ```
+**Warning**
+Docker-desktop в ubuntu, может некорректно выставлять права доступа. Лучше испольвать docker-engine 
+
 ###Cборка проекта в режиме разработки
 Для сборки в режиме разработки понадобится docker и vscode с установленным расширением Dev Containers от Microsoft.
 Так же необходимо отдельно скачать `yolov4.weights` file 245 MB: [yolov4.weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights) и поместитьт его в корень проекта, в папку YOLO.
