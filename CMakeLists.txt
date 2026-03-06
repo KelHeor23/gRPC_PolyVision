@@ -11,6 +11,7 @@ find_package(Protobuf REQUIRED)
 find_package(gRPC REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS json program_options)
 
 # -------------------------------------------------------------------
 # Путь к proto-файлу
