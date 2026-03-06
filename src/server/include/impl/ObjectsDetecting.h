@@ -4,7 +4,6 @@
  * @brief Основной класс обработки изображения: детекция + фильтрация +
  * отрисовка.
  */
-#include "Config.h"
 #include "interfaces/IImageProcessor.h"
 
 class IClassMapper;
@@ -21,14 +20,12 @@ class ObjectsDetecting : public IImageProcessor {
  public:
   /**
    * @brief Конструктор с внедрением всех зависимостей.
-   * @param config Конфигурация.
    * @param mapper Маппер классов.
    * @param detector Детектор объектов.
    * @param objectFilter Фильтр по полигонам.
    * @param drawer Отрисовщик.
    */
-  explicit ObjectsDetecting(const Config& config,
-                            std::shared_ptr<IClassMapper> mapper,
+  explicit ObjectsDetecting(std::shared_ptr<IClassMapper> mapper,
                             std::unique_ptr<IDetector> detector,
                             std::unique_ptr<IObjectFilter> objectFilter,
                             std::unique_ptr<IDrawer> drawer);
@@ -49,7 +46,6 @@ class ObjectsDetecting : public IImageProcessor {
   void setDrawPolygons(bool draw) { drawPolygons_ = draw; }
 
  private:
-  Config config_;                              ///< Конфигурация
   std::shared_ptr<IClassMapper> classMapper_;  ///< Маппер классов
   std::unique_ptr<IDetector> detector_;  ///< Детектор объектов
   std::unique_ptr<IObjectFilter> objectFilter_;  ///< Фильтр по полигонам
