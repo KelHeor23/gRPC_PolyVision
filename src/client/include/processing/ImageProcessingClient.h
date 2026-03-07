@@ -29,7 +29,7 @@ class ImageProcessingClient {
   ImageProcessingClient(std::unique_ptr<IGrpcStreamClient> grpcClient,
                         std::unique_ptr<IImageEncoder> encoder,
                         std::unique_ptr<IDisplay> display)
-      : grpcClient_(std::move(grpcClient)),
+      : grpc_client_(std::move(grpcClient)),
         encoder_(std::move(encoder)),
         display_(std::move(display)) {}
 
@@ -44,7 +44,7 @@ class ImageProcessingClient {
 
  private:
   std::unique_ptr<IGrpcStreamClient>
-      grpcClient_;  ///< Клиент для создания gRPC-потока
+      grpc_client_;  ///< Клиент для создания gRPC-потока
   std::unique_ptr<IImageEncoder>
       encoder_;  ///< Кодирование/декодирование изображений
   std::unique_ptr<IDisplay> display_;  ///< Отображение результата

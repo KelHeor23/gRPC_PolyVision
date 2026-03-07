@@ -17,7 +17,7 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   context.set_deadline(std::chrono::system_clock::now() +
                        std::chrono::seconds(10));
 
-  auto stream = grpcClient_->CreateStream(&context);
+  auto stream = grpc_client_->CreateStream(&context);
 
   if (!stream) {
     std::cerr << "Failed to create gRPC stream" << std::endl;

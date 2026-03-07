@@ -55,12 +55,12 @@ class Polygons {
    * @brief Имя последнего загруженного файла.
    * @return Строка с именем файла.
    */
-  const std::string& GetLastFileName() const { return lastFileName_; }
+  const std::string& GetLastFileName() const { return last_file_name_; }
 
  private:
-  std::string lastFileName_;  ///< Имя последнего загруженного файла
+  std::string last_file_name_;  ///< Имя последнего загруженного файла
   std::vector<Polygon> polygons_;  ///< Загруженные полигоны
-  std::unique_ptr<IFileReader> fileReader_;  ///< Читатель файлов
-  std::unique_ptr<IJsonParser> jsonParser_;  ///< Парсер JSON
-  std::unique_ptr<IPolygonParser> polygonParser_;  ///< Парсер полигонов
+  std::unique_ptr<IFileReader> file_reader_;  ///< Читатель файлов
+  std::unique_ptr<IJsonParser> json_parser_;  ///< Парсер JSON
+  std::unique_ptr<IPolygonParser> polygon_parser_;  ///< Парсер полигонов
 };

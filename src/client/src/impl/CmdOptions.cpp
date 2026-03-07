@@ -5,9 +5,10 @@
 
 CommandOptions::CommandOptions() : desc_("Allowed options") {
   desc_.add_options()("help,h", "Show help")(
-      "image,i", po::value<std::string>(&imageFile_), "Path to the image file")(
-      "polygons,p", po::value<std::string>(&polygonsFile_),
-      "Path to the polygons file");
+      "image,i", po::value<std::string>(&image_file_),
+      "Path to the image file")("polygons,p",
+                                po::value<std::string>(&polygons_file_),
+                                "Path to the polygons file");
 }
 
 CommandOptions::~CommandOptions() = default;
@@ -17,7 +18,7 @@ void CommandOptions::Parse(int argc, char *argv[]) {
     po::store(po::parse_command_line(argc, argv, desc_), vm_);
 
     if (vm_.count("help")) {
-      helpRequested_ = true;
+      help_requested_ = true;
       return;
     }
     po::notify(vm_);

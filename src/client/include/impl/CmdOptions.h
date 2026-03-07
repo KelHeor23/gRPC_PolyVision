@@ -38,19 +38,19 @@ class CommandOptions {
    * @brief Возвращает путь к файлу изображения.
    * @return Строка с путём.
    */
-  std::string GetImageFile() const { return imageFile_; }
+  std::string GetImageFile() const { return image_file_; }
 
   /**
    * @brief Возвращает путь к файлу полигонов.
    * @return Строка с путём.
    */
-  std::string GetPolygonsFile() const { return polygonsFile_; }
+  std::string GetPolygonsFile() const { return polygons_file_; }
 
   /**
    * @brief Проверяет, был ли запрошен вывод справки.
    * @return true, если указан флаг --help или -h.
    */
-  bool IsHelpRequested() const { return helpRequested_; }
+  bool IsHelpRequested() const { return help_requested_; }
 
   /**
    * @brief Выводит справку по использованию программы в std::cout.
@@ -58,10 +58,10 @@ class CommandOptions {
   void PrintHelp();
 
  private:
-  std::string imageFile_;     ///< Путь к файлу изображения
-  std::string polygonsFile_;  ///< Путь к файлу полигонов
+  std::string image_file_;  ///< Путь к файлу изображения
+  std::string polygons_file_;  ///< Путь к файлу полигонов
 
   po::options_description desc_;  ///< Описание допустимых опций
   po::variables_map vm_;  ///< Хранилище разобранных значений
-  bool helpRequested_ = false;  ///< Флаг запроса справки
+  bool help_requested_ = false;  ///< Флаг запроса справки
 };

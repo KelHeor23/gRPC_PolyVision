@@ -12,26 +12,26 @@
 Polygons::Polygons(std::unique_ptr<IFileReader> fileReader,
                    std::unique_ptr<IJsonParser> jsonParser,
                    std::unique_ptr<IPolygonParser> polygonParser)
-    : fileReader_(std::move(fileReader)),
-      jsonParser_(std::move(jsonParser)),
-      polygonParser_(std::move(polygonParser)) {}
+    : file_reader_(std::move(fileReader)),
+      json_parser_(std::move(jsonParser)),
+      polygon_parser_(std::move(polygonParser)) {}
 
 Polygons::Polygons()
-    : fileReader_(std::make_unique<FileReader>()),
-      jsonParser_(std::make_unique<JsonParser>()),
-      polygonParser_(std::make_unique<PolygonParser>()) {}
+    : file_reader_(std::make_unique<FileReader>()),
+      json_parser_(std::make_unique<JsonParser>()),
+      polygon_parser_(std::make_unique<PolygonParser>()) {}
 
 bool Polygons::LoadFromFile(const std::string& filename) {
-  lastFileName_ = filename;
-  auto content = fileReader_->Read(filename);
+  last_file_name_ = filename;
+  auto content = file_reader_->Read(filename);
   if (!content) {
     return false;
   }
-  auto json = jsonParser_->Parse(*content);
+  auto json = json_parser_->Parse(*content);
   if (!json) {
     return false;
   }
-  auto polygonsOpt = polygonParser_->Parse(*json);
+  auto polygonsOpt = polygon_parser_->Parse(*json);
   if (!polygonsOpt) {
     return false;
   }
