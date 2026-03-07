@@ -8,7 +8,7 @@
 #include <opencv2/core.hpp>
 #include <string>
 
-#include "interfaces/IDisplay.h"
+#include "interfaces/i_display.h"
 
 /**
  * @class OpenCVDisplay

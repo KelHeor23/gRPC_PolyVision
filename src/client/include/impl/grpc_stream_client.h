@@ -9,7 +9,7 @@
 
 #include <memory>
 
-#include "interfaces/IGrpcStreamClient.h"
+#include "interfaces/i_grpc_stream_client.h"
 
 /**
  * @class GrpcStreamClient

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "polygons/JsonParser.h"
+#include "polygons/json_parser.h"
 
 using namespace testing;
 

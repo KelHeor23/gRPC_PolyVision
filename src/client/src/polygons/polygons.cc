@@ -1,13 +1,13 @@
-#include "polygons/Polygons.h"
+#include "polygons/polygons.h"
 
 #include <memory>
 
-#include "interfaces/IFileReader.h"
-#include "interfaces/IJsonParser.h"
-#include "interfaces/IPolygonParser.h"
-#include "polygons/FileReader.h"
-#include "polygons/JsonParser.h"
-#include "polygons/PolygonParser.h"
+#include "interfaces/i_file_reader.h"
+#include "interfaces/i_json_parser.h"
+#include "interfaces/i_polygon_parser.h"
+#include "polygons/file_reader.h"
+#include "polygons/json_parser.h"
+#include "polygons/polygon_parser.h"
 
 Polygons::Polygons(std::unique_ptr<IFileReader> fileReader,
                    std::unique_ptr<IJsonParser> jsonParser,

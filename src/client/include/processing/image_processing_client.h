@@ -7,7 +7,7 @@
 #include <opencv2/core.hpp>
 #include <vector>
 
-#include "polygons/Polygons.h"
+#include "polygons/polygons.h"
 
 class IGrpcStreamClient;
 class IImageEncoder;

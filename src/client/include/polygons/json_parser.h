@@ -5,7 +5,7 @@
  */
 #include <boost/json.hpp>
 
-#include "interfaces/IJsonParser.h"
+#include "interfaces/i_json_parser.h"
 
 /**
  * @class JsonParser

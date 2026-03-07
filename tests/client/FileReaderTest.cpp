@@ -2,7 +2,7 @@
 
 #include <filesystem>
 
-#include "polygons/FileReader.h"
+#include "polygons/file_reader.h"
 using namespace testing;
 
 class FileReaderTest : public Test {

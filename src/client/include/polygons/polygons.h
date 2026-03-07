@@ -7,9 +7,9 @@
 #include <optional>
 #include <vector>
 
-#include "interfaces/IFileReader.h"
-#include "interfaces/IJsonParser.h"
-#include "interfaces/IPolygonParser.h"
+#include "interfaces/i_file_reader.h"
+#include "interfaces/i_json_parser.h"
+#include "interfaces/i_polygon_parser.h"
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 using ImageDetection::Polygon;

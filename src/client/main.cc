@@ -10,10 +10,10 @@
 #include <memory>
 #include <opencv2/imgcodecs.hpp>
 
-#include "impl/CmdOptions.h"
-#include "include/impl/GrpcStreamClient.h"
-#include "include/impl/OpenCVDisplay.h"
-#include "include/processing/ImageProcessingClient.h"
+#include "impl/cmd_options.h"
+#include "include/impl/grpc_stream_client.h"
+#include "include/impl/opencv_display.h"
+#include "include/processing/image_processing_client.h"
 
 /**
  * @brief Главная функция.

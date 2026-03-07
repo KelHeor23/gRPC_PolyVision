@@ -1,11 +1,11 @@
-#include "processing/ImageProcessingClient.h"
+#include "processing/image_processing_client.h"
 
 #include <impl/OpenCVEncoder.h>
 
 #include <opencv2/opencv.hpp>
 
-#include "impl/GrpcStreamClient.h"
-#include "impl/OpenCVDisplay.h"
+#include "impl/grpc_stream_client.h"
+#include "impl/opencv_display.h"
 
 using ImageDetection::ProcessRequest;
 

@@ -1,4 +1,4 @@
-#include "impl/OpenCVDisplay.h"
+#include "impl/opencv_display.h"
 
 #include <opencv2/highgui.hpp>
 

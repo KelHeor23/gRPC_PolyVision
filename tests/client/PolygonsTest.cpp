@@ -5,10 +5,10 @@
 #include <string>
 #include <vector>
 
-#include "polygons/FileReader.h"
-#include "polygons/JsonParser.h"
-#include "polygons/PolygonParser.h"
-#include "polygons/Polygons.h"
+#include "polygons/file_reader.h"
+#include "polygons/json_parser.h"
+#include "polygons/polygon_parser.h"
+#include "polygons/polygons.h"
 #include "proto/ImageAnalysis.pb.h"
 
 class PolygonsRealTest : public ::testing::Test {

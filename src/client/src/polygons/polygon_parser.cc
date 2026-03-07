@@ -1,4 +1,4 @@
-#include "polygons/PolygonParser.h"
+#include "polygons/polygon_parser.h"
 
 std::optional<std::vector<ImageDetection::Polygon>> PolygonParser::Parse(
     const boost::json::value& root) {

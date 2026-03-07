@@ -1,4 +1,4 @@
-#include "polygons/FileReader.h"
+#include "polygons/file_reader.h"
 
 #include <fstream>
 

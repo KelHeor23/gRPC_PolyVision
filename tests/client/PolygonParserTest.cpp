@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-#include "polygons/PolygonParser.h"
+#include "polygons/polygon_parser.h"
 
 using namespace testing;
 

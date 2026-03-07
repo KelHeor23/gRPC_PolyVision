@@ -5,7 +5,7 @@
  */
 #include <fstream>
 
-#include "interfaces/IFileReader.h"
+#include "interfaces/i_file_reader.h"
 /**
  * @class FileReader
  * @brief Читает файл целиком в строку.

@@ -1,4 +1,4 @@
-#include "impl/GrpcStreamClient.h"
+#include "impl/grpc_stream_client.h"
 
 GrpcStreamClient::GrpcStreamClient(std::shared_ptr<grpc::Channel> channel)
     : stub_(ImageDetection::ImageProcessing::NewStub(channel)) {}

@@ -3,7 +3,7 @@
  * @file PolygonParser.h
  * @brief Реализация IPolygonParser для извлечения полигонов из JSON.
  */
-#include "interfaces/IPolygonParser.h"
+#include "interfaces/i_polygon_parser.h"
 
 /**
  * @class PolygonParser
