@@ -1,23 +1,24 @@
+#include "impl/polygon_processor.h"
+
 #include <gtest/gtest.h>
 
-#include "impl/polygon_processor.h"
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 TEST(PolygonProcessorTest, SortsByPriorityAndType) {
   PolygonProcessor processor;
   std::vector<ImageDetection::Polygon> polygons;
 
-  auto addPoly = [&](int priority, ImageDetection::PolygonType type) {
+  auto add_poly = [&](int priority, ImageDetection::PolygonType type) {
     ImageDetection::Polygon p;
     p.set_priority(priority);
     p.set_type(type);
     polygons.push_back(p);
   };
 
-  addPoly(10, ImageDetection::PolygonType::INCLUSION);
-  addPoly(5, ImageDetection::PolygonType::EXCLUSION);
-  addPoly(10, ImageDetection::PolygonType::EXCLUSION);
-  addPoly(1, ImageDetection::PolygonType::INCLUSION);
+  add_poly(10, ImageDetection::PolygonType::INCLUSION);
+  add_poly(5, ImageDetection::PolygonType::EXCLUSION);
+  add_poly(10, ImageDetection::PolygonType::EXCLUSION);
+  add_poly(1, ImageDetection::PolygonType::INCLUSION);
 
   processor.ProcessPolygons(polygons);
 
