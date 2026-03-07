@@ -1,26 +1,26 @@
+#include "polygons/file_reader.h"
+
 #include <gtest/gtest.h>
 
 #include <filesystem>
-
-#include "polygons/file_reader.h"
 using namespace testing;
 
 class FileReaderTest : public Test {
  protected:
   void SetUp() override {
-    tempFile = std::filesystem::temp_directory_path() / "test_file.txt";
-    std::ofstream ofs(tempFile);
+    temp_file_ = std::filesystem::temp_directory_path() / "test_file.txt";
+    std::ofstream ofs(temp_file_);
     ofs << "line1\nline2\n";
   }
 
-  void TearDown() override { std::filesystem::remove(tempFile); }
+  void TearDown() override { std::filesystem::remove(temp_file_); }
 
-  std::filesystem::path tempFile;
+  std::filesystem::path temp_file_;
 };
 
 TEST_F(FileReaderTest, ReadExistingFileReturnsContent) {
   FileReader reader;
-  auto content = reader.Read(tempFile.string());
+  auto content = reader.Read(temp_file_.string());
   ASSERT_TRUE(content.has_value());
   EXPECT_EQ(*content, "line1\nline2\n");
 }

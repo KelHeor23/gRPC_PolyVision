@@ -28,12 +28,12 @@ class PolygonsRealTest : public ::testing::Test {
   }
 
   void TearDown() override {
-    for (const auto& file : tempFiles) {
+    for (const auto& file : temp_files_) {
       std::filesystem::remove(file);
     }
   }
 
-  std::vector<std::filesystem::path> tempFiles;
+  std::vector<std::filesystem::path> temp_files_;
 };
 
 // Успешная загрузка корректного JSON с двумя полигонами
@@ -56,7 +56,7 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
     })";
 
   std::filesystem::path file_path = CreateTempFile(json_content);
-  tempFiles.push_back(file_path);
+  temp_files_.push_back(file_path);
 
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
@@ -106,7 +106,7 @@ TEST_F(PolygonsRealTest, InvalidJsonSyntax) {
   std::string bad_json =
       R"({"polygons": [{"type":0, "priority":1, "threshold":0.5, "points":[{"x":10,"y":10}] )";  // незакрытая скобка
   std::filesystem::path file_path = CreateTempFile(bad_json);
-  tempFiles.push_back(file_path);
+  temp_files_.push_back(file_path);
 
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
@@ -118,7 +118,7 @@ TEST_F(PolygonsRealTest, InvalidJsonSyntax) {
 TEST_F(PolygonsRealTest, MissingPolygonsField) {
   std::string json_content = R"({"other": []})";
   std::filesystem::path file_path = CreateTempFile(json_content);
-  tempFiles.push_back(file_path);
+  temp_files_.push_back(file_path);
 
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
@@ -130,7 +130,7 @@ TEST_F(PolygonsRealTest, MissingPolygonsField) {
 TEST_F(PolygonsRealTest, PolygonsNotArray) {
   std::string json_content = R"({"polygons": "not an array"})";
   std::filesystem::path file_path = CreateTempFile(json_content);
-  tempFiles.push_back(file_path);
+  temp_files_.push_back(file_path);
 
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
@@ -157,7 +157,7 @@ TEST_F(PolygonsRealTest, AllPolygonsInvalid) {
         ]
     })";
   std::filesystem::path file_path = CreateTempFile(json_content);
-  tempFiles.push_back(file_path);
+  temp_files_.push_back(file_path);
 
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
@@ -200,7 +200,7 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
 
   // Теперь проверяем загрузку через файл
   std::filesystem::path file_path = CreateTempFile(json_content);
-  tempFiles.push_back(file_path);
+  temp_files_.push_back(file_path);
 
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());

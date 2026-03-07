@@ -10,8 +10,6 @@ using namespace testing;
 
 class PolygonParserTest : public ::testing::Test {
  protected:
-  PolygonParser parser;
-
   std::string MakePolygonJson(int type, int priority, double threshold,
                               const std::vector<std::pair<int, int>>& points) {
     std::string pts = "[";
@@ -38,13 +36,15 @@ class PolygonParserTest : public ::testing::Test {
     std::string full = R"({"polygons":)" + arr + "}";
     return boost::json::parse(full);
   }
+
+  PolygonParser parser_;
 };
 
 TEST_F(PolygonParserTest, ParseValidJsonReturnsPolygons) {
   std::vector<std::string> polys = {
       MakePolygonJson(0, 1, 0.5, {{0, 0}, {1, 0}, {1, 1}})};
   auto root = CreateJsonWithPolygons(polys);
-  auto polygonsOpt = parser.Parse(root);
+  auto polygonsOpt = parser_.Parse(root);
   ASSERT_TRUE(polygonsOpt.has_value());
   const auto& polygons = *polygonsOpt;
   EXPECT_EQ(polygons.size(), 1);
@@ -57,7 +57,7 @@ TEST_F(PolygonParserTest, ParseValidJsonReturnsPolygons) {
 TEST_F(PolygonParserTest, ParseJsonWithoutPolygonsReturnsNullopt) {
   std::string json = R"({"not_polygons": []})";
   auto value = boost::json::parse(json);
-  auto polygonsOpt = parser.Parse(value);
+  auto polygonsOpt = parser_.Parse(value);
   EXPECT_FALSE(polygonsOpt.has_value());
 }
 
@@ -68,7 +68,7 @@ TEST_F(PolygonParserTest, ParseEmptyJsonReturnsNullopt) {
 
 TEST_F(PolygonParserTest, PolygonsNotArrayReturnsNullopt) {
   auto root = boost::json::parse(R"({"polygons": "not array"})");
-  auto result = parser.Parse(root);
+  auto result = parser_.Parse(root);
   EXPECT_FALSE(result.has_value());
 }
 
@@ -77,7 +77,7 @@ TEST_F(PolygonParserTest, ValidPolygonsReturned) {
       MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}, {10, 20}}),
       MakePolygonJson(1, 2, 0.8, {{30, 30}, {40, 30}, {40, 40}})};
   auto root = CreateJsonWithPolygons(polys);
-  auto result = parser.Parse(root);
+  auto result = parser_.Parse(root);
   ASSERT_TRUE(result.has_value());
   ASSERT_EQ(result->size(), 2);
 
@@ -111,7 +111,7 @@ TEST_F(PolygonParserTest, InvalidPolygonsAreSkipped) {
       MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}})   // +
   };
   auto root = CreateJsonWithPolygons(polys);
-  auto result = parser.Parse(root);
+  auto result = parser_.Parse(root);
   ASSERT_TRUE(result.has_value());
   EXPECT_EQ(result->size(), 2);
 }
@@ -121,7 +121,7 @@ TEST_F(PolygonParserTest, AllPolygonsInvalidReturnsNullopt) {
       R"({"type":0,"priority":1,"threshold":0.5})",       // -
       MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}})};  // -
   auto root = CreateJsonWithPolygons(polys);
-  auto result = parser.Parse(root);
+  auto result = parser_.Parse(root);
   EXPECT_FALSE(result.has_value());
 }
 
@@ -129,6 +129,6 @@ TEST_F(PolygonParserTest, InvalidPointCoordinatesRejectPolygon) {
   std::string poly =
       R"({"type":0,"priority":1,"threshold":0.5,"points":[{"x":10,"y":10},{"x":"a","y":20},{"x":30,"y":30}]})";
   auto root = CreateJsonWithPolygons({poly});
-  auto result = parser.Parse(root);
+  auto result = parser_.Parse(root);
   EXPECT_FALSE(result.has_value());
 }
