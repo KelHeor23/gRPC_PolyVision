@@ -52,6 +52,11 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
     return false;
   }
 
+  if (!encoded) {
+    std::cerr << "Encoding failed\n";
+    return false;
+  }
+
   const size_t chunk_size = 64 * 1024;
   size_t offset = 0;
   while (offset < encoded->size()) {
@@ -93,6 +98,11 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
     return false;
   } catch (const std::exception& e) {
     std::cerr << "Decoding error: " << e.what() << std::endl;
+    return false;
+  }
+
+  if (!result) {
+    std::cerr << "Decoding failed\n";
     return false;
   }
 
