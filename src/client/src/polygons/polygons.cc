@@ -9,12 +9,12 @@
 #include "polygons/json_parser.h"
 #include "polygons/polygon_parser.h"
 
-Polygons::Polygons(std::unique_ptr<IFileReader> fileReader,
-                   std::unique_ptr<IJsonParser> jsonParser,
-                   std::unique_ptr<IPolygonParser> polygonParser)
-    : file_reader_(std::move(fileReader)),
-      json_parser_(std::move(jsonParser)),
-      polygon_parser_(std::move(polygonParser)) {}
+Polygons::Polygons(std::unique_ptr<IFileReader> file_reader,
+                   std::unique_ptr<IJsonParser> json_parser,
+                   std::unique_ptr<IPolygonParser> polygon_parser)
+    : file_reader_(std::move(file_reader)),
+      json_parser_(std::move(json_parser)),
+      polygon_parser_(std::move(polygon_parser)) {}
 
 Polygons::Polygons()
     : file_reader_(std::make_unique<FileReader>()),
@@ -31,10 +31,10 @@ bool Polygons::LoadFromFile(const std::string& filename) {
   if (!json) {
     return false;
   }
-  auto polygonsOpt = polygon_parser_->Parse(*json);
-  if (!polygonsOpt) {
+  auto polygons_opt = polygon_parser_->Parse(*json);
+  if (!polygons_opt) {
     return false;
   }
-  polygons_ = std::move(*polygonsOpt);
+  polygons_ = std::move(*polygons_opt);
   return true;
 }

@@ -52,13 +52,13 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
     return false;
   }
 
-  const size_t chunkSize = 64 * 1024;
+  const size_t chunk_size = 64 * 1024;
   size_t offset = 0;
   while (offset < encoded->size()) {
-    ImageDetection::ProcessRequest chunkReq;
-    size_t current = std::min(chunkSize, encoded->size() - offset);
-    chunkReq.set_image_data(encoded->data() + offset, current);
-    if (!stream->Write(chunkReq)) {
+    ImageDetection::ProcessRequest chunk_req;
+    size_t current = std::min(chunk_size, encoded->size() - offset);
+    chunk_req.set_image_data(encoded->data() + offset, current);
+    if (!stream->Write(chunk_req)) {
       std::cerr << "Failed to send chunk" << std::endl;
       return false;
     }
@@ -67,11 +67,11 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   stream->WritesDone();
 
   // Приём ответа
-  std::vector<uint8_t> responseBuffer;
+  std::vector<uint8_t> response_buffer;
   ImageDetection::ProcessResponse resp;
   while (stream->Read(&resp)) {
     const auto& chunk = resp.image_data();
-    responseBuffer.insert(responseBuffer.end(), chunk.begin(), chunk.end());
+    response_buffer.insert(response_buffer.end(), chunk.begin(), chunk.end());
   }
 
   grpc::Status status = stream->Finish();
@@ -80,14 +80,14 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
     return false;
   }
 
-  if (responseBuffer.empty()) {
+  if (response_buffer.empty()) {
     std::cerr << "No image data received" << std::endl;
     return false;
   }
 
   std::optional<cv::Mat> result;
   try {
-    result = encoder_->Decode(responseBuffer, cv::IMREAD_COLOR);
+    result = encoder_->Decode(response_buffer, cv::IMREAD_COLOR);
   } catch (const cv::Exception& e) {
     std::cerr << "OpenCV exception during decoding: " << e.what() << std::endl;
     return false;
