@@ -32,7 +32,7 @@ std::vector<Detection> YoloDetector::Detect(const cv::Mat& image) {
 }
 
 std::vector<Detection> YoloDetector::ProcessOutput(
-    const std::vector<cv::Mat>& outs, const cv::Size& imgSize) {
+    const std::vector<cv::Mat>& outs, const cv::Size& img_size) {
   std::vector<cv::Rect> boxes;
   std::vector<float> confidences;
   std::vector<int> class_ids;
@@ -56,17 +56,17 @@ std::vector<Detection> YoloDetector::ProcessOutput(
             allowed_ids_.end())
           continue;
 
-        int centerX = static_cast<int>(data[0] * imgSize.width);
-        int centerY = static_cast<int>(data[1] * imgSize.height);
-        int width = static_cast<int>(data[2] * imgSize.width);
-        int height = static_cast<int>(data[3] * imgSize.height);
-        int left = centerX - width / 2;
-        int top = centerY - height / 2;
+        int center_x = static_cast<int>(data[0] * img_size.width);
+        int center_y = static_cast<int>(data[1] * img_size.height);
+        int width = static_cast<int>(data[2] * img_size.width);
+        int height = static_cast<int>(data[3] * img_size.height);
+        int left = center_x - width / 2;
+        int top = center_y - height / 2;
 
         cv::Rect box(left, top, width, height);
 
         // Обрезаем бокс по границам изображения
-        box &= cv::Rect(0, 0, imgSize.width, imgSize.height);
+        box &= cv::Rect(0, 0, img_size.width, img_size.height);
         if (box.area() <= 0) continue;
 
         boxes.push_back(box);

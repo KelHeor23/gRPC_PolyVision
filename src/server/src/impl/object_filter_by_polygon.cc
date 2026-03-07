@@ -7,9 +7,9 @@
 std::vector<Detection> ObjectFilterByPolygon::Apply(
     const std::vector<Detection>& detections,
     std::vector<ImageDetection::Polygon>& polygons, cv::Size image_size,
-    const std::string& polygonsName) {
+    const std::string& polygons_name) {
   // Если пришел нвоый набор полигонов, пересоздаем бинарные маски
-  if (last_polygons_name_ != polygonsName) {
+  if (last_polygons_name_ != polygons_name) {
     binary_polygons_.clear();
     binary_polygons_.reserve(polygons.size());
 
@@ -19,7 +19,7 @@ std::vector<Detection> ObjectFilterByPolygon::Apply(
     for (const auto& it : polygons) {
       binary_polygons_.push_back(CreateBinaryPolygon(it, image_size));
     }
-    last_polygons_name_ = polygonsName;
+    last_polygons_name_ = polygons_name;
   }
 
   std::vector<Detection> filtered;
