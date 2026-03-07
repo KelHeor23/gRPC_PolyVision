@@ -1,10 +1,10 @@
+#include "polygons/polygon_parser.h"
+
 #include <gtest/gtest.h>
 
 #include <boost/json.hpp>
 #include <string>
 #include <vector>
-
-#include "polygons/polygon_parser.h"
 
 using namespace testing;
 
@@ -12,7 +12,7 @@ class PolygonParserTest : public ::testing::Test {
  protected:
   PolygonParser parser;
 
-  std::string makePolygonJson(int type, int priority, double threshold,
+  std::string MakePolygonJson(int type, int priority, double threshold,
                               const std::vector<std::pair<int, int>>& points) {
     std::string pts = "[";
     for (size_t i = 0; i < points.size(); ++i) {
@@ -27,7 +27,7 @@ class PolygonParserTest : public ::testing::Test {
   }
 
   // Создаёт полный JSON с массивом полигонов
-  boost::json::value createJsonWithPolygons(
+  boost::json::value CreateJsonWithPolygons(
       const std::vector<std::string>& polyJsons) {
     std::string arr = "[";
     for (size_t i = 0; i < polyJsons.size(); ++i) {
@@ -42,8 +42,8 @@ class PolygonParserTest : public ::testing::Test {
 
 TEST_F(PolygonParserTest, ParseValidJsonReturnsPolygons) {
   std::vector<std::string> polys = {
-      makePolygonJson(0, 1, 0.5, {{0, 0}, {1, 0}, {1, 1}})};
-  auto root = createJsonWithPolygons(polys);
+      MakePolygonJson(0, 1, 0.5, {{0, 0}, {1, 0}, {1, 1}})};
+  auto root = CreateJsonWithPolygons(polys);
   auto polygonsOpt = parser.Parse(root);
   ASSERT_TRUE(polygonsOpt.has_value());
   const auto& polygons = *polygonsOpt;
@@ -74,9 +74,9 @@ TEST_F(PolygonParserTest, PolygonsNotArrayReturnsNullopt) {
 
 TEST_F(PolygonParserTest, ValidPolygonsReturned) {
   std::vector<std::string> polys = {
-      makePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}, {10, 20}}),
-      makePolygonJson(1, 2, 0.8, {{30, 30}, {40, 30}, {40, 40}})};
-  auto root = createJsonWithPolygons(polys);
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}, {10, 20}}),
+      MakePolygonJson(1, 2, 0.8, {{30, 30}, {40, 30}, {40, 40}})};
+  auto root = CreateJsonWithPolygons(polys);
   auto result = parser.Parse(root);
   ASSERT_TRUE(result.has_value());
   ASSERT_EQ(result->size(), 2);
@@ -104,13 +104,13 @@ TEST_F(PolygonParserTest, ValidPolygonsReturned) {
 
 TEST_F(PolygonParserTest, InvalidPolygonsAreSkipped) {
   std::vector<std::string> polys = {
-      makePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}}),  // +
-      makePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}}),            // -
-      makePolygonJson(2, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}}),  // -
-      makePolygonJson(0, 1, 1.5, {{10, 10}, {20, 10}, {20, 20}}),  // -
-      makePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}})   // +
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}}),  // +
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}}),            // -
+      MakePolygonJson(2, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}}),  // -
+      MakePolygonJson(0, 1, 1.5, {{10, 10}, {20, 10}, {20, 20}}),  // -
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}})   // +
   };
-  auto root = createJsonWithPolygons(polys);
+  auto root = CreateJsonWithPolygons(polys);
   auto result = parser.Parse(root);
   ASSERT_TRUE(result.has_value());
   EXPECT_EQ(result->size(), 2);
@@ -119,8 +119,8 @@ TEST_F(PolygonParserTest, InvalidPolygonsAreSkipped) {
 TEST_F(PolygonParserTest, AllPolygonsInvalidReturnsNullopt) {
   std::vector<std::string> polys = {
       R"({"type":0,"priority":1,"threshold":0.5})",       // -
-      makePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}})};  // -
-  auto root = createJsonWithPolygons(polys);
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}})};  // -
+  auto root = CreateJsonWithPolygons(polys);
   auto result = parser.Parse(root);
   EXPECT_FALSE(result.has_value());
 }
@@ -128,7 +128,7 @@ TEST_F(PolygonParserTest, AllPolygonsInvalidReturnsNullopt) {
 TEST_F(PolygonParserTest, InvalidPointCoordinatesRejectPolygon) {
   std::string poly =
       R"({"type":0,"priority":1,"threshold":0.5,"points":[{"x":10,"y":10},{"x":"a","y":20},{"x":30,"y":30}]})";
-  auto root = createJsonWithPolygons({poly});
+  auto root = CreateJsonWithPolygons({poly});
   auto result = parser.Parse(root);
   EXPECT_FALSE(result.has_value());
 }

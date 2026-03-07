@@ -15,7 +15,7 @@
 class PolygonsRealTest : public ::testing::Test {
  protected:
   // Вспомогательная функция для создания временного файла с заданным содержимым
-  std::filesystem::path createTempFile(const std::string& content) {
+  std::filesystem::path CreateTempFile(const std::string& content) {
     std::filesystem::path temp_dir = std::filesystem::temp_directory_path();
     std::srand(std::time(nullptr));
     std::string file_name =
@@ -55,7 +55,7 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
         ]
     })";
 
-  std::filesystem::path file_path = createTempFile(json_content);
+  std::filesystem::path file_path = CreateTempFile(json_content);
   tempFiles.push_back(file_path);
 
   Polygons polygons;
@@ -105,7 +105,7 @@ TEST_F(PolygonsRealTest, FileNotFound) {
 TEST_F(PolygonsRealTest, InvalidJsonSyntax) {
   std::string bad_json =
       R"({"polygons": [{"type":0, "priority":1, "threshold":0.5, "points":[{"x":10,"y":10}] )";  // незакрытая скобка
-  std::filesystem::path file_path = createTempFile(bad_json);
+  std::filesystem::path file_path = CreateTempFile(bad_json);
   tempFiles.push_back(file_path);
 
   Polygons polygons;
@@ -117,7 +117,7 @@ TEST_F(PolygonsRealTest, InvalidJsonSyntax) {
 // JSON корректен, но не содержит поля "polygons"
 TEST_F(PolygonsRealTest, MissingPolygonsField) {
   std::string json_content = R"({"other": []})";
-  std::filesystem::path file_path = createTempFile(json_content);
+  std::filesystem::path file_path = CreateTempFile(json_content);
   tempFiles.push_back(file_path);
 
   Polygons polygons;
@@ -129,7 +129,7 @@ TEST_F(PolygonsRealTest, MissingPolygonsField) {
 // Поле polygons есть, но оно не массив
 TEST_F(PolygonsRealTest, PolygonsNotArray) {
   std::string json_content = R"({"polygons": "not an array"})";
-  std::filesystem::path file_path = createTempFile(json_content);
+  std::filesystem::path file_path = CreateTempFile(json_content);
   tempFiles.push_back(file_path);
 
   Polygons polygons;
@@ -156,7 +156,7 @@ TEST_F(PolygonsRealTest, AllPolygonsInvalid) {
             }
         ]
     })";
-  std::filesystem::path file_path = createTempFile(json_content);
+  std::filesystem::path file_path = CreateTempFile(json_content);
   tempFiles.push_back(file_path);
 
   Polygons polygons;
@@ -199,7 +199,7 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
   EXPECT_EQ(direct_result->size(), 2) << "PolygonParser вернул не 2 полигона";
 
   // Теперь проверяем загрузку через файл
-  std::filesystem::path file_path = createTempFile(json_content);
+  std::filesystem::path file_path = CreateTempFile(json_content);
   tempFiles.push_back(file_path);
 
   Polygons polygons;
