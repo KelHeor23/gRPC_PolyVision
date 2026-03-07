@@ -4,7 +4,7 @@
 
 #include "impl/Detection.h"
 
-std::vector<Detection> ObjectFilterByPolygon::apply(
+std::vector<Detection> ObjectFilterByPolygon::Apply(
     const std::vector<Detection>& detections,
     std::vector<ImageDetection::Polygon>& polygons, cv::Size imageSize,
     const std::string& polygonsName) {
@@ -14,10 +14,10 @@ std::vector<Detection> ObjectFilterByPolygon::apply(
     binaryPolygons_.reserve(polygons.size());
 
     // Обработка полигонов
-    polygonProcessor_->processPolygons(polygons);
+    polygonProcessor_->ProcessPolygons(polygons);
 
     for (const auto& it : polygons) {
-      binaryPolygons_.push_back(createBinaryPolygon(it, imageSize));
+      binaryPolygons_.push_back(CreateBinaryPolygon(it, imageSize));
     }
     lastPolygonsName_ = polygonsName;
   }
@@ -25,14 +25,14 @@ std::vector<Detection> ObjectFilterByPolygon::apply(
   std::vector<Detection> filtered;
 
   for (const auto& det : detections) {
-    if (isDetectionAccepted(det, binaryPolygons_)) {
+    if (IsDetectionAccepted(det, binaryPolygons_)) {
       filtered.push_back(det);
     }
   }
   return filtered;
 }
 
-BinaryPolygon ObjectFilterByPolygon::createBinaryPolygon(
+BinaryPolygon ObjectFilterByPolygon::CreateBinaryPolygon(
     const ImageDetection::Polygon& poly, cv::Size imageSize) {
   BinaryPolygon bp;
   bp.isInclusion = (poly.type() == ImageDetection::PolygonType::INCLUSION);
@@ -51,7 +51,7 @@ BinaryPolygon ObjectFilterByPolygon::createBinaryPolygon(
   return bp;
 }
 
-bool ObjectFilterByPolygon::isDetectionAccepted(
+bool ObjectFilterByPolygon::IsDetectionAccepted(
     const Detection& detection, const std::vector<BinaryPolygon>& polygons) {
   for (const auto& poly : polygons) {
     // Быстрая проверка пересечения бокса детекции с охватывающим

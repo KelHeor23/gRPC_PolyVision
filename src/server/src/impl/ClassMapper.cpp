@@ -19,13 +19,13 @@ ClassMapper::ClassMapper(const std::string& filename) {
   }
 }
 
-std::string ClassMapper::getClassName(int classId) const {
+std::string ClassMapper::GetClassName(int classId) const {
   if (classId >= 0 && classId < static_cast<int>(classes_.size()))
     return classes_[classId];
   return "unknown";
 }
 
-std::vector<int> ClassMapper::getAllowedIds(
+std::vector<int> ClassMapper::GetAllowedIds(
     const std::vector<std::string>& allowedNames) const {
   std::vector<int> ids;
   for (const auto& name : allowedNames) {

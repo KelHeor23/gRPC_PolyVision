@@ -45,7 +45,7 @@ class ObjectFilterByPolygon : public IObjectFilter {
    * @param polygonsName Имя набора полигонов (для кэширования масок).
    * @return Отфильтрованный вектор детекций.
    */
-  std::vector<Detection> apply(const std::vector<Detection>& detections,
+  std::vector<Detection> Apply(const std::vector<Detection>& detections,
                                std::vector<ImageDetection::Polygon>& polygons,
                                cv::Size imageSize,
                                const std::string& polygonsName) override;
@@ -57,7 +57,7 @@ class ObjectFilterByPolygon : public IObjectFilter {
    * @param imageSize Размер изображения.
    * @return Структура BinaryPolygon.
    */
-  BinaryPolygon createBinaryPolygon(const ImageDetection::Polygon& poly,
+  BinaryPolygon CreateBinaryPolygon(const ImageDetection::Polygon& poly,
                                     cv::Size imageSize);
 
   /**
@@ -66,7 +66,7 @@ class ObjectFilterByPolygon : public IObjectFilter {
    * @param polygons Вектор бинарных полигонов.
    * @return true, если детекция принимается.
    */
-  bool isDetectionAccepted(const Detection& detection,
+  bool IsDetectionAccepted(const Detection& detection,
                            const std::vector<BinaryPolygon>& polygons);
 
   std::unique_ptr<IPolygonProcessor>

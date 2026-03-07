@@ -48,7 +48,7 @@ Status ImageProcessingServer::ProcessImage(
     cv::Mat img = std::move(*imgOpt);
 
     // Обработка изображения
-    processor_->process(img, polygons, polygonsName);
+    processor_->Process(img, polygons, polygonsName);
 
     // Кодирование результата
     auto encodedOpt = encoder_->Encode(img, ".jpg", 95);

@@ -28,7 +28,7 @@ class YoloDetector : public IDetector {
    * @param image Входное изображение.
    * @return Вектор обнаруженных объектов.
    */
-  std::vector<Detection> detect(const cv::Mat& image) override;
+  std::vector<Detection> Detect(const cv::Mat& image) override;
 
  private:
   /**
@@ -38,7 +38,7 @@ class YoloDetector : public IDetector {
    * @param imgSize Размер исходного изображения.
    * @return Вектор детекций.
    */
-  std::vector<Detection> processOutput(const std::vector<cv::Mat>& outs,
+  std::vector<Detection> ProcessOutput(const std::vector<cv::Mat>& outs,
                                        const cv::Size& imgSize);
 
  private:

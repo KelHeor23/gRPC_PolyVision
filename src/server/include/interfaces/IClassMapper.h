@@ -18,17 +18,17 @@ class IClassMapper {
    * @param classId Идентификатор класса.
    * @return Имя класса.
    */
-  virtual std::string getClassName(int classId) const = 0;
+  virtual std::string GetClassName(int classId) const = 0;
   /**
    * @brief Количество известных классов.
    * @return Размер.
    */
-  virtual int size() const = 0;
+  virtual int GetSize() const = 0;
   /**
    * @brief Преобразует список имён в список идентификаторов.
    * @param allowedNames Имена классов.
    * @return Вектор соответствующих идентификаторов.
    */
-  virtual std::vector<int> getAllowedIds(
+  virtual std::vector<int> GetAllowedIds(
       const std::vector<std::string>& allowedNames) const = 0;
 };

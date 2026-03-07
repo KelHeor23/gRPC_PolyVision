@@ -24,13 +24,13 @@ class ClassMapper : public IClassMapper {
    * @param classId Идентификатор класса (индекс).
    * @return Имя класса или "unknown", если индекс вне диапазона.
    */
-  std::string getClassName(int classId) const override;
+  std::string GetClassName(int classId) const override;
 
   /**
    * @brief Количество загруженных классов.
    * @return Размер вектора классов.
    */
-  int size() const override { return classes_.size(); }
+  int GetSize() const override { return classes_.size(); }
 
   /**
    * @brief Преобразует список разрешённых имён в список идентификаторов.
@@ -38,7 +38,7 @@ class ClassMapper : public IClassMapper {
    * @return Вектор соответствующих индексов (пустые имена игнорируются с
    * предупреждением).
    */
-  std::vector<int> getAllowedIds(
+  std::vector<int> GetAllowedIds(
       const std::vector<std::string>& allowedNames) const override;
 
  private:

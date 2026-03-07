@@ -3,7 +3,7 @@
 #include <algorithm>
 #include <ranges>
 
-void PolygonProcessor::processPolygons(
+void PolygonProcessor::ProcessPolygons(
     std::vector<ImageDetection::Polygon>& polygons) {
   // сортируем по убыванию приоритета, а при равных приоритетах по возрастанию
   // типа

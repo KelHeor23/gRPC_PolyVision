@@ -18,6 +18,6 @@ class IPolygonProcessor {
    * @brief Обрабатывает полигоны (например, сортирует).
    * @param polygons Вектор полигонов (модифицируется).
    */
-  virtual void processPolygons(
+  virtual void ProcessPolygons(
       std::vector<ImageDetection::Polygon>& polygons) = 0;
 };

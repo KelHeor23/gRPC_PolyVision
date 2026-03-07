@@ -21,7 +21,7 @@ class IImageProcessor {
    * @param polygons Полигоны для фильтрации.
    * @param fileName Имя набора полигонов (для кэширования).
    */
-  virtual void process(cv::Mat& image,
+  virtual void Process(cv::Mat& image,
                        std::vector<ImageDetection::Polygon>& polygons,
                        const std::string& fileName) = 0;
 };

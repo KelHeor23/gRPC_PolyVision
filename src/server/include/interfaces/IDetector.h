@@ -20,5 +20,5 @@ class IDetector {
    * @param image Входное изображение.
    * @return Вектор обнаруженных объектов.
    */
-  virtual std::vector<Detection> detect(const cv::Mat& image) = 0;
+  virtual std::vector<Detection> Detect(const cv::Mat& image) = 0;
 };

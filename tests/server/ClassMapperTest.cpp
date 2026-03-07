@@ -1,8 +1,8 @@
-#include "impl/ClassMapper.h"
-
 #include <gtest/gtest.h>
 
 #include <fstream>
+
+#include "impl/ClassMapper.h"
 
 class ClassMapperTest : public ::testing::Test {
  protected:
@@ -16,16 +16,16 @@ class ClassMapperTest : public ::testing::Test {
 
 TEST_F(ClassMapperTest, LoadClasses) {
   ClassMapper mapper("test_classes.names");
-  EXPECT_EQ(mapper.size(), 4);
-  EXPECT_EQ(mapper.getClassName(0), "person");
-  EXPECT_EQ(mapper.getClassName(3), "cat");
-  EXPECT_EQ(mapper.getClassName(10), "unknown");
+  EXPECT_EQ(mapper.GetSize(), 4);
+  EXPECT_EQ(mapper.GetClassName(0), "person");
+  EXPECT_EQ(mapper.GetClassName(3), "cat");
+  EXPECT_EQ(mapper.GetClassName(10), "unknown");
 }
 
 TEST_F(ClassMapperTest, GetAllowedIds) {
   ClassMapper mapper("test_classes.names");
   std::vector<std::string> allowed = {"dog", "cat", "unknown"};
-  auto ids = mapper.getAllowedIds(allowed);
+  auto ids = mapper.GetAllowedIds(allowed);
   std::vector<int> expected = {2, 3};
   EXPECT_EQ(ids, expected);
 }

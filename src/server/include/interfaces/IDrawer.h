@@ -24,7 +24,7 @@ class IDrawer {
    * @param detections Детекции.
    * @param mapper Маппер для получения имён классов.
    */
-  virtual void drawDetections(cv::Mat& image,
+  virtual void DrawDetections(cv::Mat& image,
                               const std::vector<Detection>& detections,
                               std::shared_ptr<IClassMapper> mapper) = 0;
 
@@ -33,6 +33,6 @@ class IDrawer {
    * @param image Изображение.
    * @param polygons Полигоны.
    */
-  virtual void drawPolygons(
+  virtual void DrawPolygons(
       cv::Mat& image, const std::vector<ImageDetection::Polygon>& polygons) = 0;
 };

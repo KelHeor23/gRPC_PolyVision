@@ -19,7 +19,7 @@ TEST(PolygonProcessorTest, SortsByPriorityAndType) {
   addPoly(10, ImageDetection::PolygonType::EXCLUSION);
   addPoly(1, ImageDetection::PolygonType::INCLUSION);
 
-  processor.processPolygons(polygons);
+  processor.ProcessPolygons(polygons);
 
   ASSERT_EQ(polygons.size(), 4);
   EXPECT_EQ(polygons[0].priority(), 10);

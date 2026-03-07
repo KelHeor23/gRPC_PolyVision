@@ -15,5 +15,5 @@ class PolygonProcessor : public IPolygonProcessor {
    * @brief Сортирует полигоны по убыванию приоритета, затем по убыванию типа.
    * @param polygons Вектор полигонов (модифицируется).
    */
-  void processPolygons(std::vector<ImageDetection::Polygon>& polygons) override;
+  void ProcessPolygons(std::vector<ImageDetection::Polygon>& polygons) override;
 };

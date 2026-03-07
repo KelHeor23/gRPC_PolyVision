@@ -15,10 +15,10 @@ YoloDetector::YoloDetector(const Config& cfg,
   net_ = cv::dnn::readNetFromDarknet(cfg.modelConfig, cfg.modelWeights);
   if (net_.empty()) throw std::runtime_error("Failed to load YOLO network");
 
-  allowedIds_ = mapper->getAllowedIds(cfg.allowedClasses);
+  allowedIds_ = mapper->GetAllowedIds(cfg.allowedClasses);
 }
 
-std::vector<Detection> YoloDetector::detect(const cv::Mat& image) {
+std::vector<Detection> YoloDetector::Detect(const cv::Mat& image) {
   cv::Mat blob;
   cv::dnn::blobFromImage(image, blob, 1 / 255.0, inputSize_, cv::Scalar(), true,
                          false);
@@ -28,10 +28,10 @@ std::vector<Detection> YoloDetector::detect(const cv::Mat& image) {
   std::vector<std::string> outNames = net_.getUnconnectedOutLayersNames();
   net_.forward(outs, outNames);
 
-  return processOutput(outs, image.size());
+  return ProcessOutput(outs, image.size());
 }
 
-std::vector<Detection> YoloDetector::processOutput(
+std::vector<Detection> YoloDetector::ProcessOutput(
     const std::vector<cv::Mat>& outs, const cv::Size& imgSize) {
   std::vector<cv::Rect> boxes;
   std::vector<float> confidences;

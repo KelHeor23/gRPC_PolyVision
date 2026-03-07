@@ -15,21 +15,21 @@ ObjectsDetecting::ObjectsDetecting(std::shared_ptr<IClassMapper> mapper,
       objectFilter_(std::move(objectFilter)),
       drawer_(std::move(drawer)) {}
 
-void ObjectsDetecting::process(cv::Mat& image,
+void ObjectsDetecting::Process(cv::Mat& image,
                                std::vector<ImageDetection::Polygon>& polygons,
                                const std::string& polygonsName) {
   // Если нужно, можно отрисовать полигоны на изображении
   if (drawPolygons_) {
-    drawer_->drawPolygons(image, polygons);
+    drawer_->DrawPolygons(image, polygons);
   }
 
   // Детекция
-  auto detections = detector_->detect(image);
+  auto detections = detector_->Detect(image);
 
   // Фильтрация по зонам
   detections =
-      objectFilter_->apply(detections, polygons, image.size(), polygonsName);
+      objectFilter_->Apply(detections, polygons, image.size(), polygonsName);
 
   // Отрисовка
-  drawer_->drawDetections(image, detections, classMapper_);
+  drawer_->DrawDetections(image, detections, classMapper_);
 }

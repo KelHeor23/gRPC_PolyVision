@@ -25,7 +25,7 @@ class Drawer : public IDrawer {
    * @param detections Вектор обнаружений.
    * @param mapper Маппер классов для получения имён.
    */
-  void drawDetections(cv::Mat& image, const std::vector<Detection>& detections,
+  void DrawDetections(cv::Mat& image, const std::vector<Detection>& detections,
                       std::shared_ptr<IClassMapper> mapper) override;
 
   /**
@@ -33,7 +33,7 @@ class Drawer : public IDrawer {
    * @param image Изображение.
    * @param polygons Вектор полигонов в protobuf-формате.
    */
-  void drawPolygons(
+  void DrawPolygons(
       cv::Mat& image,
       const std::vector<ImageDetection::Polygon>& polygons) override;
 };

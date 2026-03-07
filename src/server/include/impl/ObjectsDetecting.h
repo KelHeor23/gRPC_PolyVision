@@ -36,14 +36,14 @@ class ObjectsDetecting : public IImageProcessor {
    * @param polygons Вектор полигонов.
    * @param fileName Имя набора полигонов (для кэширования).
    */
-  void process(cv::Mat& image, std::vector<ImageDetection::Polygon>& polygons,
+  void Process(cv::Mat& image, std::vector<ImageDetection::Polygon>& polygons,
                const std::string& fileName) override;
 
   /**
    * @brief Включает/отключает отрисовку полигонов (для отладки).
    * @param draw true – рисовать полигоны false - нет, необходимо для проверки
    */
-  void setDrawPolygons(bool draw) { drawPolygons_ = draw; }
+  void SetDrawPolygons(bool draw) { drawPolygons_ = draw; }
 
  private:
   std::shared_ptr<IClassMapper> classMapper_;  ///< Маппер классов

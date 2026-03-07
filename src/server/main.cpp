@@ -26,8 +26,8 @@ void RunServer(int argc, char** argv) {
 
     options.Parse(argc, argv);
 
-    if (options.isHelpRequested()) {
-      options.printHelp();
+    if (options.IsHelpRequested()) {
+      options.PrintHelp();
       return;
     }
 
@@ -51,7 +51,7 @@ void RunServer(int argc, char** argv) {
 
     bool isShowPolygons = options.GetShowPolygons();
     // Включаем отрисовку полигонов для отладки
-    objectDetector->setDrawPolygons(isShowPolygons);
+    objectDetector->SetDrawPolygons(isShowPolygons);
 
     ImageProcessingServer service(std::make_unique<OpenCVEncoder>(),
                                   std::move(objectDetector));
