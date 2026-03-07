@@ -43,7 +43,7 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   // Кодирование изображения
   std::optional<std::vector<uint8_t>> encoded;
   try {
-    encoded = encoder_->encode(img, ".jpg", 95);
+    encoded = encoder_->Encode(img, ".jpg", 95);
   } catch (const cv::Exception& e) {
     std::cerr << "OpenCV exception during encoding: " << e.what() << std::endl;
     return false;
@@ -87,7 +87,7 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
 
   std::optional<cv::Mat> result;
   try {
-    result = encoder_->decode(responseBuffer, cv::IMREAD_COLOR);
+    result = encoder_->Decode(responseBuffer, cv::IMREAD_COLOR);
   } catch (const cv::Exception& e) {
     std::cerr << "OpenCV exception during decoding: " << e.what() << std::endl;
     return false;

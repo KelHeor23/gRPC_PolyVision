@@ -16,11 +16,11 @@ class OpenCVEncoderTest : public ::testing::Test {
 };
 
 TEST_F(OpenCVEncoderTest, EncodeAndDecodePng) {
-  auto encoded = encoder.encode(testImage, ".png", 0);
+  auto encoded = encoder.Encode(testImage, ".png", 0);
   ASSERT_TRUE(encoded.has_value());
   EXPECT_FALSE(encoded->empty());
 
-  auto decoded = encoder.decode(*encoded, cv::IMREAD_COLOR);
+  auto decoded = encoder.Decode(*encoded, cv::IMREAD_COLOR);
   ASSERT_TRUE(decoded.has_value());
   EXPECT_EQ(decoded->rows, testImage.rows);
   EXPECT_EQ(decoded->cols, testImage.cols);
@@ -30,19 +30,19 @@ TEST_F(OpenCVEncoderTest, EncodeAndDecodePng) {
 }
 
 TEST_F(OpenCVEncoderTest, EncodeWithUnsupportedFormatReturnsNullopt) {
-  auto encoded = encoder.encode(testImage, ".bmp", 0);
-  auto result = encoder.encode(testImage, ".xyz", 0);
+  auto encoded = encoder.Encode(testImage, ".bmp", 0);
+  auto result = encoder.Encode(testImage, ".xyz", 0);
   EXPECT_FALSE(result.has_value());
 }
 
 TEST_F(OpenCVEncoderTest, DecodeEmptyDataReturnsNullopt) {
   std::vector<uint8_t> empty;
-  auto decoded = encoder.decode(empty, cv::IMREAD_COLOR);
+  auto decoded = encoder.Decode(empty, cv::IMREAD_COLOR);
   EXPECT_FALSE(decoded.has_value());
 }
 
 TEST_F(OpenCVEncoderTest, DecodeCorruptedDataReturnsNullopt) {
   std::vector<uint8_t> corrupted = {0, 1, 2, 3, 4, 5};
-  auto decoded = encoder.decode(corrupted, cv::IMREAD_COLOR);
+  auto decoded = encoder.Decode(corrupted, cv::IMREAD_COLOR);
   EXPECT_FALSE(decoded.has_value());
 }

@@ -40,7 +40,7 @@ Status ImageProcessingServer::ProcessImage(
     }
 
     // Декодирование
-    auto imgOpt = encoder_->decode(imageBuffer, cv::IMREAD_COLOR);
+    auto imgOpt = encoder_->Decode(imageBuffer, cv::IMREAD_COLOR);
     if (!imgOpt) {
       return Status(grpc::StatusCode::INVALID_ARGUMENT,
                     "Failed to decode image");
@@ -51,7 +51,7 @@ Status ImageProcessingServer::ProcessImage(
     processor_->process(img, polygons, polygonsName);
 
     // Кодирование результата
-    auto encodedOpt = encoder_->encode(img, ".jpg", 95);
+    auto encodedOpt = encoder_->Encode(img, ".jpg", 95);
 
     if (!encodedOpt) {
       return Status(grpc::StatusCode::INTERNAL, "Failed to encode result");

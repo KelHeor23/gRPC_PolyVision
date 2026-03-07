@@ -23,7 +23,7 @@ class IImageEncoder {
    * @return Вектор байт с закодированным изображением или std::nullopt при
    * ошибке.
    */
-  virtual std::optional<std::vector<uint8_t>> encode(const cv::Mat& image,
+  virtual std::optional<std::vector<uint8_t>> Encode(const cv::Mat& image,
                                                      const std::string& format,
                                                      int quality) = 0;
 
@@ -33,6 +33,6 @@ class IImageEncoder {
    * @param flags Флаги imdecode (например, cv::IMREAD_COLOR).
    * @return Декодированное изображение или std::nullopt при ошибке.
    */
-  virtual std::optional<cv::Mat> decode(const std::vector<uint8_t>& data,
+  virtual std::optional<cv::Mat> Decode(const std::vector<uint8_t>& data,
                                         int flags) = 0;
 };

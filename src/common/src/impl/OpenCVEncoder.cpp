@@ -2,7 +2,7 @@
 
 #include <opencv2/imgcodecs.hpp>
 
-std::optional<std::vector<uint8_t>> OpenCVEncoder::encode(
+std::optional<std::vector<uint8_t>> OpenCVEncoder::Encode(
     const cv::Mat& image, const std::string& format, int quality) {
   try {
     std::vector<uint8_t> buffer;
@@ -19,7 +19,7 @@ std::optional<std::vector<uint8_t>> OpenCVEncoder::encode(
   }
 }
 
-std::optional<cv::Mat> OpenCVEncoder::decode(const std::vector<uint8_t>& data,
+std::optional<cv::Mat> OpenCVEncoder::Decode(const std::vector<uint8_t>& data,
                                              int flags) {
   try {
     if (data.empty()) return std::nullopt;
