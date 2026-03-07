@@ -3,13 +3,13 @@ find_package(GTest REQUIRED)
 
 # Создаём исполняемый файл с тестами
 add_executable(run_tests 
-    client/FileReaderTest.cpp
-    client/JsonParserTest.cpp
-    client/PolygonParserTest.cpp
-    client/PolygonsTest.cpp
-    common/OpenCVEncoderTest.cpp
-    server/ClassMapperTest.cpp
-    server/PolygonProcessorTest.cpp
+    client/file_reader_test.cc
+    client/json_parser_test.cc
+    client/polygon_parser_test.cc
+    client/polygons_test.cc
+    common/opencv_encoder_test.cc
+    server/class_mapper_test.cc
+    server/polygon_processor_test.cc
     )
 
 target_include_directories(run_tests PRIVATE 
