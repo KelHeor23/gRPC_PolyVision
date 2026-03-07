@@ -16,7 +16,7 @@ class PolygonParser : public IPolygonParser {
    * @param root Корневой JSON-объект.
    * @return Вектор полигонов или nullopt, если данные некорректны.
    */
-  std::optional<std::vector<ImageDetection::Polygon>> parse(
+  std::optional<std::vector<ImageDetection::Polygon>> Parse(
       const boost::json::value& root) override;
 
  private:
@@ -26,6 +26,6 @@ class PolygonParser : public IPolygonParser {
    * @param index Индекс полигона для диагностики.
    * @return Полигон или nullopt при ошибке.
    */
-  std::optional<ImageDetection::Polygon> parseSinglePolygon(
+  std::optional<ImageDetection::Polygon> ParseSinglePolygon(
       const boost::json::value& val, std::size_t index);
 };

@@ -1,6 +1,6 @@
 #include "polygons/PolygonParser.h"
 
-std::optional<std::vector<ImageDetection::Polygon>> PolygonParser::parse(
+std::optional<std::vector<ImageDetection::Polygon>> PolygonParser::Parse(
     const boost::json::value& root) {
   if (!root.is_object()) {
     return std::nullopt;
@@ -13,7 +13,7 @@ std::optional<std::vector<ImageDetection::Polygon>> PolygonParser::parse(
   const auto& polyArray = it->value().as_array();
   std::vector<ImageDetection::Polygon> result;
   for (std::size_t i = 0; i < polyArray.size(); ++i) {
-    auto polyOpt = parseSinglePolygon(polyArray[i], i);
+    auto polyOpt = ParseSinglePolygon(polyArray[i], i);
     if (!polyOpt) {
       // Пропускаем невалидный полигон
       continue;
@@ -26,7 +26,7 @@ std::optional<std::vector<ImageDetection::Polygon>> PolygonParser::parse(
   return result;
 }
 
-std::optional<ImageDetection::Polygon> PolygonParser::parseSinglePolygon(
+std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
     const boost::json::value& val, std::size_t index) {
   if (!val.is_object()) return std::nullopt;
 

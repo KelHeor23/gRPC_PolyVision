@@ -44,18 +44,18 @@ class Polygons {
    * @param filename Путь к JSON-файлу.
    * @return true при успешной загрузке, false при ошибке.
    */
-  bool loadFromFile(const std::string& filename);
+  bool LoadFromFile(const std::string& filename);
 
   /**
    * @brief Возвращает загруженные полигоны.
    * @return Константная ссылка на вектор полигонов.
    */
-  const std::vector<Polygon>& getPolygons() const { return polygons_; }
+  const std::vector<Polygon>& GetPolygons() const { return polygons_; }
   /**
    * @brief Имя последнего загруженного файла.
    * @return Строка с именем файла.
    */
-  const std::string& getLastFileName() const { return lastFileName_; }
+  const std::string& GetLastFileName() const { return lastFileName_; }
 
  private:
   std::string lastFileName_;  ///< Имя последнего загруженного файла

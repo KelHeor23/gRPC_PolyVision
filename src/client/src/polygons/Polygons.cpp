@@ -21,17 +21,17 @@ Polygons::Polygons()
       jsonParser_(std::make_unique<JsonParser>()),
       polygonParser_(std::make_unique<PolygonParser>()) {}
 
-bool Polygons::loadFromFile(const std::string& filename) {
+bool Polygons::LoadFromFile(const std::string& filename) {
   lastFileName_ = filename;
-  auto content = fileReader_->read(filename);
+  auto content = fileReader_->Read(filename);
   if (!content) {
     return false;
   }
-  auto json = jsonParser_->parse(*content);
+  auto json = jsonParser_->Parse(*content);
   if (!json) {
     return false;
   }
-  auto polygonsOpt = polygonParser_->parse(*json);
+  auto polygonsOpt = polygonParser_->Parse(*json);
   if (!polygonsOpt) {
     return false;
   }

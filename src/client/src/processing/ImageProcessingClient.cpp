@@ -29,8 +29,8 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   auto* polygon_list = request.mutable_polygon_list();
 
   // Записываю имя набора полигонов
-  polygon_list->set_name(polygons.getLastFileName());
-  for (const auto& p : polygons.getPolygons()) {
+  polygon_list->set_name(polygons.GetLastFileName());
+  for (const auto& p : polygons.GetPolygons()) {
     auto* poly = polygon_list->add_polygons();
     poly->CopyFrom(p);
   }
@@ -97,8 +97,8 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   }
 
   try {
-    display_->show(*result, "Processed Image");
-    display_->waitKey(0);
+    display_->Show(*result, "Processed Image");
+    display_->WaitKey(0);
   } catch (const cv::Exception& e) {
     std::cerr << "OpenCV exception during display: " << e.what() << std::endl;
     return false;

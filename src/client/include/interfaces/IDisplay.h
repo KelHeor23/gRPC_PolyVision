@@ -19,10 +19,10 @@ class IDisplay {
    * @param image Изображение для отображения.
    * @param windowName Имя окна.
    */
-  virtual void show(const cv::Mat& image, const std::string& windowName) = 0;
+  virtual void Show(const cv::Mat& image, const std::string& windowName) = 0;
   /**
    * @brief Ожидать нажатие клавиши.
    * @param delay Время ожидания (мс).
    */
-  virtual void waitKey(int delay) = 0;
+  virtual void WaitKey(int delay) = 0;
 };

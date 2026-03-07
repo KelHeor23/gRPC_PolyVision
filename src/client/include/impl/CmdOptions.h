@@ -50,12 +50,12 @@ class CommandOptions {
    * @brief Проверяет, был ли запрошен вывод справки.
    * @return true, если указан флаг --help или -h.
    */
-  bool isHelpRequested() const { return helpRequested_; }
+  bool IsHelpRequested() const { return helpRequested_; }
 
   /**
    * @brief Выводит справку по использованию программы в std::cout.
    */
-  void printHelp();
+  void PrintHelp();
 
  private:
   std::string imageFile_;     ///< Путь к файлу изображения

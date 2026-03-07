@@ -58,11 +58,11 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   tempFiles.push_back(filePath);
 
   Polygons polygons;
-  bool result = polygons.loadFromFile(filePath.string());
+  bool result = polygons.LoadFromFile(filePath.string());
 
   EXPECT_TRUE(result);
-  EXPECT_EQ(polygons.getLastFileName(), filePath.string());
-  const auto& polyVec = polygons.getPolygons();
+  EXPECT_EQ(polygons.GetLastFileName(), filePath.string());
+  const auto& polyVec = polygons.GetPolygons();
   ASSERT_EQ(polyVec.size(), 2);
 
   const auto& p0 = polyVec[0];
@@ -95,9 +95,9 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
 // Файл не существует
 TEST_F(PolygonsRealTest, FileNotFound) {
   Polygons polygons;
-  bool result = polygons.loadFromFile("non_existent_file.json");
+  bool result = polygons.LoadFromFile("non_existent_file.json");
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.getPolygons().empty());
+  EXPECT_TRUE(polygons.GetPolygons().empty());
 }
 
 // Некорректный JSON (синтаксическая ошибка)
@@ -108,9 +108,9 @@ TEST_F(PolygonsRealTest, InvalidJsonSyntax) {
   tempFiles.push_back(filePath);
 
   Polygons polygons;
-  bool result = polygons.loadFromFile(filePath.string());
+  bool result = polygons.LoadFromFile(filePath.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.getPolygons().empty());
+  EXPECT_TRUE(polygons.GetPolygons().empty());
 }
 
 // JSON корректен, но не содержит поля "polygons"
@@ -120,9 +120,9 @@ TEST_F(PolygonsRealTest, MissingPolygonsField) {
   tempFiles.push_back(filePath);
 
   Polygons polygons;
-  bool result = polygons.loadFromFile(filePath.string());
+  bool result = polygons.LoadFromFile(filePath.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.getPolygons().empty());
+  EXPECT_TRUE(polygons.GetPolygons().empty());
 }
 
 // Поле polygons есть, но оно не массив
@@ -132,9 +132,9 @@ TEST_F(PolygonsRealTest, PolygonsNotArray) {
   tempFiles.push_back(filePath);
 
   Polygons polygons;
-  bool result = polygons.loadFromFile(filePath.string());
+  bool result = polygons.LoadFromFile(filePath.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.getPolygons().empty());
+  EXPECT_TRUE(polygons.GetPolygons().empty());
 }
 
 // Все полигоны в массиве невалидны (например, недостаточно точек)
@@ -159,9 +159,9 @@ TEST_F(PolygonsRealTest, AllPolygonsInvalid) {
   tempFiles.push_back(filePath);
 
   Polygons polygons;
-  bool result = polygons.loadFromFile(filePath.string());
+  bool result = polygons.LoadFromFile(filePath.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.getPolygons().empty());
+  EXPECT_TRUE(polygons.GetPolygons().empty());
 }
 
 // Смесь валидных и невалидных полигонов – должны загрузиться только валидные
@@ -192,7 +192,7 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
   // Проверяем напрямую работу PolygonParser (для локализации ошибки)
   auto jsonVal = boost::json::parse(jsonContent);
   PolygonParser parser;
-  auto directResult = parser.parse(jsonVal);
+  auto directResult = parser.Parse(jsonVal);
   ASSERT_TRUE(directResult.has_value())
       << "PolygonParser вернул nullopt, хотя ожидались валидные полигоны";
   EXPECT_EQ(directResult->size(), 2) << "PolygonParser вернул не 2 полигона";
@@ -202,10 +202,10 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
   tempFiles.push_back(filePath);
 
   Polygons polygons;
-  bool result = polygons.loadFromFile(filePath.string());
+  bool result = polygons.LoadFromFile(filePath.string());
 
   EXPECT_TRUE(result);
-  const auto& polyVec = polygons.getPolygons();
+  const auto& polyVec = polygons.GetPolygons();
   ASSERT_EQ(polyVec.size(), 2);
 
   // Первый валидный полигон (3 точки)

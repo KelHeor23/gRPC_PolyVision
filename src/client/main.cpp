@@ -24,13 +24,13 @@ int main(int argc, char *argv[]) {
 
     options.Parse(argc, argv);
 
-    if (options.isHelpRequested()) {
-      options.printHelp();
+    if (options.IsHelpRequested()) {
+      options.PrintHelp();
       return 0;
     }
 
-    auto channel = grpc::CreateChannel("server:50051",
-                                       grpc::InsecureChannelCredentials());
+    auto channel =
+        grpc::CreateChannel("server:50051", grpc::InsecureChannelCredentials());
     auto grpcClient = std::make_unique<GrpcStreamClient>(channel);
     auto encoder = std::make_unique<OpenCVEncoder>();
     auto display = std::make_unique<OpenCVDisplay>();
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 
     cv::Mat image = cv::imread(imgFilePath);
     Polygons polygons;
-    if (!polygons.loadFromFile(polygonsFilePath)) {
+    if (!polygons.LoadFromFile(polygonsFilePath)) {
       std::cerr << "Failed to load polygons from file" << std::endl;
       return 1;
     }

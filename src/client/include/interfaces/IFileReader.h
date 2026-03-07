@@ -18,5 +18,5 @@ class IFileReader {
    * @param filename Путь к файлу.
    * @return Содержимое файла или std::nullopt при ошибке.
    */
-  virtual std::optional<std::string> read(const std::string& filename) = 0;
+  virtual std::optional<std::string> Read(const std::string& filename) = 0;
 };

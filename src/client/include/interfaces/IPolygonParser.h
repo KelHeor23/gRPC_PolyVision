@@ -21,6 +21,6 @@ class IPolygonParser {
    * @param root Корневой JSON-объект (должен содержать массив "polygons").
    * @return Вектор полигонов или std::nullopt, если данные невалидны.
    */
-  virtual std::optional<std::vector<ImageDetection::Polygon>> parse(
+  virtual std::optional<std::vector<ImageDetection::Polygon>> Parse(
       const boost::json::value& root) = 0;
 };

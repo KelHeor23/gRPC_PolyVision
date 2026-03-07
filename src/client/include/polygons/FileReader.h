@@ -17,5 +17,5 @@ class FileReader : public IFileReader {
    * @param filename Имя файла.
    * @return Содержимое или std::nullopt, если файл не открыт.
    */
-  std::optional<std::string> read(const std::string& filename) override;
+  std::optional<std::string> Read(const std::string& filename) override;
 };
