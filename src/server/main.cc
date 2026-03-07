@@ -8,14 +8,14 @@
 #include <grpcpp/grpcpp.h>
 #include <impl/opencv_encoder.h>
 
-#include "impl/ClassMapper.h"
-#include "impl/CmdOptions.h"
-#include "impl/Drawer.h"
-#include "impl/ObjectFilterByPolygon.h"
-#include "impl/ObjectsDetecting.h"
-#include "impl/PolygonProcessor.h"
-#include "impl/YoloDetector.h"
-#include "include/processing/ImageProcessingServer.h"
+#include "impl/class_mapper.h"
+#include "impl/cmd_options.h"
+#include "impl/drawer.h"
+#include "impl/object_filter_by_polygon.h"
+#include "impl/objects_detecting.h"
+#include "impl/polygon_processor.h"
+#include "impl/yolo_detector.h"
+#include "include/processing/image_processing_server.h"
 
 /**
  * @brief Запускает gRPC-сервер.

@@ -1,9 +1,9 @@
 #pragma once
 /**
- * @file PolygonProcessor.h
+ * @file polygon_processor.h
  * @brief Реализация процессора полигонов (сортировка).
  */
-#include "interfaces/IPolygonProcessor.h"
+#include "interfaces/i_polygon_processor.h"
 
 /**
  * @class PolygonProcessor

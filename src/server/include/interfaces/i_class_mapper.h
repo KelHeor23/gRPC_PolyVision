@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IClassMapper.h
+ * @file i_class_mapper.h
  * @brief Интерфейс для преобразования идентификатора класса в его имя.
  */
 #include <string>

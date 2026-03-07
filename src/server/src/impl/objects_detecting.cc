@@ -1,10 +1,10 @@
-#include "impl/ObjectsDetecting.h"
+#include "impl/objects_detecting.h"
 
-#include "impl/ClassMapper.h"
-#include "impl/Detection.h"
-#include "impl/Drawer.h"
-#include "impl/ObjectFilterByPolygon.h"
-#include "impl/YoloDetector.h"
+#include "impl/class_mapper.h"
+#include "impl/detection.h"
+#include "impl/drawer.h"
+#include "impl/object_filter_by_polygon.h"
+#include "impl/yolo_detector.h"
 
 ObjectsDetecting::ObjectsDetecting(std::shared_ptr<IClassMapper> mapper,
                                    std::unique_ptr<IDetector> detector,

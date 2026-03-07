@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IDrawer.h
+ * @file i_drawer.h
  * @brief Интерфейс отрисовки результатов на изображении.
  */
 #include <opencv2/core.hpp>

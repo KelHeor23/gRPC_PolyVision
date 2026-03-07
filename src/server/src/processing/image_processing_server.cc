@@ -1,4 +1,4 @@
-#include "processing/ImageProcessingServer.h"
+#include "processing/image_processing_server.h"
 
 #include <algorithm>
 #include <iostream>

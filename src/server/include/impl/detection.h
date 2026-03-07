@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file Detection.h
+ * @file detection.h
  * @brief Структура, описывающая одно обнаружение объекта.
  */
 #include <opencv2/opencv.hpp>

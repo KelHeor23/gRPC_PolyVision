@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IImageProcessor.h
+ * @file i_image_processor.h
  * @brief Интерфейс обработчика изображения.
  */
 #include <opencv2/core.hpp>

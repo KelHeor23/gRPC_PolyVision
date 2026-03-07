@@ -1,14 +1,14 @@
 #pragma once
 
 /**
- * @file ObjectFilterByPolygon.h
+ * @file object_filter_by_polygon.h
  * @brief Фильтрация детекций на основе полигонов.
  */
 #include <opencv2/core.hpp>
 #include <vector>
 
-#include "interfaces/IObjectFilter.h"
-#include "interfaces/IPolygonProcessor.h"
+#include "interfaces/i_object_filter.h"
+#include "interfaces/i_polygon_processor.h"
 
 struct Detection;
 

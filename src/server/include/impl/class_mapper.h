@@ -1,9 +1,9 @@
 #pragma once
 /**
- * @file ClassMapper.h
+ * @file class_mapper.h
  * @brief Реализация маппера классов, загружающего имена из файла.
  */
-#include "interfaces/IClassMapper.h"
+#include "interfaces/i_class_mapper.h"
 
 /**
  * @class ClassMapper

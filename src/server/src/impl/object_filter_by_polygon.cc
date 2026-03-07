@@ -1,8 +1,8 @@
-#include "impl/ObjectFilterByPolygon.h"
+#include "impl/object_filter_by_polygon.h"
 
 #include <opencv2/imgproc.hpp>
 
-#include "impl/Detection.h"
+#include "impl/detection.h"
 
 std::vector<Detection> ObjectFilterByPolygon::Apply(
     const std::vector<Detection>& detections,

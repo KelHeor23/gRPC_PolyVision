@@ -1,10 +1,10 @@
 #pragma once
 /**
- * @file YoloDetector.h
+ * @file yolo_detector.h
  * @brief Реализация детектора на базе YOLO (Darknet).
  */
-#include "Config.h"
-#include "interfaces/IDetector.h"
+#include "config.h"
+#include "interfaces/i_detector.h"
 
 struct Detection;
 class IClassMapper;

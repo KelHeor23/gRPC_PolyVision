@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IObjectFilter.h
+ * @file i_object_filter.h
  * @brief Интерфейс фильтрации детекций по полигонам.
  */
 #include "proto/ImageAnalysis.grpc.pb.h"

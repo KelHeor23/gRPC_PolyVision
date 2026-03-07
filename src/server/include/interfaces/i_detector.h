@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IDetector.h
+ * @file i_detector.h
  * @brief Интерфейс детектора объектов.
  */
 #include <opencv2/opencv.hpp>

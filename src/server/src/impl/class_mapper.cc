@@ -1,4 +1,4 @@
-#include "impl/ClassMapper.h"
+#include "impl/class_mapper.h"
 
 #include <algorithm>
 #include <fstream>

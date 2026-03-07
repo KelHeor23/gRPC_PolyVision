@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file ImageProcessingServer.h
+ * @file image_processing_server.h
  * @brief gRPC-сервер для обработки изображений.
  */
 #include <grpcpp/grpcpp.h>
@@ -8,7 +8,7 @@
 
 #include <memory>
 
-#include "interfaces/IImageProcessor.h"
+#include "interfaces/i_image_processor.h"
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 /**

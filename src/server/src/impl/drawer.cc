@@ -1,9 +1,9 @@
-#include "impl/Drawer.h"
+#include "impl/drawer.h"
 
 #include <format>
 
-#include "impl/ClassMapper.h"
-#include "impl/Detection.h"
+#include "impl/class_mapper.h"
+#include "impl/detection.h"
 
 void Drawer::DrawDetections(cv::Mat& image,
                             const std::vector<Detection>& detections,

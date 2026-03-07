@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file CmdOptions.h
+ * @file cmd_options.h
  * @brief Реализация обработки аргументов командной строки
  */
 

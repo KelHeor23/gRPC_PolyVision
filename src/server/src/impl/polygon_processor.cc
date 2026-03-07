@@ -1,4 +1,4 @@
-#include "impl/PolygonProcessor.h"
+#include "impl/polygon_processor.h"
 
 #include <algorithm>
 #include <ranges>

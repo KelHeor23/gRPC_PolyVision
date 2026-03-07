@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file Config.h
+ * @file config.h
  * @brief Структура конфигурации для детектора объектов.
  */
 #include <opencv2/core.hpp>

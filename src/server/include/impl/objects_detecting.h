@@ -1,10 +1,10 @@
 #pragma once
 /**
- * @file ObjectsDetecting.h
+ * @file objects_detecting.h
  * @brief Основной класс обработки изображения: детекция + фильтрация +
  * отрисовка.
  */
-#include "interfaces/IImageProcessor.h"
+#include "interfaces/i_image_processor.h"
 
 class IClassMapper;
 class IDetector;

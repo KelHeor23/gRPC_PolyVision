@@ -1,13 +1,13 @@
 #pragma once
 
 /**
- * @file Drawer.h
+ * @file drawer.h
  * @brief Реализация отрисовки детекций и полигонов на изображении.
  */
 #include <opencv2/core.hpp>
 #include <vector>
 
-#include "interfaces/IDrawer.h"
+#include "interfaces/i_drawer.h"
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 struct Detection;

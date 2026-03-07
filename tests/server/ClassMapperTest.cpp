@@ -2,7 +2,7 @@
 
 #include <fstream>
 
-#include "impl/ClassMapper.h"
+#include "impl/class_mapper.h"
 
 class ClassMapperTest : public ::testing::Test {
  protected:

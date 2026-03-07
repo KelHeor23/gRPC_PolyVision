@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include "impl/PolygonProcessor.h"
+#include "impl/polygon_processor.h"
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 TEST(PolygonProcessorTest, SortsByPriorityAndType) {

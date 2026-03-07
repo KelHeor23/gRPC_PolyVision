@@ -1,11 +1,11 @@
-#include "impl/YoloDetector.h"
+#include "impl/yolo_detector.h"
 
 #include <algorithm>
 #include <opencv2/dnn.hpp>
 #include <stdexcept>
 
-#include "impl/ClassMapper.h"
-#include "impl/Detection.h"
+#include "impl/class_mapper.h"
+#include "impl/detection.h"
 
 YoloDetector::YoloDetector(const Config& cfg,
                            std::shared_ptr<IClassMapper> mapper)

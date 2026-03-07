@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IPolygonProcessor.h
+ * @file i_polygon_processor.h
  * @brief Интерфейс предобработки полигонов.
  */
 #include <vector>
