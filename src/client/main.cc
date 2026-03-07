@@ -5,7 +5,7 @@
  * Программа загружает изображение и JSON с полигонами, создаёт gRPC-клиент
  * и запускает обработку на сервере, после чего отображает результат.
  */
-#include <impl/OpenCVEncoder.h>
+#include <impl/opencv_encoder.h>
 
 #include <memory>
 #include <opencv2/imgcodecs.hpp>

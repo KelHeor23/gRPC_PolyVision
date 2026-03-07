@@ -1,4 +1,4 @@
-#include "impl/OpenCVEncoder.h"
+#include "impl/opencv_encoder.h"
 
 #include <opencv2/imgcodecs.hpp>
 

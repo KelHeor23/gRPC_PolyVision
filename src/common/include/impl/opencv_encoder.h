@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 
-#include "interfaces/IImageEncoder.h"
+#include "interfaces/i_image_encoder.h"
 
 /**
  * @class OpenCVEncoder

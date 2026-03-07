@@ -1,6 +1,6 @@
 #include "processing/image_processing_client.h"
 
-#include <impl/OpenCVEncoder.h>
+#include <impl/opencv_encoder.h>
 
 #include <opencv2/opencv.hpp>
 

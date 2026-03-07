@@ -4,7 +4,7 @@
  * @brief gRPC-сервер для обработки изображений.
  */
 #include <grpcpp/grpcpp.h>
-#include <interfaces/IImageEncoder.h>
+#include <interfaces/i_image_encoder.h>
 
 #include <memory>
 

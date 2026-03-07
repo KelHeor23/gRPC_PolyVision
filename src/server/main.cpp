@@ -6,7 +6,7 @@
  * отрисовщик и запускает gRPC-сервер.
  */
 #include <grpcpp/grpcpp.h>
-#include <impl/OpenCVEncoder.h>
+#include <impl/opencv_encoder.h>
 
 #include "impl/ClassMapper.h"
 #include "impl/CmdOptions.h"

@@ -3,7 +3,7 @@
 #include <opencv2/core.hpp>
 #include <opencv2/imgcodecs.hpp>
 
-#include "impl/OpenCVEncoder.h"
+#include "impl/opencv_encoder.h"
 
 class OpenCVEncoderTest : public ::testing::Test {
  protected:
