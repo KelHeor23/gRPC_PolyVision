@@ -8,18 +8,18 @@
 
 ObjectsDetecting::ObjectsDetecting(std::shared_ptr<IClassMapper> mapper,
                                    std::unique_ptr<IDetector> detector,
-                                   std::unique_ptr<IObjectFilter> objectFilter,
+                                   std::unique_ptr<IObjectFilter> object_filter,
                                    std::unique_ptr<IDrawer> drawer)
-    : classMapper_(mapper),
+    : class_mapper_(mapper),
       detector_(std::move(detector)),
-      objectFilter_(std::move(objectFilter)),
+      object_filter_(std::move(object_filter)),
       drawer_(std::move(drawer)) {}
 
 void ObjectsDetecting::Process(cv::Mat& image,
                                std::vector<ImageDetection::Polygon>& polygons,
-                               const std::string& polygonsName) {
+                               const std::string& polygons_name) {
   // Если нужно, можно отрисовать полигоны на изображении
-  if (drawPolygons_) {
+  if (draw_polygons_) {
     drawer_->DrawPolygons(image, polygons);
   }
 
@@ -28,8 +28,8 @@ void ObjectsDetecting::Process(cv::Mat& image,
 
   // Фильтрация по зонам
   detections =
-      objectFilter_->Apply(detections, polygons, image.size(), polygonsName);
+      object_filter_->Apply(detections, polygons, image.size(), polygons_name);
 
   // Отрисовка
-  drawer_->DrawDetections(image, detections, classMapper_);
+  drawer_->DrawDetections(image, detections, class_mapper_);
 }

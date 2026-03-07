@@ -17,10 +17,10 @@ struct Detection;
  * @brief Внутреннее представление полигона для быстрой проверки.
  */
 struct BinaryPolygon {
-  bool isInclusion;  ///< true – зона включения, false – исключения
+  bool is_inclusion;  ///< true – зона включения, false – исключения
   float threshold;  ///< доля площади для принадлежности (0..1)
   cv::Mat mask;  ///< бинарная маска полигона
-  cv::Rect boundingBox;  ///< охватывающий прямоугольник полигона
+  cv::Rect bounding_box;  ///< охватывающий прямоугольник полигона
 };
 
 /**
@@ -35,7 +35,7 @@ class ObjectFilterByPolygon : public IObjectFilter {
    * @param polygonProcessor Объект для предобработки полигонов.
    */
   ObjectFilterByPolygon(std::unique_ptr<IPolygonProcessor> polygonProcessor)
-      : polygonProcessor_(std::move(polygonProcessor)) {}
+      : polygon_processor_(std::move(polygonProcessor)) {}
 
   /**
    * @brief Применяет фильтрацию к детекциям.
@@ -70,8 +70,8 @@ class ObjectFilterByPolygon : public IObjectFilter {
                            const std::vector<BinaryPolygon>& polygons);
 
   std::unique_ptr<IPolygonProcessor>
-      polygonProcessor_;  ///< Процессор полигонов
-  std::vector<BinaryPolygon> binaryPolygons_;  ///< Кэш бинарных масок
-  std::string lastPolygonsName_;  ///< Имя последнего набора полигонов, для
-                                  ///< кеширования набора полигонов
+      polygon_processor_;  ///< Процессор полигонов
+  std::vector<BinaryPolygon> binary_polygons_;  ///< Кэш бинарных масок
+  std::string last_polygons_name_;  ///< Имя последнего набора полигонов, для
+                                    ///< кеширования набора полигонов
 };

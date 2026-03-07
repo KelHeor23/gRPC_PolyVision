@@ -42,9 +42,9 @@ class YoloDetector : public IDetector {
                                        const cv::Size& imgSize);
 
  private:
-  cv::dnn::Net net_;     ///< Загруженная сеть YOLO
-  cv::Size inputSize_;   ///< Размер входа сети
-  float confThreshold_;  ///< Порог уверенности
-  float nmsThreshold_;   ///< Порог NMS
-  std::vector<int> allowedIds_;  ///< Идентификаторы разрешённых классов
+  cv::dnn::Net net_;      ///< Загруженная сеть YOLO
+  cv::Size input_size_;   ///< Размер входа сети
+  float conf_threshold_;  ///< Порог уверенности
+  float nms_threshold_;   ///< Порог NMS
+  std::vector<int> allowed_ids_;  ///< Идентификаторы разрешённых классов
 };

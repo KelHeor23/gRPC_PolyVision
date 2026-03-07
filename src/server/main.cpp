@@ -34,27 +34,27 @@ void RunServer(int argc, char** argv) {
     std::string server_address("0.0.0.0:50051");
 
     Config conf;
-    conf.modelWeights = "YOLO/yolov4.weights";
-    conf.modelConfig = "YOLO/yolov4.cfg";
-    conf.classesFile = "YOLO/coco.names";
+    conf.model_weights = "YOLO/yolov4.weights";
+    conf.model_config = "YOLO/yolov4.cfg";
+    conf.classes_file = "YOLO/coco.names";
 
-    auto classMapper = std::make_shared<ClassMapper>(conf.classesFile);
-    auto yoloDetector = std::make_unique<YoloDetector>(conf, classMapper);
-    auto polygonProcessor = std::make_unique<PolygonProcessor>();
-    auto objectFilter =
-        std::make_unique<ObjectFilterByPolygon>(std::move(polygonProcessor));
+    auto class_mapper = std::make_shared<ClassMapper>(conf.classes_file);
+    auto yolo_detector = std::make_unique<YoloDetector>(conf, class_mapper);
+    auto polygon_processor = std::make_unique<PolygonProcessor>();
+    auto object_filter =
+        std::make_unique<ObjectFilterByPolygon>(std::move(polygon_processor));
     auto drawer = std::make_unique<Drawer>();
 
-    auto objectDetector = std::make_unique<ObjectsDetecting>(
-        classMapper, std::move(yoloDetector), std::move(objectFilter),
+    auto object_detector = std::make_unique<ObjectsDetecting>(
+        class_mapper, std::move(yolo_detector), std::move(object_filter),
         std::move(drawer));
 
-    bool isShowPolygons = options.GetShowPolygons();
+    bool is_show_polygons = options.GetShowPolygons();
     // Включаем отрисовку полигонов для отладки
-    objectDetector->SetDrawPolygons(isShowPolygons);
+    object_detector->SetDrawPolygons(is_show_polygons);
 
     ImageProcessingServer service(std::make_unique<OpenCVEncoder>(),
-                                  std::move(objectDetector));
+                                  std::move(object_detector));
 
     grpc::ServerBuilder builder;
     builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());

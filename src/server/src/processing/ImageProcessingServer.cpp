@@ -25,14 +25,14 @@ Status ImageProcessingServer::ProcessImage(
     const auto& src = request.polygon_list().polygons();
     std::vector<ImageDetection::Polygon> polygons(src.begin(), src.end());
 
-    std::string polygonsName = request.polygon_list().name();
+    std::string polygons_name = request.polygon_list().name();
 
     // Сбор всех чанков изображения
-    std::vector<uint8_t> imageBuffer;
+    std::vector<uint8_t> image_buffer;
     while (stream->Read(&request)) {
       if (request.has_image_data()) {
         const auto& chunk = request.image_data();
-        imageBuffer.insert(imageBuffer.end(), chunk.begin(), chunk.end());
+        image_buffer.insert(image_buffer.end(), chunk.begin(), chunk.end());
       } else {
         return Status(grpc::StatusCode::INVALID_ARGUMENT,
                       "Expected image data");
@@ -40,34 +40,34 @@ Status ImageProcessingServer::ProcessImage(
     }
 
     // Декодирование
-    auto imgOpt = encoder_->Decode(imageBuffer, cv::IMREAD_COLOR);
-    if (!imgOpt) {
+    auto img_opt = encoder_->Decode(image_buffer, cv::IMREAD_COLOR);
+    if (!img_opt) {
       return Status(grpc::StatusCode::INVALID_ARGUMENT,
                     "Failed to decode image");
     }
-    cv::Mat img = std::move(*imgOpt);
+    cv::Mat img = std::move(*img_opt);
 
     // Обработка изображения
-    processor_->Process(img, polygons, polygonsName);
+    processor_->Process(img, polygons, polygons_name);
 
     // Кодирование результата
-    auto encodedOpt = encoder_->Encode(img, ".jpg", 95);
+    auto encoded_opt = encoder_->Encode(img, ".jpg", 95);
 
-    if (!encodedOpt) {
+    if (!encoded_opt) {
       return Status(grpc::StatusCode::INTERNAL, "Failed to encode result");
     }
 
-    const auto& outputBuffer = *encodedOpt;
+    const auto& output_buffer = *encoded_opt;
 
     // Отправка чанками
-    const size_t chunkSize = 64 * 1024;
+    const size_t chunk_size = 64 * 1024;
     size_t offset = 0;
 
-    while (offset < outputBuffer.size()) {
+    while (offset < output_buffer.size()) {
       ProcessResponse response;
-      size_t current = std::min(chunkSize, outputBuffer.size() - offset);
+      size_t current = std::min(chunk_size, output_buffer.size() - offset);
 
-      response.set_image_data(outputBuffer.data() + offset, current);
+      response.set_image_data(output_buffer.data() + offset, current);
       if (!stream->Write(response)) {
         std::cerr << "Failed to send chunk" << std::endl;
         return grpc::Status(grpc::StatusCode::INTERNAL,

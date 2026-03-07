@@ -9,19 +9,19 @@
 
 YoloDetector::YoloDetector(const Config& cfg,
                            std::shared_ptr<IClassMapper> mapper)
-    : inputSize_(cfg.inputSize),
-      confThreshold_(cfg.confThreshold),
-      nmsThreshold_(cfg.nmsThreshold) {
-  net_ = cv::dnn::readNetFromDarknet(cfg.modelConfig, cfg.modelWeights);
+    : input_size_(cfg.input_size),
+      conf_threshold_(cfg.conf_threshold),
+      nms_threshold_(cfg.nms_threshold) {
+  net_ = cv::dnn::readNetFromDarknet(cfg.model_config, cfg.model_weights);
   if (net_.empty()) throw std::runtime_error("Failed to load YOLO network");
 
-  allowedIds_ = mapper->GetAllowedIds(cfg.allowedClasses);
+  allowed_ids_ = mapper->GetAllowedIds(cfg.allowed_classes);
 }
 
 std::vector<Detection> YoloDetector::Detect(const cv::Mat& image) {
   cv::Mat blob;
-  cv::dnn::blobFromImage(image, blob, 1 / 255.0, inputSize_, cv::Scalar(), true,
-                         false);
+  cv::dnn::blobFromImage(image, blob, 1 / 255.0, input_size_, cv::Scalar(),
+                         true, false);
   net_.setInput(blob);
 
   std::vector<cv::Mat> outs;
@@ -35,25 +35,25 @@ std::vector<Detection> YoloDetector::ProcessOutput(
     const std::vector<cv::Mat>& outs, const cv::Size& imgSize) {
   std::vector<cv::Rect> boxes;
   std::vector<float> confidences;
-  std::vector<int> classIds;
+  std::vector<int> class_ids;
 
   for (const auto& out : outs) {
     for (int i = 0; i < out.rows; ++i) {
       const float* data = out.ptr<float>(i);
       float objectness = data[4];
-      if (objectness < confThreshold_) continue;
+      if (objectness < conf_threshold_) continue;
 
       cv::Mat scores(1, out.cols - 5, CV_32F, const_cast<float*>(data + 5));
       double confidence;
-      cv::Point classIdPoint;
-      cv::minMaxLoc(scores, nullptr, &confidence, nullptr, &classIdPoint);
+      cv::Point class_id_point;
+      cv::minMaxLoc(scores, nullptr, &confidence, nullptr, &class_id_point);
       confidence *= objectness;
 
-      if (confidence >= confThreshold_) {
-        int classId = classIdPoint.x;
+      if (confidence >= conf_threshold_) {
+        int class_id = class_id_point.x;
         // Фильтр по разрешённым классам
-        if (std::find(allowedIds_.begin(), allowedIds_.end(), classId) ==
-            allowedIds_.end())
+        if (std::find(allowed_ids_.begin(), allowed_ids_.end(), class_id) ==
+            allowed_ids_.end())
           continue;
 
         int centerX = static_cast<int>(data[0] * imgSize.width);
@@ -71,18 +71,19 @@ std::vector<Detection> YoloDetector::ProcessOutput(
 
         boxes.push_back(box);
         confidences.push_back(static_cast<float>(confidence));
-        classIds.push_back(classId);
+        class_ids.push_back(class_id);
       }
     }
   }
 
   std::vector<int> indices;
-  cv::dnn::NMSBoxes(boxes, confidences, confThreshold_, nmsThreshold_, indices);
+  cv::dnn::NMSBoxes(boxes, confidences, conf_threshold_, nms_threshold_,
+                    indices);
 
   std::vector<Detection> detections;
   detections.reserve(indices.size());
   for (int idx : indices) {
-    detections.push_back({classIds[idx], confidences[idx], boxes[idx]});
+    detections.push_back({class_ids[idx], confidences[idx], boxes[idx]});
   }
   return detections;
 }

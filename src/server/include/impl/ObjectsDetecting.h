@@ -43,12 +43,12 @@ class ObjectsDetecting : public IImageProcessor {
    * @brief Включает/отключает отрисовку полигонов (для отладки).
    * @param draw true – рисовать полигоны false - нет, необходимо для проверки
    */
-  void SetDrawPolygons(bool draw) { drawPolygons_ = draw; }
+  void SetDrawPolygons(bool draw) { draw_polygons_ = draw; }
 
  private:
-  std::shared_ptr<IClassMapper> classMapper_;  ///< Маппер классов
+  std::shared_ptr<IClassMapper> class_mapper_;  ///< Маппер классов
   std::unique_ptr<IDetector> detector_;  ///< Детектор объектов
-  std::unique_ptr<IObjectFilter> objectFilter_;  ///< Фильтр по полигонам
-  std::unique_ptr<IDrawer> drawer_;              ///< Отрисовщик
-  bool drawPolygons_ = false;  ///< Флаг отрисовки полигонов
+  std::unique_ptr<IObjectFilter> object_filter_;  ///< Фильтр по полигонам
+  std::unique_ptr<IDrawer> drawer_;               ///< Отрисовщик
+  bool draw_polygons_ = false;  ///< Флаг отрисовки полигонов
 };

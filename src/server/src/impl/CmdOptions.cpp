@@ -5,7 +5,7 @@
 
 CommandOptions::CommandOptions() : desc_("Allowed options") {
   desc_.add_options()("help,h", "Show help")(
-      "show_polygons,p", po::bool_switch(&showPolygons_), "show polygons");
+      "show_polygons,p", po::bool_switch(&show_polygons_), "show polygons");
 }
 
 CommandOptions::~CommandOptions() = default;
@@ -15,7 +15,7 @@ void CommandOptions::Parse(int argc, char *argv[]) {
     po::store(po::parse_command_line(argc, argv, desc_), vm_);
 
     if (vm_.count("help")) {
-      helpRequested_ = true;
+      help_requested_ = true;
       return;
     }
     po::notify(vm_);

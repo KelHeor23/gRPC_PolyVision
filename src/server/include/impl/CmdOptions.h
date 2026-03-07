@@ -38,13 +38,13 @@ class CommandOptions {
    * @brief Возвращает значение флага запроса на отрисовку полигонов
    * @return Строка с путём.
    */
-  bool GetShowPolygons() const { return showPolygons_; }
+  bool GetShowPolygons() const { return show_polygons_; }
 
   /**
    * @brief Проверяет, был ли запрошен вывод справки.
    * @return true, если указан флаг --help или -h.
    */
-  bool IsHelpRequested() const { return helpRequested_; }
+  bool IsHelpRequested() const { return help_requested_; }
 
   /**
    * @brief Выводит справку по использованию программы в std::cout.
@@ -52,9 +52,9 @@ class CommandOptions {
   void PrintHelp();
 
  private:
-  bool showPolygons_ = false;  ///< Флаг запроса на отрисовку полигонов
+  bool show_polygons_ = false;  ///< Флаг запроса на отрисовку полигонов
 
   po::options_description desc_;  ///< Описание допустимых опций
   po::variables_map vm_;  ///< Хранилище разобранных значений
-  bool helpRequested_ = false;  ///< Флаг запроса справки
+  bool help_requested_ = false;  ///< Флаг запроса справки
 };

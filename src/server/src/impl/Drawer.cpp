@@ -10,7 +10,7 @@ void Drawer::DrawDetections(cv::Mat& image,
                             std::shared_ptr<IClassMapper> mapper) {
   for (const auto& det : detections) {
     std::string label = std::format(
-        "{}: {:.2f}", mapper->GetClassName(det.classId), det.confidence);
+        "{}: {:.2f}", mapper->GetClassName(det.class_id), det.confidence);
     cv::rectangle(image, det.box, cv::Scalar(0, 255, 0), 2);
     cv::putText(image, label, cv::Point(det.box.x, det.box.y - 5),
                 cv::FONT_HERSHEY_SIMPLEX, 0.5, cv::Scalar(0, 255, 0), 2);

@@ -26,9 +26,9 @@ std::string ClassMapper::GetClassName(int classId) const {
 }
 
 std::vector<int> ClassMapper::GetAllowedIds(
-    const std::vector<std::string>& allowedNames) const {
+    const std::vector<std::string>& allowed_names) const {
   std::vector<int> ids;
-  for (const auto& name : allowedNames) {
+  for (const auto& name : allowed_names) {
     auto it = std::find(classes_.begin(), classes_.end(), name);
     if (it != classes_.end())
       ids.push_back(it - classes_.begin());
