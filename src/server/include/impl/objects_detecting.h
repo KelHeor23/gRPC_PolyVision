@@ -9,6 +9,7 @@
 class IClassMapper;
 class IDetector;
 class IObjectFilter;
+class IPolygonProcessor;
 class IDrawer;
 
 /**
@@ -24,11 +25,13 @@ class ObjectsDetecting : public IImageProcessor {
    * @param detector Детектор объектов.
    * @param objectFilter Фильтр по полигонам.
    * @param drawer Отрисовщик.
+   * @param polygonProcessor Объект для предобработки полигонов.
    */
-  explicit ObjectsDetecting(std::shared_ptr<IClassMapper> mapper,
-                            std::unique_ptr<IDetector> detector,
-                            std::unique_ptr<IObjectFilter> objectFilter,
-                            std::unique_ptr<IDrawer> drawer);
+  explicit ObjectsDetecting(
+      std::shared_ptr<IClassMapper> mapper, std::unique_ptr<IDetector> detector,
+      std::unique_ptr<IObjectFilter> objectFilter,
+      std::unique_ptr<IDrawer> drawer,
+      std::unique_ptr<IPolygonProcessor> polygonProcessor);
 
   /**
    * @brief Выполняет полный цикл обработки изображения.
@@ -50,5 +53,7 @@ class ObjectsDetecting : public IImageProcessor {
   std::unique_ptr<IDetector> detector_;  ///< Детектор объектов
   std::unique_ptr<IObjectFilter> object_filter_;  ///< Фильтр по полигонам
   std::unique_ptr<IDrawer> drawer_;               ///< Отрисовщик
+  std::unique_ptr<IPolygonProcessor>
+      polygon_processor_;       ///< Процессор полигонов
   bool draw_polygons_ = false;  ///< Флаг отрисовки полигонов
 };

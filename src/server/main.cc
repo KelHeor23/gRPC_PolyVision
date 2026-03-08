@@ -40,14 +40,13 @@ void RunServer(int argc, char** argv) {
 
     auto class_mapper = std::make_shared<ClassMapper>(conf.classes_file);
     auto yolo_detector = std::make_unique<YoloDetector>(conf, class_mapper);
-    auto polygon_processor = std::make_unique<PolygonProcessor>();
+    auto object_filter = std::make_unique<GeometricFilterByPolygon>(
     auto object_filter =
         std::make_unique<ObjectFilterByPolygon>(std::move(polygon_processor));
-    auto drawer = std::make_unique<Drawer>();
 
     auto object_detector = std::make_unique<ObjectsDetecting>(
         class_mapper, std::move(yolo_detector), std::move(object_filter),
-        std::move(drawer));
+        std::make_unique<Drawer>(), std::make_unique<PolygonProcessor>());
 
     bool is_show_polygons = options.GetShowPolygons();
     // Включаем отрисовку полигонов для отладки
