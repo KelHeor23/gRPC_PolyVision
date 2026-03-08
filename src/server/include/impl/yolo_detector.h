@@ -38,11 +38,11 @@ class YoloDetector : public IDetector {
    * @brief Обрабатывает выходные тензоры сети, применяет NMS и фильтрацию по
    * классам.
    * @param outs Выходные слои сети.
-   * @param imgSize Размер исходного изображения.
+   * @param img_size Размер исходного изображения.
    * @return Вектор детекций.
    */
   std::vector<Detection> ProcessOutput(const std::vector<cv::Mat>& outs,
-                                       const cv::Size& imgSize);
+                                       const cv::Size& img_size);
 
  private:
   cv::dnn::Net net_;      ///< Загруженная сеть YOLO

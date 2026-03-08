@@ -22,14 +22,14 @@ class ImageProcessingClient {
  public:
   /**
    * @brief Конструктор с внедрением зависимостей.
-   * @param grpcClient Клиент gRPC-потока.
+   * @param grpc_client Клиент gRPC-потока.
    * @param encoder Кодировщик/декодировщик изображений.
    * @param display Отображение результата.
    */
-  ImageProcessingClient(std::unique_ptr<IGrpcStreamClient> grpcClient,
+  ImageProcessingClient(std::unique_ptr<IGrpcStreamClient> grpc_client,
                         std::unique_ptr<IImageEncoder> encoder,
                         std::unique_ptr<IDisplay> display)
-      : grpc_client_(std::move(grpcClient)),
+      : grpc_client_(std::move(grpc_client)),
         encoder_(std::move(encoder)),
         display_(std::move(display)) {}
 

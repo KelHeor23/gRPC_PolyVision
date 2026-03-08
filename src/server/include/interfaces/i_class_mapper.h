@@ -15,10 +15,10 @@ class IClassMapper {
   virtual ~IClassMapper() = default;
   /**
    * @brief Возвращает имя класса по идентификатору.
-   * @param classId Идентификатор класса.
+   * @param class_id Идентификатор класса.
    * @return Имя класса.
    */
-  virtual std::string GetClassName(int classId) const = 0;
+  virtual std::string GetClassName(int class_id) const = 0;
   /**
    * @brief Количество известных классов.
    * @return Размер.
@@ -26,9 +26,9 @@ class IClassMapper {
   virtual int GetSize() const = 0;
   /**
    * @brief Преобразует список имён в список идентификаторов.
-   * @param allowedNames Имена классов.
+   * @param allowed_names Имена классов.
    * @return Вектор соответствующих идентификаторов.
    */
   virtual std::vector<int> GetAllowedIds(
-      const std::vector<std::string>& allowedNames) const = 0;
+      const std::vector<std::string>& allowed_names) const = 0;
 };

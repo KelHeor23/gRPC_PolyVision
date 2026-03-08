@@ -26,13 +26,13 @@ class Polygons {
  public:
   /**
    * @brief Конструктор с явным внедрением зависимостей.
-   * @param fileReader Объект для чтения файлов.
-   * @param jsonParser Парсер JSON.
-   * @param polygonParser Парсер полигонов (возвращает PolygonList).
+   * @param file_reader Объект для чтения файлов.
+   * @param json_parser Парсер JSON.
+   * @param polygon_parser Парсер полигонов (возвращает PolygonList).
    */
-  Polygons(std::unique_ptr<IFileReader> fileReader,
-           std::unique_ptr<IJsonParser> jsonParser,
-           std::unique_ptr<IPolygonParser> polygonParser);
+  Polygons(std::unique_ptr<IFileReader> file_reader,
+           std::unique_ptr<IJsonParser> json_parser,
+           std::unique_ptr<IPolygonParser> polygon_parser);
 
   /**
    * @brief Конструктор по умолчанию, использующий стандартные реализации.

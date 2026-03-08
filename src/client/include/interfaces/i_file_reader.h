@@ -15,8 +15,8 @@ class IFileReader {
   virtual ~IFileReader() = default;
   /**
    * @brief Читает файл и возвращает его содержимое.
-   * @param filename Путь к файлу.
+   * @param file_name Путь к файлу.
    * @return Содержимое файла или std::nullopt при ошибке.
    */
-  virtual std::optional<std::string> Read(const std::string& filename) = 0;
+  virtual std::optional<std::string> Read(const std::string& file_name) = 0;
 };

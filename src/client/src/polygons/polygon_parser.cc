@@ -51,28 +51,28 @@ std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
   ImageDetection::Polygon poly;
 
   // scalar fields
-  auto typeIt = obj.find("type");
-  auto priorityIt = obj.find("priority");
-  auto thresholdIt = obj.find("threshold");
+  auto type_it = obj.find("type");
+  auto priority_it = obj.find("priority");
+  auto threshold_it = obj.find("threshold");
 
-  if (typeIt == obj.end() || priorityIt == obj.end() ||
-      thresholdIt == obj.end())
+  if (type_it == obj.end() || priority_it == obj.end() ||
+      threshold_it == obj.end())
     return std::nullopt;
 
-  if (!typeIt->value().is_int64() || !priorityIt->value().is_int64() ||
-      !thresholdIt->value().is_double())
+  if (!type_it->value().is_int64() || !priority_it->value().is_int64() ||
+      !threshold_it->value().is_double())
     return std::nullopt;
 
-  int typeVal = static_cast<int>(typeIt->value().as_int64());
+  int type_val = static_cast<int>(type_it->value().as_int64());
 
-  if (typeVal != 0 && typeVal != 1) return std::nullopt;
+  if (type_val != 0 && type_val != 1) return std::nullopt;
 
-  double thresh = thresholdIt->value().as_double();
+  double thresh = threshold_it->value().as_double();
 
   if (thresh < 0.0 || thresh > 1.0) return std::nullopt;
 
-  poly.set_type(static_cast<ImageDetection::PolygonType>(typeVal));
-  poly.set_priority(static_cast<int>(priorityIt->value().as_int64()));
+  poly.set_type(static_cast<ImageDetection::PolygonType>(type_val));
+  poly.set_priority(static_cast<int>(priority_it->value().as_int64()));
   poly.set_threshold(static_cast<float>(thresh));
 
   // points

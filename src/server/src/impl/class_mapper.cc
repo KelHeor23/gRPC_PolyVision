@@ -5,10 +5,10 @@
 #include <iostream>
 #include <stdexcept>
 
-ClassMapper::ClassMapper(const std::string& filename) {
-  std::ifstream file(filename);
+ClassMapper::ClassMapper(const std::string& file_name) {
+  std::ifstream file(file_name);
   if (!file.is_open()) {
-    throw std::runtime_error("Cannot open classes file: " + filename);
+    throw std::runtime_error("Cannot open classes file: " + file_name);
   }
   std::string line;
   while (std::getline(file, line)) {
@@ -19,9 +19,9 @@ ClassMapper::ClassMapper(const std::string& filename) {
   }
 }
 
-std::string ClassMapper::GetClassName(int classId) const {
-  if (classId >= 0 && classId < static_cast<int>(classes_.size()))
-    return classes_[classId];
+std::string ClassMapper::GetClassName(int class_id) const {
+  if (class_id >= 0 && class_id < static_cast<int>(classes_.size()))
+    return classes_[class_id];
   return "unknown";
 }
 

@@ -31,22 +31,22 @@ int main(int argc, char *argv[]) {
 
     auto channel =
         grpc::CreateChannel("server:50051", grpc::InsecureChannelCredentials());
-    auto grpcClient = std::make_unique<GrpcStreamClient>(channel);
+    auto grpc_client = std::make_unique<GrpcStreamClient>(channel);
     auto encoder = std::make_unique<OpenCVEncoder>();
     auto display = std::make_unique<OpenCVDisplay>();
 
-    ImageProcessingClient client(std::move(grpcClient), std::move(encoder),
+    ImageProcessingClient client(std::move(grpc_client), std::move(encoder),
                                  std::move(display));
 
-    std::string imgFilePath = options.GetImageFile();
-    std::string polygonsFilePath = options.GetPolygonsFile();
+    std::string img_file_path = options.GetImageFile();
+    std::string polygons_file_path = options.GetPolygonsFile();
 
-    if (imgFilePath.empty()) imgFilePath = "images/2.jpg";
-    if (polygonsFilePath.empty()) polygonsFilePath = "images/2.json";
+    if (img_file_path.empty()) img_file_path = "images/2.jpg";
+    if (polygons_file_path.empty()) polygons_file_path = "images/2.json";
 
-    cv::Mat image = cv::imread(imgFilePath);
+    cv::Mat image = cv::imread(img_file_path);
     Polygons polygons;
-    if (!polygons.LoadFromFile(polygonsFilePath)) {
+    if (!polygons.LoadFromFile(polygons_file_path)) {
       std::cerr << "Failed to load polygons from file" << std::endl;
       return 1;
     }

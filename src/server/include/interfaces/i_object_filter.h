@@ -17,12 +17,12 @@ class IObjectFilter {
    * @brief Применяет фильтрацию.
    * @param detections Исходные детекции.
    * @param polygons Полигоны
-   * @param imageSize Размер изображения.
-   * @param polygonsName Имя набора полигонов.
+   * @param image_size Размер изображения.
+   * @param polygons_name Имя набора полигонов.
    * @return Отфильтрованные детекции.
    */
   virtual std::vector<Detection> Apply(
       const std::vector<Detection>& detections,
-      const std::vector<ImageDetection::Polygon>& polygons, cv::Size imageSize,
-      const std::string& polygonsName) = 0;
+      const std::vector<ImageDetection::Polygon>& polygons, cv::Size image_size,
+      const std::string& polygons_name) = 0;
 };

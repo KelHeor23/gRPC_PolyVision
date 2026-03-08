@@ -14,17 +14,17 @@ class ClassMapper : public IClassMapper {
  public:
   /**
    * @brief Конструктор, загружающий имена классов из файла.
-   * @param filename Путь к файлу с именами классов (по одному на строку).
+   * @param file_name Путь к файлу с именами классов (по одному на строку).
    * @throws std::runtime_error если файл не удаётся открыть.
    */
-  explicit ClassMapper(const std::string& filename);
+  explicit ClassMapper(const std::string& file_name);
 
   /**
    * @brief Возвращает имя класса по его идентификатору.
-   * @param classId Идентификатор класса (индекс).
+   * @param class_id Идентификатор класса (индекс).
    * @return Имя класса или "unknown", если индекс вне диапазона.
    */
-  std::string GetClassName(int classId) const override;
+  std::string GetClassName(int class_id) const override;
 
   /**
    * @brief Количество загруженных классов.
@@ -34,12 +34,12 @@ class ClassMapper : public IClassMapper {
 
   /**
    * @brief Преобразует список разрешённых имён в список идентификаторов.
-   * @param allowedNames Вектор имён классов.
+   * @param allowed_names Вектор имён классов.
    * @return Вектор соответствующих индексов (пустые имена игнорируются с
    * предупреждением).
    */
   std::vector<int> GetAllowedIds(
-      const std::vector<std::string>& allowedNames) const override;
+      const std::vector<std::string>& allowed_names) const override;
 
  private:
   std::vector<std::string>

@@ -19,9 +19,9 @@ class OpenCVDisplay : public IDisplay {
   /**
    * @brief Показывает изображение в окне.
    * @param image Изображение (cv::Mat).
-   * @param windowName Имя окна.
+   * @param window_name Имя окна.
    */
-  void Show(const cv::Mat& image, const std::string& windowName) override;
+  void Show(const cv::Mat& image, const std::string& window_name) override;
 
   /**
    * @brief Ожидает нажатие клавиши в течение заданного времени.

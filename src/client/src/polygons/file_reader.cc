@@ -2,8 +2,8 @@
 
 #include <fstream>
 
-std::optional<std::string> FileReader::Read(const std::string& filename) {
-  std::ifstream file(filename);
+std::optional<std::string> FileReader::Read(const std::string& file_name) {
+  std::ifstream file(file_name);
   if (!file.is_open()) {
     return std::nullopt;
   }
