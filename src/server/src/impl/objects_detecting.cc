@@ -3,7 +3,7 @@
 #include "impl/class_mapper.h"
 #include "impl/detection.h"
 #include "impl/drawer.h"
-#include "impl/object_filter_by_polygon.h"
+#include "impl/geometric_filter_by_polygon.h"
 #include "impl/polygon_processor.h"
 #include "impl/yolo_detector.h"
 

@@ -11,8 +11,9 @@
 #include "impl/class_mapper.h"
 #include "impl/cmd_options.h"
 #include "impl/drawer.h"
-#include "impl/object_filter_by_polygon.h"
+#include "impl/geometric_filter_by_polygon.h"
 #include "impl/objects_detecting.h"
+#include "impl/polygon_clipper_sutherland_hodgman.h"
 #include "impl/polygon_processor.h"
 #include "impl/yolo_detector.h"
 #include "include/processing/image_processing_server.h"
@@ -41,8 +42,7 @@ void RunServer(int argc, char** argv) {
     auto class_mapper = std::make_shared<ClassMapper>(conf.classes_file);
     auto yolo_detector = std::make_unique<YoloDetector>(conf, class_mapper);
     auto object_filter = std::make_unique<GeometricFilterByPolygon>(
-    auto object_filter =
-        std::make_unique<ObjectFilterByPolygon>(std::move(polygon_processor));
+        std::make_unique<SutherlandHodgmanClipper>());
 
     auto object_detector = std::make_unique<ObjectsDetecting>(
         class_mapper, std::move(yolo_detector), std::move(object_filter),
