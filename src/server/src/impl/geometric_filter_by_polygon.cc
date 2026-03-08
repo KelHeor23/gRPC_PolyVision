@@ -50,11 +50,11 @@ double GeometricFilterByPolygon::PolygonArea(
   const size_t n = polygon.size();
   if (n < 3) return 0.0;
 
-  long long area2 = 0;  // удвоенная площадь (целая)
+  int64_t area2 = 0;  // удвоенная площадь (целая)
   for (size_t i = 0; i < n; ++i) {
     size_t j = (i + 1) % n;
-    area2 += static_cast<long long>(polygon[i].x) * polygon[j].y -
-             static_cast<long long>(polygon[j].x) * polygon[i].y;
+    area2 += static_cast<int64_t>(polygon[i].x) * polygon[j].y -
+             static_cast<int64_t>(polygon[j].x) * polygon[i].y;
   }
   return std::abs(area2) * 0.5;
 }
