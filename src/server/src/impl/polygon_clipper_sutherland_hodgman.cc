@@ -10,7 +10,7 @@ std::vector<cv::Point> SutherlandHodgmanClipper::GetInternalPolygon(
 
   std::vector<cv::Point> tempPolyBuffer;
 
-  tempPolyBuffer.reserve(polygon.size());
+  tempPolyBuffer.reserve(polygon.size() * 2);
 
   for (auto& edge : edges) {
     if (polygon.empty()) break;
@@ -62,7 +62,7 @@ bool SutherlandHodgmanClipper::IsInside(const cv::Point& p,
 
 cv::Point SutherlandHodgmanClipper::GetIntersectionPoint(const cv::Point& p1,
                                                          const cv::Point& p2,
-                                                         Edge edge) {
+                                                         Edge edge) const {
   cv::Point res;
   switch (edge) {
     case LEFT:

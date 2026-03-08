@@ -60,7 +60,7 @@ class SutherlandHodgmanClipper : public IPolygonClipper {
    * него
    */
   cv::Point GetIntersectionPoint(const cv::Point& p1, const cv::Point& p2,
-                                 Edge edge);
+                                 Edge edge) const;
 
  private:
   RectangleBorders borders_;
