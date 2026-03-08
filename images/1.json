@@ -1,4 +1,5 @@
 {
+  "class_names": ["orange", "apple", "person", "cat", "dog"],
   "polygons": [
     {
       "type": 0,

@@ -9,7 +9,7 @@
 		"dockerfile": "Dockerfile"
 	},
 	"runArgs": [
-		"--name=grpc-server",
+		"--name=grpc-server_dev",
 		"--user=1000",
 		"-e",
 		"DISPLAY=:0",

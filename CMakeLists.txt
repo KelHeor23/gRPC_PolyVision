@@ -11,6 +11,7 @@ find_package(Protobuf REQUIRED)
 find_package(gRPC REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(Threads REQUIRED)
+find_package(Boost REQUIRED COMPONENTS json program_options)
 
 # -------------------------------------------------------------------
 # Путь к proto-файлу
@@ -84,7 +85,7 @@ target_link_libraries(proto_generated
 # -------------------------------------------------------------------
 # Добавляем подпроекты клиента и сервера
 # -------------------------------------------------------------------
-add_subdirectory(src/client)
-add_subdirectory(src/server)
-add_subdirectory(src/common)
-add_subdirectory(tests)
+add_subdirectory(src/common)   # определяет common_lib
+add_subdirectory(src/client)   # определяет client_lib и client
+add_subdirectory(src/server)   # определяет server_lib и server
+add_subdirectory(tests)        # тесты

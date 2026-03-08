@@ -1,30 +1,26 @@
-# Исполняемый файл клиента
-add_executable(client main.cpp 
-    src/polygons/Polygons.cpp 
-    src/polygons/FileReader.cpp
-    src/polygons/JsonParser.cpp
-    src/polygons/PolygonParser.cpp
-    src/processing/ImageProcessingClient.cpp 
-    src/impl/OpenCVDisplay.cpp 
-    src/impl/GrpcStreamClient.cpp
-    src/impl/CmdOptions.cpp)
+add_library(client_lib STATIC
+    src/polygons/polygons.cc
+    src/polygons/file_reader.cc
+    src/polygons/json_parser.cc
+    src/polygons/polygon_parser.cc
+    src/processing/image_processing_client.cc
+    src/impl/opencv_display.cc
+    src/impl/grpc_stream_client.cc
+    src/impl/cmd_options.cc
+)
 
-target_include_directories(client PRIVATE include)
+target_include_directories(client_lib PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
 
-# Ищем Boost с компонентом json
-find_package(Boost REQUIRED COMPONENTS json program_options)
-
-if(Boost_FOUND)
-    message(STATUS "Boost found. Include dirs: ${Boost_INCLUDE_DIRS}")
-else()
-    message(FATAL_ERROR "Boost (with JSON) not found. Please install Boost >= 1.75")
-endif()
-
-# Линкуем библиотеки
-target_link_libraries(client
+target_link_libraries(client_lib PUBLIC
     common_lib
     proto_generated
-    ${OpenCV_LIBS}
     Boost::json
     Boost::program_options
+    ${OpenCV_LIBS}
 )
+
+add_executable(client main.cc)
+
+target_link_libraries(client PRIVATE client_lib)

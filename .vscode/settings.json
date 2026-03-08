@@ -5,5 +5,6 @@
         "editor.defaultFormatter": "xaver.clang-format"
     },
     "clang-format.language.cpp.style": "google",
-    "clang-format.executable": "/usr/bin/clang-format-18"
+    "clang-format.executable": "/usr/bin/clang-format-18",
+    "json.format.enable": false
 }

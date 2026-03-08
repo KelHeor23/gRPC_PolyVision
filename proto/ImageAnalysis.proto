@@ -23,6 +23,7 @@ message Polygon {
 message PolygonList {
   string name = 1;
   repeated Polygon polygons = 2;
+  repeated string class_names = 3; 
 }
 
 message ProcessRequest {
