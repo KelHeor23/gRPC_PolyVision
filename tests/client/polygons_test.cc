@@ -36,7 +36,7 @@ class PolygonsRealTest : public ::testing::Test {
   std::vector<std::filesystem::path> temp_files_;
 };
 
-// Успешная загрузка корректного JSON с двумя полигонами
+// Успешная загрузка корректного JSON с двумя полигонами (без class_names)
 TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   std::string json_content = R"({
         "polygons": [
@@ -63,10 +63,13 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
 
   EXPECT_TRUE(result);
   EXPECT_EQ(polygons.GetLastFileName(), file_path.string());
-  const auto& poly_vec = polygons.GetPolygons();
-  ASSERT_EQ(poly_vec.size(), 2);
 
-  const auto& p0 = poly_vec[0];
+  const auto& polygon_list = polygons.GetPolygonList();
+  const auto& polygons_ref = polygon_list.polygons();
+  ASSERT_EQ(polygons_ref.size(), 2);
+  EXPECT_EQ(polygon_list.class_names_size(), 0);  // class_names не было в JSON
+
+  const auto& p0 = polygons_ref[0];
   EXPECT_EQ(p0.type(), 0);
   EXPECT_EQ(p0.priority(), 1);
   EXPECT_FLOAT_EQ(p0.threshold(), 0.5f);
@@ -80,7 +83,7 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   EXPECT_EQ(p0.points(3).x(), 10);
   EXPECT_EQ(p0.points(3).y(), 20);
 
-  const auto& p1 = poly_vec[1];
+  const auto& p1 = polygons_ref[1];
   EXPECT_EQ(p1.type(), 1);
   EXPECT_EQ(p1.priority(), 2);
   EXPECT_FLOAT_EQ(p1.threshold(), 0.8f);
@@ -93,12 +96,62 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   EXPECT_EQ(p1.points(2).y(), 40);
 }
 
+// Успешная загрузка JSON с полигонами и именами классов
+TEST_F(PolygonsRealTest, LoadValidFileWithClassNamesSuccess) {
+  std::string json_content = R"({
+        "class_names": ["car", "pedestrian"],
+        "polygons": [
+            {
+                "type": 0,
+                "priority": 1,
+                "threshold": 0.5,
+                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}]
+            }
+        ]
+    })";
+
+  std::filesystem::path file_path = CreateTempFile(json_content);
+  temp_files_.push_back(file_path);
+
+  Polygons polygons;
+  bool result = polygons.LoadFromFile(file_path.string());
+
+  EXPECT_TRUE(result);
+  const auto& polygon_list = polygons.GetPolygonList();
+  EXPECT_EQ(polygon_list.class_names_size(), 2);
+  EXPECT_EQ(polygon_list.class_names(0), "car");
+  EXPECT_EQ(polygon_list.class_names(1), "pedestrian");
+  EXPECT_EQ(polygon_list.polygons_size(), 1);
+}
+
+// Неверный формат class_names (не массив) -> ошибка загрузки
+TEST_F(PolygonsRealTest, InvalidClassNamesFormatFails) {
+  std::string json_content = R"({
+        "class_names": "not an array",
+        "polygons": [
+            {
+                "type": 0,
+                "priority": 1,
+                "threshold": 0.5,
+                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}]
+            }
+        ]
+    })";
+
+  std::filesystem::path file_path = CreateTempFile(json_content);
+  temp_files_.push_back(file_path);
+
+  Polygons polygons;
+  bool result = polygons.LoadFromFile(file_path.string());
+  EXPECT_FALSE(result);
+}
+
 // Файл не существует
 TEST_F(PolygonsRealTest, FileNotFound) {
   Polygons polygons;
   bool result = polygons.LoadFromFile("non_existent_file.json");
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.GetPolygons().empty());
+  EXPECT_EQ(polygons.GetPolygonList().polygons_size(), 0);
 }
 
 // Некорректный JSON (синтаксическая ошибка)
@@ -111,7 +164,7 @@ TEST_F(PolygonsRealTest, InvalidJsonSyntax) {
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.GetPolygons().empty());
+  EXPECT_EQ(polygons.GetPolygonList().polygons_size(), 0);
 }
 
 // JSON корректен, но не содержит поля "polygons"
@@ -123,7 +176,7 @@ TEST_F(PolygonsRealTest, MissingPolygonsField) {
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.GetPolygons().empty());
+  EXPECT_EQ(polygons.GetPolygonList().polygons_size(), 0);
 }
 
 // Поле polygons есть, но оно не массив
@@ -135,7 +188,7 @@ TEST_F(PolygonsRealTest, PolygonsNotArray) {
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.GetPolygons().empty());
+  EXPECT_EQ(polygons.GetPolygonList().polygons_size(), 0);
 }
 
 // Все полигоны в массиве невалидны (например, недостаточно точек)
@@ -162,7 +215,7 @@ TEST_F(PolygonsRealTest, AllPolygonsInvalid) {
   Polygons polygons;
   bool result = polygons.LoadFromFile(file_path.string());
   EXPECT_FALSE(result);
-  EXPECT_TRUE(polygons.GetPolygons().empty());
+  EXPECT_EQ(polygons.GetPolygonList().polygons_size(), 0);
 }
 
 // Смесь валидных и невалидных полигонов – должны загрузиться только валидные
@@ -196,7 +249,8 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
   auto direct_result = parser.Parse(json_val);
   ASSERT_TRUE(direct_result.has_value())
       << "PolygonParser вернул nullopt, хотя ожидались валидные полигоны";
-  EXPECT_EQ(direct_result->size(), 2) << "PolygonParser вернул не 2 полигона";
+  EXPECT_EQ(direct_result->polygons_size(), 2)
+      << "PolygonParser вернул не 2 полигона";
 
   // Теперь проверяем загрузку через файл
   std::filesystem::path file_path = CreateTempFile(json_content);
@@ -206,32 +260,33 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
   bool result = polygons.LoadFromFile(file_path.string());
 
   EXPECT_TRUE(result);
-  const auto& poly_vec = polygons.GetPolygons();
-  ASSERT_EQ(poly_vec.size(), 2);
+  const auto& polygon_list = polygons.GetPolygonList();
+  const auto& polygons_ref = polygon_list.polygons();
+  ASSERT_EQ(polygons_ref.size(), 2);
 
   // Первый валидный полигон (3 точки)
-  EXPECT_EQ(poly_vec[0].type(), 0);
-  EXPECT_EQ(poly_vec[0].priority(), 1);
-  EXPECT_FLOAT_EQ(poly_vec[0].threshold(), 0.5f);
-  ASSERT_EQ(poly_vec[0].points_size(), 3);
-  EXPECT_EQ(poly_vec[0].points(0).x(), 10);
-  EXPECT_EQ(poly_vec[0].points(0).y(), 10);
-  EXPECT_EQ(poly_vec[0].points(1).x(), 20);
-  EXPECT_EQ(poly_vec[0].points(1).y(), 10);
-  EXPECT_EQ(poly_vec[0].points(2).x(), 20);
-  EXPECT_EQ(poly_vec[0].points(2).y(), 20);
+  EXPECT_EQ(polygons_ref[0].type(), 0);
+  EXPECT_EQ(polygons_ref[0].priority(), 1);
+  EXPECT_FLOAT_EQ(polygons_ref[0].threshold(), 0.5f);
+  ASSERT_EQ(polygons_ref[0].points_size(), 3);
+  EXPECT_EQ(polygons_ref[0].points(0).x(), 10);
+  EXPECT_EQ(polygons_ref[0].points(0).y(), 10);
+  EXPECT_EQ(polygons_ref[0].points(1).x(), 20);
+  EXPECT_EQ(polygons_ref[0].points(1).y(), 10);
+  EXPECT_EQ(polygons_ref[0].points(2).x(), 20);
+  EXPECT_EQ(polygons_ref[0].points(2).y(), 20);
 
   // Второй валидный полигон (4 точки)
-  EXPECT_EQ(poly_vec[1].type(), 0);
-  EXPECT_EQ(poly_vec[1].priority(), 3);
-  EXPECT_FLOAT_EQ(poly_vec[1].threshold(), 0.9f);
-  ASSERT_EQ(poly_vec[1].points_size(), 4);
-  EXPECT_EQ(poly_vec[1].points(0).x(), 50);
-  EXPECT_EQ(poly_vec[1].points(0).y(), 50);
-  EXPECT_EQ(poly_vec[1].points(1).x(), 60);
-  EXPECT_EQ(poly_vec[1].points(1).y(), 50);
-  EXPECT_EQ(poly_vec[1].points(2).x(), 60);
-  EXPECT_EQ(poly_vec[1].points(2).y(), 60);
-  EXPECT_EQ(poly_vec[1].points(3).x(), 50);
-  EXPECT_EQ(poly_vec[1].points(3).y(), 60);
+  EXPECT_EQ(polygons_ref[1].type(), 0);
+  EXPECT_EQ(polygons_ref[1].priority(), 3);
+  EXPECT_FLOAT_EQ(polygons_ref[1].threshold(), 0.9f);
+  ASSERT_EQ(polygons_ref[1].points_size(), 4);
+  EXPECT_EQ(polygons_ref[1].points(0).x(), 50);
+  EXPECT_EQ(polygons_ref[1].points(0).y(), 50);
+  EXPECT_EQ(polygons_ref[1].points(1).x(), 60);
+  EXPECT_EQ(polygons_ref[1].points(1).y(), 50);
+  EXPECT_EQ(polygons_ref[1].points(2).x(), 60);
+  EXPECT_EQ(polygons_ref[1].points(2).y(), 60);
+  EXPECT_EQ(polygons_ref[1].points(3).x(), 50);
+  EXPECT_EQ(polygons_ref[1].points(3).y(), 60);
 }
