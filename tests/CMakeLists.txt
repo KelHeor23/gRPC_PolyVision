@@ -10,6 +10,7 @@ add_executable(run_tests
     common/opencv_encoder_test.cc
     server/class_mapper_test.cc
     server/polygon_processor_test.cc
+    server/geometric_filter_by_polygon_test.cc
     )
 
 target_include_directories(run_tests PRIVATE 
