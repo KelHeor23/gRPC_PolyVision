@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file OpencvDisplay.h
+ * @file opencv_display.h
  * @brief Реализация интерфейса отображения с помощью OpenCV.
  */
 

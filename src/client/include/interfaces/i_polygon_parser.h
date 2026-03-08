@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IPolygonParser.h
+ * @file i_polygon_parser.h
  * @brief Интерфейс парсера полигонов из JSON.
  */
 #include <boost/json.hpp>

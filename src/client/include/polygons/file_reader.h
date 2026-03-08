@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file FileReader.h
+ * @file file_reader.h
  * @brief Реализация IFileReader с использованием std::ifstream.
  */
 #include <fstream>

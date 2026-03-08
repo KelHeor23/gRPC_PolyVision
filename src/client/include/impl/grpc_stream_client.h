@@ -1,7 +1,7 @@
 #pragma once
 
 /**
- * @file GrpcStreamClient.h
+ * @file grpc_stream_client.h
  * @brief Реализация клиента gRPC-потока.
  */
 

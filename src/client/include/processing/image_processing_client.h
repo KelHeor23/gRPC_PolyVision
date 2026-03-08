@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file ImageProcessingClient.h
+ * @file image_processing_client.h
  * @brief Клиент для обработки изображений через gRPC.
  */
 #include <memory>

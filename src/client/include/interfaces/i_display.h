@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IDisplay.h
+ * @file i_display.h
  * @brief Интерфейс для отображения изображений.
  */
 

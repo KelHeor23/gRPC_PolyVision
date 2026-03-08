@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file Polygons.h
+ * @file polygons.h
  * @brief Высокоуровневый класс для загрузки и хранения PolygonList из
  * JSON-файла.
  */

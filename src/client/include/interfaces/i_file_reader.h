@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IFileReader.h
+ * @file i_file_reader.h
  * @brief Интерфейс для чтения содержимого файла.
  */
 #include <optional>

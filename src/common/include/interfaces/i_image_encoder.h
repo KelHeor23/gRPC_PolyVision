@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IImageEncoder.h
+ * @file i_image_encoder.h
  * @brief Интерфейс для кодирования/декодирования изображений.
  */
 #include <opencv2/core.hpp>

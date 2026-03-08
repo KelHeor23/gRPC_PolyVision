@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file PolygonParser.h
+ * @file polygon_parser.h
  * @brief Реализация IPolygonParser для извлечения полигонов и метаданных из
  * JSON.
  */

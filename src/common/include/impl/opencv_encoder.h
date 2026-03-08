@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file OpenCVEncoder.h
+ * @file opencv_encoder.h
  * @brief Реализация интерфейса IImageEncoder с использованием OpenCV.
  */
 #include <opencv2/core.hpp>

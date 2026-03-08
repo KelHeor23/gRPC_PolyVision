@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file JsonParser.h
+ * @file json_parser.h
  * @brief Реализация IJsonParser на базе Boost.JSON.
  */
 #include <boost/json.hpp>

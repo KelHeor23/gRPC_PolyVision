@@ -1,6 +1,6 @@
 #pragma once
 /**
- * @file IGrpcStreamClient.h
+ * @file i_grpc_stream_client.h
  * @brief Интерфейс клиента gRPC-потока.
  */
 #include <grpcpp/grpcpp.h>
