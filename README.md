@@ -12,15 +12,15 @@ Docker Desktop в Ubuntu может некорректно выставлять 
 
 1. Установите docker-engine.  
 2. Перед запуском проекта выполните команды в терминале, чтобы дать разрешение на подключение к X-серверу из контейнеров:  
-   ```bash
-   xhost +local:docker
-   ```  
+```bash
+xhost +local:docker
+```  
 3. Если планируется запускать в режиме разработки, скачайте VSCode и установите расширение Dev Containers от Microsoft.  
 4. Для работы модели детектирования необходимо скачать файл `yolov4.weights` (245 МБ) по ссылке [yolov4.weights](https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights) и поместить его в корень проекта, в папку YOLO.  
    Или воспользоваться командой из корня проекта:  
-   ```bash
-   wget -P YOLO https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
-   ```
+```bash
+wget -P YOLO https://github.com/AlexeyAB/darknet/releases/download/darknet_yolo_v3_optimal/yolov4.weights
+```
 
 ### Сборка проекта в режиме разработки
 Откройте проект в **Visual Studio Code**.  
@@ -67,21 +67,29 @@ make
 Для сборки проекта используется docker compose.
 
 1. В корне проекта выполните команду, после чего будут установлены все зависимости:  
-   ```bash
-   docker compose build
-   ```
+```bash
+docker compose build
+```
 2. Для запуска сервера можно использовать  
-   ```bash
-   ./runServer.sh          # Запуск сервера
-   ./runServer.sh -h        # Вывод списка доступных аргументов
-   ./runServer.sh -p        # Запуск сервера с отображением полигонов в результирующем изображении
-   ```
+```bash
+./runServer.sh          # Запуск сервера
+```
+```bash
+./runServer.sh -h        # Вывод списка доступных аргументов
+```
+```bash
+./runServer.sh -p        # Запуск сервера с отображением полигонов в результирующем изображении
+```
 3. Для запуска клиента можно использовать  
-   ```bash
-   ./runClient.sh           # Запуск клиента с изображением 2.jpg и полигонами 2.json из папки image в корне проекта
-   ./runClient.sh -h         # Вывод списка доступных аргументов
-   ./runClient.sh -i <Файл изображения> -p <Файл с полигонами>   # Запуск клиента с заданными пользователем изображением и набором полигонов
-   ```
+```bash
+./runClient.sh           # Запуск клиента с изображением 2.jpg и полигонами 2.json из папки image в корне проекта
+```
+```bash
+./runClient.sh -h         # Вывод списка доступных аргументов
+```
+```bash
+./runClient.sh -i <Файл изображения> -p <Файл с полигонами>   # Запуск клиента с заданными пользователем изображением и набором полигонов
+```
 
 Примеры полигонов и изображений можно найти в папке `image` в корне проекта.
 
