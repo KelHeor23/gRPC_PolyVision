@@ -4,6 +4,7 @@ add_library(server_lib STATIC
     src/impl/yolo_detector.cc
     src/impl/class_mapper.cc
     src/impl/object_filter_by_polygon.cc
+    src/impl/polygon_clipper_sutherland_hodgman.cc
     src/impl/drawer.cc
     src/impl/polygon_processor.cc
     src/impl/cmd_options.cc
