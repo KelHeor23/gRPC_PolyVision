@@ -103,6 +103,7 @@ docker compose build
 ### Пример набора полигонов JSON
 ```json
 {
+  "class_names": ["orange", "apple", "person", "cat", "dog"],
   "polygons": [
     {
       "type": 0,
