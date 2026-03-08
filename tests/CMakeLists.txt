@@ -11,6 +11,7 @@ add_executable(run_tests
     server/class_mapper_test.cc
     server/polygon_processor_test.cc
     server/geometric_filter_by_polygon_test.cc
+    server/polygon_clipper_sutherland_hodgman_test.cc
     )
 
 target_include_directories(run_tests PRIVATE 
