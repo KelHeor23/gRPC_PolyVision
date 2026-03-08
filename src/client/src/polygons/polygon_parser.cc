@@ -1,29 +1,45 @@
 #include "polygons/polygon_parser.h"
 
-std::optional<std::vector<ImageDetection::Polygon>> PolygonParser::Parse(
+std::optional<ImageDetection::PolygonList> PolygonParser::Parse(
     const boost::json::value& root) {
   if (!root.is_object()) {
     return std::nullopt;
   }
   const auto& obj = root.as_object();
-  auto it = obj.find("polygons");
-  if (it == obj.end() || !it->value().is_array()) {
+
+  ImageDetection::PolygonList polygon_list;
+
+  // Поле "class_names" (опционально)
+  auto class_names_it = obj.find("class_names");
+  if (class_names_it != obj.end()) {
+    auto class_names_opt = ParseClassNames(class_names_it->value());
+    if (!class_names_opt) {
+      return std::nullopt;  // неверный формат class_names
+    }
+    *polygon_list.mutable_class_names() = std::move(*class_names_opt);
+  }
+
+  // Поле "polygons" (обязательно)
+  auto polygons_it = obj.find("polygons");
+  if (polygons_it == obj.end() || !polygons_it->value().is_array()) {
     return std::nullopt;
   }
-  const auto& polyArray = it->value().as_array();
-  std::vector<ImageDetection::Polygon> result;
+  const auto& polyArray = polygons_it->value().as_array();
+
   for (std::size_t i = 0; i < polyArray.size(); ++i) {
     auto polyOpt = ParseSinglePolygon(polyArray[i], i);
     if (!polyOpt) {
       // Пропускаем невалидный полигон
       continue;
     }
-    result.push_back(std::move(*polyOpt));
+    *polygon_list.add_polygons() = std::move(*polyOpt);
   }
-  if (result.empty()) {
-    return std::nullopt;  // нет валидных полигонов
+
+  if (polygon_list.polygons_size() == 0) {
+    return std::nullopt;  // нет ни одного валидного полигона
   }
-  return result;
+
+  return polygon_list;
 }
 
 std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
@@ -79,4 +95,17 @@ std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
     point->set_y(static_cast<int32_t>(yIt->value().as_int64()));
   }
   return poly;
+}
+
+std::optional<google::protobuf::RepeatedPtrField<std::string>>
+PolygonParser::ParseClassNames(const boost::json::value& val) {
+  if (!val.is_array()) return std::nullopt;
+
+  const auto& arr = val.as_array();
+  google::protobuf::RepeatedPtrField<std::string> result;
+  for (const auto& elem : arr) {
+    if (!elem.is_string()) return std::nullopt;
+    result.Add(elem.as_string().c_str());
+  }
+  return result;
 }

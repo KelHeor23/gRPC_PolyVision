@@ -1,22 +1,23 @@
 #pragma once
 /**
  * @file PolygonParser.h
- * @brief Реализация IPolygonParser для извлечения полигонов из JSON.
+ * @brief Реализация IPolygonParser для извлечения полигонов и метаданных из
+ * JSON.
  */
 #include "interfaces/i_polygon_parser.h"
 
 /**
  * @class PolygonParser
- * @brief Разбирает JSON-массив "polygons" в protobuf-сообщения Polygon.
+ * @brief Разбирает JSON-объект в protobuf-сообщение PolygonList.
  */
 class PolygonParser : public IPolygonParser {
  public:
   /**
    * @brief Основной метод парсинга.
    * @param root Корневой JSON-объект.
-   * @return Вектор полигонов или nullopt, если данные некорректны.
+   * @return PolygonList или nullopt, если данные некорректны.
    */
-  std::optional<std::vector<ImageDetection::Polygon>> Parse(
+  std::optional<ImageDetection::PolygonList> Parse(
       const boost::json::value& root) override;
 
  private:
@@ -28,4 +29,12 @@ class PolygonParser : public IPolygonParser {
    */
   std::optional<ImageDetection::Polygon> ParseSinglePolygon(
       const boost::json::value& val, std::size_t index);
+
+  /**
+   * @brief Парсит массив имён классов.
+   * @param val JSON-значение (ожидается массив строк).
+   * @return Вектор строк или nullopt при ошибке.
+   */
+  std::optional<google::protobuf::RepeatedPtrField<std::string>>
+  ParseClassNames(const boost::json::value& val);
 };

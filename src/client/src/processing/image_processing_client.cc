@@ -28,11 +28,18 @@ bool ImageProcessingClient::ProcessImage(const cv::Mat& img,
   ProcessRequest request;
   auto* polygon_list = request.mutable_polygon_list();
 
-  // Записываю имя набора полигонов
+  // Устанавливаем имя набора (имя файла)
   polygon_list->set_name(polygons.GetLastFileName());
-  for (const auto& p : polygons.GetPolygons()) {
+
+  // Копируем полигоны из загруженных данных
+  for (const auto& p : polygons.GetPolygonList().polygons()) {
     auto* poly = polygon_list->add_polygons();
     poly->CopyFrom(p);
+  }
+
+  // Копируем имена классов
+  for (const auto& class_name : polygons.GetPolygonList().class_names()) {
+    polygon_list->add_class_names(class_name);
   }
 
   if (!stream->Write(request)) {

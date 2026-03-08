@@ -31,10 +31,10 @@ bool Polygons::LoadFromFile(const std::string& filename) {
   if (!json) {
     return false;
   }
-  auto polygons_opt = polygon_parser_->Parse(*json);
-  if (!polygons_opt) {
+  auto polygon_list_opt = polygon_parser_->Parse(*json);
+  if (!polygon_list_opt) {
     return false;
   }
-  polygons_ = std::move(*polygons_opt);
+  polygon_list_ = std::move(*polygon_list_opt);
   return true;
 }

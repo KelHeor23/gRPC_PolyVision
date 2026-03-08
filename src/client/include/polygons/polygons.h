@@ -1,7 +1,8 @@
 #pragma once
 /**
  * @file Polygons.h
- * @brief Высокоуровневый класс для загрузки и хранения полигонов из JSON-файла.
+ * @brief Высокоуровневый класс для загрузки и хранения PolygonList из
+ * JSON-файла.
  */
 #include <boost/json.hpp>
 #include <optional>
@@ -12,15 +13,14 @@
 #include "interfaces/i_polygon_parser.h"
 #include "proto/ImageAnalysis.grpc.pb.h"
 
-using ImageDetection::Polygon;
+using ImageDetection::PolygonList;
 
 /**
  * @class Polygons
- * @brief Управляет загрузкой и доступом к набору полигонов.
+ * @brief Управляет загрузкой и доступом к набору полигонов и метаданным.
  *
  * Класс использует внедрённые зависимости для чтения файла, парсинга JSON
- * и преобразования в protobuf-объекты. Может работать с реализациями по
- * умолчанию.
+ * и преобразования в protobuf-сообщение PolygonList.
  */
 class Polygons {
  public:
@@ -28,7 +28,7 @@ class Polygons {
    * @brief Конструктор с явным внедрением зависимостей.
    * @param fileReader Объект для чтения файлов.
    * @param jsonParser Парсер JSON.
-   * @param polygonParser Парсер полигонов.
+   * @param polygonParser Парсер полигонов (возвращает PolygonList).
    */
   Polygons(std::unique_ptr<IFileReader> fileReader,
            std::unique_ptr<IJsonParser> jsonParser,
@@ -40,17 +40,18 @@ class Polygons {
   Polygons();
 
   /**
-   * @brief Загружает и парсит полигоны из указанного файла.
+   * @brief Загружает и парсит данные из указанного файла.
    * @param filename Путь к JSON-файлу.
    * @return true при успешной загрузке, false при ошибке.
    */
   bool LoadFromFile(const std::string& filename);
 
   /**
-   * @brief Возвращает загруженные полигоны.
-   * @return Константная ссылка на вектор полигонов.
+   * @brief Возвращает загруженный PolygonList.
+   * @return Константная ссылка на PolygonList.
    */
-  const std::vector<Polygon>& GetPolygons() const { return polygons_; }
+  const PolygonList& GetPolygonList() const { return polygon_list_; }
+
   /**
    * @brief Имя последнего загруженного файла.
    * @return Строка с именем файла.
@@ -59,8 +60,9 @@ class Polygons {
 
  private:
   std::string last_file_name_;  ///< Имя последнего загруженного файла
-  std::vector<Polygon> polygons_;  ///< Загруженные полигоны
+  PolygonList polygon_list_;  ///< Загруженные данные (полигоны + метаданные)
   std::unique_ptr<IFileReader> file_reader_;  ///< Читатель файлов
   std::unique_ptr<IJsonParser> json_parser_;  ///< Парсер JSON
-  std::unique_ptr<IPolygonParser> polygon_parser_;  ///< Парсер полигонов
+  std::unique_ptr<IPolygonParser>
+      polygon_parser_;  ///< Парсер полигонов (возвращает PolygonList)
 };
