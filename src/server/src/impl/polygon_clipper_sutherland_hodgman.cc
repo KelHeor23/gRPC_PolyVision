@@ -8,13 +8,13 @@ std::vector<cv::Point> SutherlandHodgmanClipper::GetInternalPolygon(
               .top = box.y,
               .bottom = box.y + box.height};
 
-  std::vector<cv::Point> tempPolyBuffer;
+  std::vector<cv::Point> temp_poly_buffer;
 
-  tempPolyBuffer.reserve(polygon.size() * 2);
+  temp_poly_buffer.reserve(polygon.size() * 2);
 
   for (auto& edge : edges) {
     if (polygon.empty()) break;
-    tempPolyBuffer.clear();
+    temp_poly_buffer.clear();
     for (size_t i = 0; i < polygon.size(); i++) {
       const cv::Point& cur = polygon[i];
       const cv::Point& next = polygon[(i + 1) % polygon.size()];
@@ -25,21 +25,21 @@ std::vector<cv::Point> SutherlandHodgmanClipper::GetInternalPolygon(
       if (cur_inside) {
         if (next_nside) {
           // Оба внутри – добавляем следующую вершину
-          tempPolyBuffer.push_back(next);
+          temp_poly_buffer.push_back(next);
         } else {
           // Выход изнутри наружу – добавляем точку пересечения
-          tempPolyBuffer.push_back(GetIntersectionPoint(cur, next, edge));
+          temp_poly_buffer.push_back(GetIntersectionPoint(cur, next, edge));
         }
       } else {
         if (next_nside) {
           // Вход снаружи внутрь – добавляем пересечение и следующую вершину
-          tempPolyBuffer.push_back(GetIntersectionPoint(cur, next, edge));
-          tempPolyBuffer.push_back(next);
+          temp_poly_buffer.push_back(GetIntersectionPoint(cur, next, edge));
+          temp_poly_buffer.push_back(next);
         }
         // Оба снаружи – ничего не добавляем
       }
     }
-    polygon.swap(tempPolyBuffer);
+    polygon.swap(temp_poly_buffer);
   }
 
   return polygon;
