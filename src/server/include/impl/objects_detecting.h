@@ -23,24 +23,26 @@ class ObjectsDetecting : public IImageProcessor {
    * @brief Конструктор с внедрением всех зависимостей.
    * @param mapper Маппер классов.
    * @param detector Детектор объектов.
-   * @param objectFilter Фильтр по полигонам.
+   * @param object_filter Фильтр по полигонам.
    * @param drawer Отрисовщик.
-   * @param polygonProcessor Объект для предобработки полигонов.
+   * @param polygon_processor Объект для предобработки полигонов.
    */
   explicit ObjectsDetecting(
       std::shared_ptr<IClassMapper> mapper, std::unique_ptr<IDetector> detector,
-      std::unique_ptr<IObjectFilter> objectFilter,
+      std::unique_ptr<IObjectFilter> object_filter,
       std::unique_ptr<IDrawer> drawer,
-      std::unique_ptr<IPolygonProcessor> polygonProcessor);
+      std::unique_ptr<IPolygonProcessor> polygon_processor);
 
   /**
    * @brief Выполняет полный цикл обработки изображения.
    * @param image Изображение (модифицируется – на нём рисуются результаты).
    * @param polygons Вектор полигонов.
-   * @param fileName Имя набора полигонов (для кэширования).
+   * @param file_name Имя набора полигонов (для кэширования).
+   * @param class_names Набор имен детектируемых объектов
    */
   void Process(cv::Mat& image, std::vector<ImageDetection::Polygon>& polygons,
-               const std::string& fileName) override;
+               const std::string& file_name,
+               const std::vector<std::string>& class_names) override;
 
   /**
    * @brief Включает/отключает отрисовку полигонов (для отладки).

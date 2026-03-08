@@ -22,12 +22,21 @@ Status ImageProcessingServer::ProcessImage(
                     "First message must contain polygons");
     }
 
-    const auto& src = request.polygon_list().polygons();
-    std::vector<ImageDetection::Polygon> polygons(src.begin(), src.end());
+    const auto& polygon_list = request.polygon_list();
+    // Извлекаем полигоны
+    std::vector<ImageDetection::Polygon> polygons(
+        polygon_list.polygons().begin(), polygon_list.polygons().end());
 
-    std::string polygons_name = request.polygon_list().name();
+    // Извлекаем имя набора
+    std::string polygons_name = polygon_list.name();
 
-    // Сбор всех чанков изображения
+    // Извлекаем имена классов
+    std::vector<std::string> class_names;
+    for (const auto& name : polygon_list.class_names()) {
+      class_names.push_back(name);
+    }
+
+    // Сбор всех чанков изображения (без изменений)
     std::vector<uint8_t> image_buffer;
     while (stream->Read(&request)) {
       if (request.has_image_data()) {
@@ -47,8 +56,8 @@ Status ImageProcessingServer::ProcessImage(
     }
     cv::Mat img = std::move(*img_opt);
 
-    // Обработка изображения
-    processor_->Process(img, polygons, polygons_name);
+    // Обработка изображения с передачей полигонов, имени и имён классов
+    processor_->Process(img, polygons, polygons_name, class_names);
 
     // Кодирование результата
     auto encoded_opt = encoder_->Encode(img, ".jpg", 95);

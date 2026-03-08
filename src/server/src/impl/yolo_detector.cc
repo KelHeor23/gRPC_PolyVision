@@ -11,14 +11,15 @@ YoloDetector::YoloDetector(const Config& cfg,
                            std::shared_ptr<IClassMapper> mapper)
     : input_size_(cfg.input_size),
       conf_threshold_(cfg.conf_threshold),
-      nms_threshold_(cfg.nms_threshold) {
+      nms_threshold_(cfg.nms_threshold),
+      mapper_(mapper) {
   net_ = cv::dnn::readNetFromDarknet(cfg.model_config, cfg.model_weights);
   if (net_.empty()) throw std::runtime_error("Failed to load YOLO network");
-
-  allowed_ids_ = mapper->GetAllowedIds(cfg.allowed_classes);
 }
 
-std::vector<Detection> YoloDetector::Detect(const cv::Mat& image) {
+std::vector<Detection> YoloDetector::Detect(
+    const cv::Mat& image, const std::vector<std::string>& class_names) {
+  allowed_ids_ = mapper_->GetAllowedIds(class_names);
   cv::Mat blob;
   cv::dnn::blobFromImage(image, blob, 1 / 255.0, input_size_, cv::Scalar(),
                          true, false);

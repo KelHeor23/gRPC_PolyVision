@@ -18,7 +18,4 @@ struct Config {
   float conf_threshold = 0.2f;  ///< Порог уверенности для детекций
   float nms_threshold = 0.4f;  ///< Порог NMS (Non-Maximum Suppression)
   cv::Size input_size = {640, 640};  ///< Размер входного изображения для сети
-  std::vector<std::string> allowed_classes = {
-      "orange", "apple", "person", "cat",
-      "dog"};  ///< Список классов, которые нужно обрабатывать
 };
