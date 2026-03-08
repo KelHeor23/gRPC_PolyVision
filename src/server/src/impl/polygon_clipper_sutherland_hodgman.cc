@@ -63,24 +63,42 @@ bool SutherlandHodgmanClipper::IsInside(const cv::Point& p,
 cv::Point SutherlandHodgmanClipper::GetIntersectionPoint(const cv::Point& p1,
                                                          const cv::Point& p2,
                                                          Edge edge) const {
+  if ((edge == LEFT || edge == RIGHT) && p2.x == p1.x) return p1;
+  if ((edge == TOP || edge == BOTTOM) && p2.y == p1.y) return p1;
+
   cv::Point res;
+  double t, x, y;
+
   switch (edge) {
     case LEFT:
-      res.x = borders_.left;
-      res.y = p1.y + (borders_.left - p1.x) * (p2.y - p1.y) / (p2.x - p1.x);
+      t = double(borders_.left - p1.x) / double(p2.x - p1.x);
+      x = borders_.left;
+      y = p1.y + t * (p2.y - p1.y);
       break;
+
     case RIGHT:
-      res.x = borders_.right;
-      res.y = p1.y + (borders_.right - p1.x) * (p2.y - p1.y) / (p2.x - p1.x);
+      t = double(borders_.right - p1.x) / double(p2.x - p1.x);
+      x = borders_.right;
+      y = p1.y + t * (p2.y - p1.y);
       break;
+
     case TOP:
-      res.y = borders_.top;
-      res.x = p1.x + (borders_.top - p1.y) * (p2.x - p1.x) / (p2.y - p1.y);
+      t = double(borders_.top - p1.y) / double(p2.y - p1.y);
+      y = borders_.top;
+      x = p1.x + t * (p2.x - p1.x);
       break;
+
     case BOTTOM:
-      res.y = borders_.bottom;
-      res.x = p1.x + (borders_.bottom - p1.y) * (p2.x - p1.x) / (p2.y - p1.y);
+      t = double(borders_.bottom - p1.y) / double(p2.y - p1.y);
+      y = borders_.bottom;
+      x = p1.x + t * (p2.x - p1.x);
       break;
+
+    default:
+      return res;
   }
+
+  res.x = cvRound(x);
+  res.y = cvRound(y);
   return res;
 }
