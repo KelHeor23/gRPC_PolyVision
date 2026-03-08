@@ -28,15 +28,13 @@ std::vector<Detection> GeometricFilterByPolygon::Apply(
 
 bool GeometricFilterByPolygon::CheckPolygonForOwnership(
     const ImageDetection::Polygon& polygon, const Detection& detection) {
-  std::vector<cv::Point> points_cv;
+  const auto& points_repeated = polygon.points();
+  std::vector<ImageDetection::Point> points_vec(points_repeated.begin(),
+                                                points_repeated.end());
 
-  points_cv.reserve(polygon.points().size());
-  for (auto& point : polygon.points()) {
-    points_cv.emplace_back(cv::Point(point.x(), point.y()));
-  }
-
-  std::vector<cv::Point> intersection =
-      polygon_clipper_->GetInternalPolygon(points_cv, detection.box);
+  std::vector<ImageDetection::Point> intersection =
+      polygon_clipper_->GetInternalPolygon(std::move(points_vec),
+                                           detection.box);
 
   if (intersection.empty()) return false;
 
@@ -46,15 +44,15 @@ bool GeometricFilterByPolygon::CheckPolygonForOwnership(
 }
 
 double GeometricFilterByPolygon::PolygonArea(
-    const std::vector<cv::Point>& polygon) {
+    const std::vector<ImageDetection::Point>& polygon) {
   const size_t n = polygon.size();
   if (n < 3) return 0.0;
 
   int64_t area2 = 0;  // удвоенная площадь (целая)
   for (size_t i = 0; i < n; ++i) {
     size_t j = (i + 1) % n;
-    area2 += static_cast<int64_t>(polygon[i].x) * polygon[j].y -
-             static_cast<int64_t>(polygon[j].x) * polygon[i].y;
+    area2 += static_cast<int64_t>(polygon[i].x()) * polygon[j].y() -
+             static_cast<int64_t>(polygon[j].x()) * polygon[i].y();
   }
   return std::abs(area2) * 0.5;
 }

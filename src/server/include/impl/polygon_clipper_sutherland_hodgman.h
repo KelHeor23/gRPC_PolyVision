@@ -38,8 +38,8 @@ class SutherlandHodgmanClipper : public IPolygonClipper {
    * @param box бокс/прямоугольник с которым ищем пересечение
    * @return Набор точек вычисленного полигона
    */
-  std::vector<cv::Point> GetInternalPolygon(std::vector<cv::Point> polygon,
-                                            const cv::Rect& box) override;
+  std::vector<ImageDetection::Point> GetInternalPolygon(
+      std::vector<ImageDetection::Point> polygon, const cv::Rect& box) override;
 
  private:
   /**
@@ -49,7 +49,7 @@ class SutherlandHodgmanClipper : public IPolygonClipper {
    * @return true - точка находится внутри прямоугольника, false - выпадает из
    * него
    */
-  bool IsInside(const cv::Point& p, Edge edge);
+  bool IsInside(const ImageDetection::Point& p, Edge edge);
 
   /**
    * @brief Функция находящая точку пересечения отрезка и прямоугольника
@@ -59,8 +59,9 @@ class SutherlandHodgmanClipper : public IPolygonClipper {
    * @return true - точка находится внутри прямоугольника, false - выпадает из
    * него
    */
-  cv::Point GetIntersectionPoint(const cv::Point& p1, const cv::Point& p2,
-                                 Edge edge) const;
+  ImageDetection::Point GetIntersectionPoint(const ImageDetection::Point& p1,
+                                             const ImageDetection::Point& p2,
+                                             Edge edge) const;
 
  private:
   RectangleBorders borders_;

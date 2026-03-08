@@ -58,10 +58,10 @@ class GeometricFilterByPolygon : public IObjectFilter {
    * Вершины должны быть упорядочены (по или против часовой стрелки).
    * Для пустого или вырожденного полигона (менее 3 точек) возвращает 0.
    *
-   * @param polygon вектор вершин типа cv::Point (целые координаты)
+   * @param polygon вектор вершин типа ImageDetection::Point
    * @return площадь полигона (double)
    */
-  double PolygonArea(const std::vector<cv::Point>& polygon);
+  double PolygonArea(const std::vector<ImageDetection::Point>& polygon);
 
  private:
   std::unique_ptr<IPolygonClipper> polygon_clipper_;  ///< обрезальщик полигонов

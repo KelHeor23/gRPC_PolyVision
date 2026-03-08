@@ -2,6 +2,7 @@
 
 #include <vector>
 
+#include "proto/ImageAnalysis.grpc.pb.h"
 /**
  * @file i_polygon_clipper.h.h
  * @brief Интерфейс определения полигона пересечения.
@@ -20,6 +21,6 @@ class IPolygonClipper {
    * @param box бокс/прямоугольник с которым ищем пересечение
    * @return Набор точек вычисленного полигона
    */
-  virtual std::vector<cv::Point> GetInternalPolygon(
-      std::vector<cv::Point> polygon, const cv::Rect& box) = 0;
+  virtual std::vector<ImageDetection::Point> GetInternalPolygon(
+      std::vector<ImageDetection::Point> polygon, const cv::Rect& box) = 0;
 };
