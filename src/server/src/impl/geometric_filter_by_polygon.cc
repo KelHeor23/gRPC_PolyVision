@@ -9,8 +9,7 @@
 
 std::vector<Detection> GeometricFilterByPolygon::Apply(
     const std::vector<Detection>& detections,
-    const std::vector<ImageDetection::Polygon>& polygons, cv::Size image_size,
-    const std::string& polygons_name) {
+    const std::vector<ImageDetection::Polygon>& polygons) {
   std::vector<Detection> filtered;
   for (auto& it : detections) {
     auto owner_polygon =

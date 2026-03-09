@@ -34,8 +34,7 @@ void ObjectsDetecting::Process(cv::Mat& image,
   auto detections = detector_->Detect(image, class_names);
 
   // Фильтрация по зонам
-  detections =
-      object_filter_->Apply(detections, polygons, image.size(), polygons_name);
+  detections = object_filter_->Apply(detections, polygons);
 
   // Отрисовка
   drawer_->DrawDetections(image, detections, class_mapper_);

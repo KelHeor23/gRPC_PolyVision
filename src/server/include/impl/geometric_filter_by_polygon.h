@@ -32,14 +32,11 @@ class GeometricFilterByPolygon : public IObjectFilter {
    * @brief Применяет фильтрацию к детекциям.
    * @param detections Исходный вектор детекций.
    * @param polygons Полигоны (могут быть модифицированы процессором).
-   * @param image_size Размер изображения.
-   * @param polygons_name Имя набора полигонов (для кэширования масок).
    * @return Отфильтрованный вектор детекций.
    */
   std::vector<Detection> Apply(
       const std::vector<Detection>& detections,
-      const std::vector<ImageDetection::Polygon>& polygons, cv::Size image_size,
-      const std::string& polygons_name) override;
+      const std::vector<ImageDetection::Polygon>& polygons) override;
 
  private:
   /**

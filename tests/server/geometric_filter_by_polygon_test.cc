@@ -51,7 +51,7 @@ TEST_F(GeometricFilterByPolygonTest, NoIntersection) {
   Detection det;
   det.box = cv::Rect(20, 20, 5, 5);  // далеко от полигона
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   EXPECT_TRUE(result.empty());
 }
 
@@ -62,7 +62,7 @@ TEST_F(GeometricFilterByPolygonTest, IntersectionBelowThreshold) {
   det.box = cv::Rect(5, 5, 10,
                      10);  // площадь 100, пересечение 5x5=25, 25/100=0.25 < 0.8
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   EXPECT_TRUE(result.empty());
 }
 
@@ -72,7 +72,7 @@ TEST_F(GeometricFilterByPolygonTest, IntersectionAboveThreshold) {
   Detection det;
   det.box = cv::Rect(5, 5, 10, 10);  // 0.25 > 0.2
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   ASSERT_EQ(result.size(), 1);
   EXPECT_EQ(result[0].box, det.box);
 }
@@ -87,7 +87,7 @@ TEST_F(GeometricFilterByPolygonTest, MultiplePolygonsFirstSuitable) {
   Detection det;
   det.box = cv::Rect(5, 5, 10, 10);  // 0.25
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   ASSERT_EQ(result.size(), 1);  // должна пройти, т.к. второй полигон подходит
 }
 
@@ -97,7 +97,7 @@ TEST_F(GeometricFilterByPolygonTest, ExclusionPolygonIgnored) {
   Detection det;
   det.box = cv::Rect(5, 5, 10, 10);  // подходит по площади, но тип EXCLUSION
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   EXPECT_TRUE(result.empty());  // EXCLUSION не добавляет
 }
 
@@ -110,7 +110,7 @@ TEST_F(GeometricFilterByPolygonTest, InclusionAndExclusionMixed) {
   Detection det;
   det.box = cv::Rect(6, 6, 8, 8);  // полностью внутри второго полигона
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   ASSERT_EQ(result.size(), 1);
 }
 
@@ -123,7 +123,7 @@ TEST_F(GeometricFilterByPolygonTest, InclusionAndExclusionMixedEqualPriority) {
   Detection det;
   det.box = cv::Rect(6, 6, 8, 8);  // полностью внутри второго полигона
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   ASSERT_EQ(result.size(), 0);
 }
 
@@ -131,7 +131,7 @@ TEST_F(GeometricFilterByPolygonTest, NoPolygons) {
   std::vector<Polygon> polygons;
   Detection det;
   det.box = cv::Rect(0, 0, 10, 10);
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   EXPECT_TRUE(result.empty());
 }
 
@@ -141,6 +141,6 @@ TEST_F(GeometricFilterByPolygonTest, IntersectionExactlyThreshold) {
   Detection det;
   det.box = cv::Rect(5, 5, 10, 10);  // 25/100 = 0.25
 
-  auto result = filter_->Apply({det}, polygons, cv::Size(100, 100), "test");
+  auto result = filter_->Apply({det}, polygons);
   ASSERT_EQ(result.size(), 1);  // должно пройти (>= threshold)
 }
