@@ -7,36 +7,24 @@ std::optional<ImageDetection::PolygonList> PolygonParser::Parse(
   }
   const auto& obj = root.as_object();
 
-  ImageDetection::PolygonList polygon_list;
-
-  // Поле "class_names" (опционально)
-  auto class_names_it = obj.find("class_names");
-  if (class_names_it != obj.end()) {
-    auto class_names_opt = ParseClassNames(class_names_it->value());
-    if (!class_names_opt) {
-      return std::nullopt;  // неверный формат class_names
-    }
-    *polygon_list.mutable_class_names() = std::move(*class_names_opt);
-  }
-
-  // Поле "polygons" (обязательно)
   auto polygons_it = obj.find("polygons");
   if (polygons_it == obj.end() || !polygons_it->value().is_array()) {
     return std::nullopt;
   }
   const auto& polyArray = polygons_it->value().as_array();
 
+  ImageDetection::PolygonList polygon_list;
+
   for (std::size_t i = 0; i < polyArray.size(); ++i) {
     auto polyOpt = ParseSinglePolygon(polyArray[i], i);
     if (!polyOpt) {
-      // Пропускаем невалидный полигон
-      continue;
+      continue;  // пропускаем невалидный полигон
     }
     *polygon_list.add_polygons() = std::move(*polyOpt);
   }
 
   if (polygon_list.polygons_size() == 0) {
-    return std::nullopt;  // нет ни одного валидного полигона
+    return std::nullopt;
   }
 
   return polygon_list;
@@ -50,7 +38,7 @@ std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
 
   ImageDetection::Polygon poly;
 
-  // scalar fields
+  // type, priority, threshold
   auto type_it = obj.find("type");
   auto priority_it = obj.find("priority");
   auto threshold_it = obj.find("threshold");
@@ -64,11 +52,9 @@ std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
     return std::nullopt;
 
   int type_val = static_cast<int>(type_it->value().as_int64());
-
   if (type_val != 0 && type_val != 1) return std::nullopt;
 
   double thresh = threshold_it->value().as_double();
-
   if (thresh < 0.0 || thresh > 1.0) return std::nullopt;
 
   poly.set_type(static_cast<ImageDetection::PolygonType>(type_val));
@@ -94,18 +80,16 @@ std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
     point->set_x(static_cast<int32_t>(xIt->value().as_int64()));
     point->set_y(static_cast<int32_t>(yIt->value().as_int64()));
   }
-  return poly;
-}
 
-std::optional<google::protobuf::RepeatedPtrField<std::string>>
-PolygonParser::ParseClassNames(const boost::json::value& val) const {
-  if (!val.is_array()) return std::nullopt;
-
-  const auto& arr = val.as_array();
-  google::protobuf::RepeatedPtrField<std::string> result;
-  for (const auto& elem : arr) {
-    if (!elem.is_string()) return std::nullopt;
-    result.Add(elem.as_string().c_str());
+  // class_names (обязательное поле внутри полигона)
+  auto class_names_it = obj.find("class_names");
+  if (class_names_it == obj.end()) return std::nullopt;
+  if (!class_names_it->value().is_array()) return std::nullopt;
+  const auto& classArray = class_names_it->value().as_array();
+  for (const auto& cls_val : classArray) {
+    if (!cls_val.is_string()) return std::nullopt;
+    poly.add_class_names(cls_val.as_string().c_str());
   }
-  return result;
+
+  return poly;
 }

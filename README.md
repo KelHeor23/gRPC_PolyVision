@@ -103,9 +103,9 @@ docker compose build
 ### Пример набора полигонов JSON
 ```json
 {
-  "class_names": ["orange", "apple", "person", "cat", "dog"],
   "polygons": [
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 10,
       "threshold": 0.6,
@@ -117,6 +117,7 @@ docker compose build
       ]
     }, 
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 10,
       "threshold": 0.5,

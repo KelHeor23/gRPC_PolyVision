@@ -1,7 +1,7 @@
 {
-  "class_names": ["orange", "apple", "person", "cat", "dog"],
   "polygons": [
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 10,
       "threshold": 0.5,
@@ -13,6 +13,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 20,
       "threshold": 0.75,
@@ -24,6 +25,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 5,
       "threshold": 0.3,
@@ -34,6 +36,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 15,
       "threshold": 0.6,
@@ -45,6 +48,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 25,
       "threshold": 0.8,
@@ -57,6 +61,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 30,
       "threshold": 0.4,
@@ -70,6 +75,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 12,
       "threshold": 0.55,
@@ -81,6 +87,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 18,
       "threshold": 0.7,
@@ -92,6 +99,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 22,
       "threshold": 0.65,
@@ -104,6 +112,7 @@
       ]
     },
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 35,
       "threshold": 0.9,

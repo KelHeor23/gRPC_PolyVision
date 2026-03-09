@@ -10,8 +10,10 @@ using namespace testing;
 
 class PolygonParserTest : public ::testing::Test {
  protected:
-  std::string MakePolygonJson(int type, int priority, double threshold,
-                              const std::vector<std::pair<int, int>>& points) {
+  std::string MakePolygonJson(
+      int type, int priority, double threshold,
+      const std::vector<std::pair<int, int>>& points,
+      const std::vector<std::string>& class_names = {}) {
     std::string pts = "[";
     for (size_t i = 0; i < points.size(); ++i) {
       if (i) pts += ",";
@@ -19,12 +21,21 @@ class PolygonParserTest : public ::testing::Test {
              std::to_string(points[i].second) + "}";
     }
     pts += "]";
+
+    std::string cls = "[";
+    for (size_t i = 0; i < class_names.size(); ++i) {
+      if (i) cls += ",";
+      cls += R"(")" + class_names[i] + R"(")";
+    }
+    cls += "]";
+
     return R"({"type":)" + std::to_string(type) + R"(,"priority":)" +
            std::to_string(priority) + R"(,"threshold":)" +
-           std::to_string(threshold) + R"(,"points":)" + pts + "}";
+           std::to_string(threshold) + R"(,"points":)" + pts +
+           R"(,"class_names":)" + cls + "}";
   }
 
-  // Создаёт полный JSON только с массивом полигонов (без class_names)
+  // Создаёт полный JSON с массивом полигонов
   boost::json::value CreateJsonWithPolygons(
       const std::vector<std::string>& poly_jsons) {
     std::string arr = "[";
@@ -37,81 +48,84 @@ class PolygonParserTest : public ::testing::Test {
     return boost::json::parse(full);
   }
 
-  // Создаёт полный JSON с полигонами и опциональными class_names
-  boost::json::value CreateFullJson(
-      const std::vector<std::string>& poly_jsons,
-      const std::vector<std::string>& class_names = {}) {
-    std::string arr = "[";
-    for (size_t i = 0; i < poly_jsons.size(); ++i) {
-      if (i) arr += ",";
-      arr += poly_jsons[i];
-    }
-    arr += "]";
-
-    std::string full = R"({"polygons":)" + arr;
-    if (!class_names.empty()) {
-      full += R"(,"class_names":[)";
-      for (size_t i = 0; i < class_names.size(); ++i) {
-        if (i) full += ",";
-        full += R"(")" + class_names[i] + R"(")";
-      }
-      full += "]";
-    }
-    full += "}";
-    return boost::json::parse(full);
-  }
-
   PolygonParser parser_;
 };
 
 TEST_F(PolygonParserTest, ParseValidJsonReturnsPolygonList) {
-  std::vector<std::string> polys = {
-      MakePolygonJson(0, 1, 0.5, {{0, 0}, {1, 0}, {1, 1}})};
-  auto root = CreateFullJson(polys);  // без class_names
+  std::vector<std::string> polys = {MakePolygonJson(
+      0, 1, 0.5, {{0, 0}, {1, 0}, {1, 1}}, {})};  // пустой class_names
+  auto root = CreateJsonWithPolygons(polys);
   auto result_opt = parser_.Parse(root);
   ASSERT_TRUE(result_opt.has_value());
   const auto& polygon_list = *result_opt;
   EXPECT_EQ(polygon_list.polygons_size(), 1);
-  EXPECT_EQ(polygon_list.class_names_size(), 0);  // нет class_names
 
   const auto& p = polygon_list.polygons(0);
   EXPECT_EQ(p.type(), 0);
   EXPECT_EQ(p.priority(), 1);
   EXPECT_FLOAT_EQ(p.threshold(), 0.5f);
   EXPECT_EQ(p.points_size(), 3);
+  EXPECT_EQ(p.class_names_size(), 0);  // пустой список
 }
 
-TEST_F(PolygonParserTest, ParseJsonWithClassNamesReturnsBoth) {
-  std::vector<std::string> polys = {
-      MakePolygonJson(0, 1, 0.5, {{0, 0}, {1, 0}, {1, 1}})};
-  std::vector<std::string> class_names = {"car", "pedestrian"};
-  auto root = CreateFullJson(polys, class_names);
+TEST_F(PolygonParserTest, ParsePolygonWithClassNamesSuccess) {
+  std::vector<std::string> polys = {MakePolygonJson(
+      0, 1, 0.5, {{0, 0}, {1, 0}, {1, 1}}, {"car", "pedestrian"})};
+  auto root = CreateJsonWithPolygons(polys);
   auto result_opt = parser_.Parse(root);
   ASSERT_TRUE(result_opt.has_value());
   const auto& polygon_list = *result_opt;
+  ASSERT_EQ(polygon_list.polygons_size(), 1);
 
-  EXPECT_EQ(polygon_list.polygons_size(), 1);
-  EXPECT_EQ(polygon_list.class_names_size(), 2);
-  EXPECT_EQ(polygon_list.class_names(0), "car");
-  EXPECT_EQ(polygon_list.class_names(1), "pedestrian");
+  const auto& p = polygon_list.polygons(0);
+  EXPECT_EQ(p.class_names_size(), 2);
+  EXPECT_EQ(p.class_names(0), "car");
+  EXPECT_EQ(p.class_names(1), "pedestrian");
 }
 
-TEST_F(PolygonParserTest, InvalidClassNamesFormatReturnsNullopt) {
-  std::string json = R"({"polygons":[], "class_names": "not an array"})";
-  auto root = boost::json::parse(json);
-  auto result = parser_.Parse(root);
-  EXPECT_FALSE(result.has_value());
+TEST_F(PolygonParserTest, MissingClassNamesInPolygonReturnsNullopt) {
+  // Создаём полигон без поля class_names
+  std::string poly_without_class = R"({
+    "type": 0,
+    "priority": 1,
+    "threshold": 0.5,
+    "points": [{"x":0,"y":0}, {"x":1,"y":0}, {"x":1,"y":1}]
+  })";
+  auto root = CreateJsonWithPolygons({poly_without_class});
+  auto result_opt = parser_.Parse(root);
+  EXPECT_FALSE(result_opt.has_value());
+}
 
-  json = R"({"polygons":[], "class_names": [123, "car"]})";
-  root = boost::json::parse(json);
-  result = parser_.Parse(root);
-  EXPECT_FALSE(result.has_value());
+TEST_F(PolygonParserTest, InvalidClassNamesFormatInsidePolygonRejectsPolygon) {
+  // class_names не массив
+  std::string poly_invalid_class = R"({
+    "type": 0,
+    "priority": 1,
+    "threshold": 0.5,
+    "points": [{"x":0,"y":0}, {"x":1,"y":0}, {"x":1,"y":1}],
+    "class_names": "car"
+  })";
+  auto root = CreateJsonWithPolygons({poly_invalid_class});
+  auto result_opt = parser_.Parse(root);
+  EXPECT_FALSE(result_opt.has_value());
+
+  // class_names массив, но содержит не строки
+  std::string poly_invalid_elem = R"({
+    "type": 0,
+    "priority": 1,
+    "threshold": 0.5,
+    "points": [{"x":0,"y":0}, {"x":1,"y":0}, {"x":1,"y":1}],
+    "class_names": [123, "car"]
+  })";
+  root = CreateJsonWithPolygons({poly_invalid_elem});
+  result_opt = parser_.Parse(root);
+  EXPECT_FALSE(result_opt.has_value());
 }
 
 TEST_F(PolygonParserTest, ParseJsonWithoutPolygonsReturnsNullopt) {
   std::string json = R"({"not_polygons": []})";
-  auto value = boost::json::parse(json);
-  auto result_opt = parser_.Parse(value);
+  auto root = boost::json::parse(json);
+  auto result_opt = parser_.Parse(root);
   EXPECT_FALSE(result_opt.has_value());
 }
 
@@ -128,9 +142,12 @@ TEST_F(PolygonParserTest, PolygonsNotArrayReturnsNullopt) {
 
 TEST_F(PolygonParserTest, ValidPolygonsReturned) {
   std::vector<std::string> polys = {
-      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}, {10, 20}}),
-      MakePolygonJson(1, 2, 0.8, {{30, 30}, {40, 30}, {40, 40}})};
-  auto root = CreateFullJson(polys);
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}, {10, 20}},
+                      {"car"}),
+      MakePolygonJson(1, 2, 0.8, {{30, 30}, {40, 30}, {40, 40}},
+                      {})  // пустой список
+  };
+  auto root = CreateJsonWithPolygons(polys);
   auto result_opt = parser_.Parse(root);
   ASSERT_TRUE(result_opt.has_value());
   const auto& polygon_list = *result_opt;
@@ -149,43 +166,54 @@ TEST_F(PolygonParserTest, ValidPolygonsReturned) {
   EXPECT_EQ(p0.points(2).y(), 20);
   EXPECT_EQ(p0.points(3).x(), 10);
   EXPECT_EQ(p0.points(3).y(), 20);
+  EXPECT_EQ(p0.class_names_size(), 1);
+  EXPECT_EQ(p0.class_names(0), "car");
 
   const auto& p1 = polygon_list.polygons(1);
   EXPECT_EQ(p1.type(), 1);
   EXPECT_EQ(p1.priority(), 2);
   EXPECT_FLOAT_EQ(p1.threshold(), 0.8f);
   ASSERT_EQ(p1.points_size(), 3);
+  EXPECT_EQ(p1.class_names_size(), 0);
 }
 
 TEST_F(PolygonParserTest, InvalidPolygonsAreSkipped) {
   std::vector<std::string> polys = {
-      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}}),  // valid
-      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}}),  // invalid (2 points)
-      MakePolygonJson(2, 1, 0.5,
-                      {{10, 10}, {20, 10}, {20, 20}}),  // invalid type
-      MakePolygonJson(0, 1, 1.5,
-                      {{10, 10}, {20, 10}, {20, 20}}),  // invalid threshold
-      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}})  // valid
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}},
+                      {"car"}),  // valid
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}},
+                      {}),  // invalid (2 points)
+      MakePolygonJson(2, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}},
+                      {}),  // invalid type
+      MakePolygonJson(0, 1, 1.5, {{10, 10}, {20, 10}, {20, 20}},
+                      {}),  // invalid threshold
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}, {20, 20}},
+                      {"bike"})  // valid
   };
-  auto root = CreateFullJson(polys);
+  auto root = CreateJsonWithPolygons(polys);
   auto result_opt = parser_.Parse(root);
   ASSERT_TRUE(result_opt.has_value());
   EXPECT_EQ(result_opt->polygons_size(), 2);
+  EXPECT_EQ(result_opt->polygons(0).class_names(0), "car");
+  EXPECT_EQ(result_opt->polygons(1).class_names(0), "bike");
 }
 
 TEST_F(PolygonParserTest, AllPolygonsInvalidReturnsNullopt) {
   std::vector<std::string> polys = {
-      R"({"type":0,"priority":1,"threshold":0.5})",       // missing points
-      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}})};  // too few points
-  auto root = CreateFullJson(polys);
+      // отсутствует points
+      R"({"type":0,"priority":1,"threshold":0.5,"class_names":[]})",
+      // недостаточно точек
+      MakePolygonJson(0, 1, 0.5, {{10, 10}, {20, 10}}, {})};
+  auto root = CreateJsonWithPolygons(polys);
   auto result_opt = parser_.Parse(root);
   EXPECT_FALSE(result_opt.has_value());
 }
 
 TEST_F(PolygonParserTest, InvalidPointCoordinatesRejectPolygon) {
   std::string poly =
-      R"({"type":0,"priority":1,"threshold":0.5,"points":[{"x":10,"y":10},{"x":"a","y":20},{"x":30,"y":30}]})";
-  auto root = CreateFullJson({poly});
+      R"({"type":0,"priority":1,"threshold":0.5,"class_names":[],)"
+      R"("points":[{"x":10,"y":10},{"x":"a","y":20},{"x":30,"y":30}]})";
+  auto root = CreateJsonWithPolygons({poly});
   auto result_opt = parser_.Parse(root);
   EXPECT_FALSE(result_opt.has_value());
 }

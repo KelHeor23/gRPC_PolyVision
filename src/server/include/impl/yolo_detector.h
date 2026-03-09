@@ -7,7 +7,6 @@
 #include "interfaces/i_detector.h"
 
 struct Detection;
-class IClassMapper;
 
 /**
  * @class YoloDetector
@@ -18,20 +17,16 @@ class YoloDetector : public IDetector {
   /**
    * @brief Конструктор, загружающий сеть и настраивающий разрешённые классы.
    * @param cfg Конфигурация.
-   * @param mapper Маппер классов.
    * @throws std::runtime_error если сеть не загружена.
    */
-  YoloDetector(const Config& cfg, std::shared_ptr<IClassMapper> mapper);
+  YoloDetector(const Config& cfg);
 
   /**
    * @brief Детектирует объекты на изображении.
    * @param image Входное изображение.
    * @return Вектор обнаруженных объектов.
-   * @param class_names Набор имен детектируемых объектов
    */
-  std::vector<Detection> Detect(
-      const cv::Mat& image,
-      const std::vector<std::string>& class_names) override;
+  std::vector<Detection> Detect(const cv::Mat& image) override;
 
  private:
   /**
@@ -49,7 +44,4 @@ class YoloDetector : public IDetector {
   cv::Size input_size_;   ///< Размер входа сети
   float conf_threshold_;  ///< Порог уверенности
   float nms_threshold_;   ///< Порог NMS
-  std::vector<int> allowed_ids_;  ///< Идентификаторы разрешённых классов
-  std::shared_ptr<IClassMapper>
-      mapper_;  ///< Класс работающий со списком детектируемых объектов в модели
 };

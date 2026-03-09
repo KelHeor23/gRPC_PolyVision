@@ -1,7 +1,7 @@
 {
-  "class_names": ["orange", "apple", "person", "cat", "dog"],
   "polygons": [
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 10,
       "threshold": 0.6,
@@ -13,6 +13,7 @@
       ]
     }, 
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 10,
       "threshold": 0.5,
@@ -25,6 +26,7 @@
       ]
     }, 
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 11,
       "threshold": 0.1,
@@ -35,6 +37,7 @@
       ]
     }, 
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 0,
       "priority": 12,
       "threshold": 0.1,
@@ -50,6 +53,7 @@
       ]
     }, 
     {
+      "class_names": ["orange", "apple", "person", "cat", "dog"],
       "type": 1,
       "priority": 20,
       "threshold": 0.1,
