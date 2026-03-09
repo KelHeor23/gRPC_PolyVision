@@ -20,8 +20,7 @@ ObjectsDetecting::ObjectsDetecting(
       polygon_processor_(std::move(polygon_processor)) {}
 
 void ObjectsDetecting::Process(cv::Mat& image,
-                               std::vector<ImageDetection::Polygon>& polygons,
-                               const std::string& polygons_name) {
+                               std::vector<ImageDetection::Polygon>& polygons) {
   // Обработка полигонов
   std::vector<Polygon> sorted_polygons =
       polygon_processor_->ProcessPolygons(polygons);
