@@ -1,6 +1,7 @@
 #include "impl/drawer.h"
 
 #include <format>
+#include <ranges>
 
 #include "impl/class_mapper.h"
 #include "impl/detection.h"
@@ -21,10 +22,12 @@ void Drawer::DrawDetections(cv::Mat& image,
 void Drawer::DrawPolygons(cv::Mat& image,
                           const std::vector<Polygon>& polygons) const {
   for (const auto& poly : polygons) {
-    std::vector<cv::Point> points;
-    for (const auto& p : poly.polygon.points()) {
-      points.emplace_back(static_cast<int>(p.x()), static_cast<int>(p.y()));
-    }
+    auto points_view =
+        poly.polygon.points() | std::views::transform([](const auto& p) {
+          return cv::Point(p.x(), p.y());
+        });
+    std::vector<cv::Point> points(points_view.begin(), points_view.end());
+
     if (points.size() < 3) continue;
 
     cv::Scalar color =
