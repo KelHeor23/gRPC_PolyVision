@@ -23,7 +23,7 @@ void CommandOptions::Parse(int argc, char *argv[]) {
     throw std::runtime_error{
         std::format("Error parsing command line: {}\n", e.what())};
   } catch (const std::runtime_error &e) {
-    throw e;
+    throw;
   } catch (...) {
     throw std::runtime_error{std::format("Error parsing command line: {}\n",
                                          "Something unexpected happened")};
