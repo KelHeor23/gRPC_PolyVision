@@ -22,5 +22,5 @@ class IPolygonParser {
    * @return Вектор полигонов или std::nullopt, если данные невалидны.
    */
   virtual std::optional<ImageDetection::PolygonList> Parse(
-      const boost::json::value& root) = 0;
+      const boost::json::value& root) const = 0;
 };

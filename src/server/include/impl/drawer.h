@@ -26,7 +26,7 @@ class Drawer : public IDrawer {
    * @param mapper Маппер классов для получения имён.
    */
   void DrawDetections(cv::Mat& image, const std::vector<Detection>& detections,
-                      std::shared_ptr<IClassMapper> mapper) override;
+                      std::shared_ptr<IClassMapper> mapper) const override;
 
   /**
    * @brief Рисует полигоны (зелёным для включения, красным для исключения).
@@ -35,5 +35,5 @@ class Drawer : public IDrawer {
    */
   void DrawPolygons(
       cv::Mat& image,
-      const std::vector<ImageDetection::Polygon>& polygons) override;
+      const std::vector<ImageDetection::Polygon>& polygons) const override;
 };

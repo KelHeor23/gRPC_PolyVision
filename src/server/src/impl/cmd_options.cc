@@ -30,4 +30,4 @@ void CommandOptions::Parse(int argc, char *argv[]) {
   }
 }
 
-void CommandOptions::PrintHelp() { std::cout << desc_ << "\n"; }
+void CommandOptions::PrintHelp() const { std::cout << desc_ << "\n"; }

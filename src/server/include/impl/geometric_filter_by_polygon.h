@@ -61,7 +61,7 @@ class GeometricFilterByPolygon : public IObjectFilter {
    * @param polygon вектор вершин типа ImageDetection::Point
    * @return площадь полигона (double)
    */
-  double PolygonArea(const std::vector<ImageDetection::Point>& polygon);
+  double PolygonArea(const std::vector<ImageDetection::Point>& polygon) const;
 
  private:
   std::unique_ptr<IPolygonClipper> polygon_clipper_;  ///< обрезальщик полигонов

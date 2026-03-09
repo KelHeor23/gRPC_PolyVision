@@ -33,7 +33,7 @@ std::vector<Detection> YoloDetector::Detect(
 }
 
 std::vector<Detection> YoloDetector::ProcessOutput(
-    const std::vector<cv::Mat>& outs, const cv::Size& img_size) {
+    const std::vector<cv::Mat>& outs, const cv::Size& img_size) const {
   std::vector<cv::Rect> boxes;
   std::vector<float> confidences;
   std::vector<int> class_ids;

@@ -44,7 +44,7 @@ bool GeometricFilterByPolygon::CheckPolygonForOwnership(
 }
 
 double GeometricFilterByPolygon::PolygonArea(
-    const std::vector<ImageDetection::Point>& polygon) {
+    const std::vector<ImageDetection::Point>& polygon) const {
   const size_t n = polygon.size();
   if (n < 3) return 0.0;
 

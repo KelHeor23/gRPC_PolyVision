@@ -19,5 +19,5 @@ class IPolygonProcessor {
    * @param polygons Вектор полигонов (модифицируется).
    */
   virtual void ProcessPolygons(
-      std::vector<ImageDetection::Polygon>& polygons) = 0;
+      std::vector<ImageDetection::Polygon>& polygons) const = 0;
 };

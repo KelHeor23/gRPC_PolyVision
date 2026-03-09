@@ -18,5 +18,6 @@ class JsonParser : public IJsonParser {
    * @param json Входная строка.
    * @return Объект JSON или nullopt при ошибке.
    */
-  std::optional<boost::json::value> Parse(const std::string& json) override;
+  std::optional<boost::json::value> Parse(
+      const std::string& json) const override;
 };
