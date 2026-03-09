@@ -41,11 +41,12 @@ void RunServer(int argc, char** argv) {
     auto class_mapper = std::make_shared<ClassMapper>(conf.classes_file);
     auto yolo_detector = std::make_unique<YoloDetector>(conf);
     auto object_filter = std::make_unique<GeometricFilterByPolygon>(
-        std::make_unique<SutherlandHodgmanClipper>(), class_mapper);
+        std::make_unique<SutherlandHodgmanClipper>());
 
     auto object_detector = std::make_unique<ObjectsDetecting>(
         class_mapper, std::move(yolo_detector), std::move(object_filter),
-        std::make_unique<Drawer>(), std::make_unique<PolygonProcessor>());
+        std::make_unique<Drawer>(),
+        std::make_unique<PolygonProcessor>(class_mapper));
 
     bool is_show_polygons = options.GetShowPolygons();
     // Включаем отрисовку полигонов для отладки

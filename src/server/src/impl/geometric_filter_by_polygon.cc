@@ -6,11 +6,12 @@
 
 #include "impl/class_mapper.h"
 #include "impl/detection.h"
+#include "impl/polygon.h"
 #include "impl/polygon_clipper_sutherland_hodgman.h"
 
 std::vector<Detection> GeometricFilterByPolygon::Apply(
     const std::vector<Detection>& detections,
-    const std::vector<ImageDetection::Polygon>& polygons) {
+    const std::vector<Polygon>& polygons) {
   std::vector<Detection> filtered;
   for (auto& it : detections) {
     auto owner_polygon =
@@ -19,7 +20,7 @@ std::vector<Detection> GeometricFilterByPolygon::Apply(
         });
 
     if (owner_polygon != polygons.end() &&
-        owner_polygon->type() == ImageDetection::PolygonType::INCLUSION)
+        owner_polygon->polygon.type() == ImageDetection::PolygonType::INCLUSION)
       filtered.emplace_back(it);
   }
 
@@ -27,26 +28,26 @@ std::vector<Detection> GeometricFilterByPolygon::Apply(
 }
 
 bool GeometricFilterByPolygon::CheckPolygonForOwnership(
-    const ImageDetection::Polygon& polygon, const Detection& detection) {
-  std::vector<std::string> class_names_vec(polygon.class_names().begin(),
-                                           polygon.class_names().end());
-  std::vector<int> allowed_id = mapper_->GetAllowedIds(class_names_vec);
-
-  if (std::find(allowed_id.begin(), allowed_id.end(), detection.class_id) ==
-      allowed_id.end())
+    const Polygon& polygon, const Detection& detection) {
+  // Проверяем что детектирует классы найденного объекта
+  if (std::find(polygon.allowed_id.begin(), polygon.allowed_id.end(),
+                detection.class_id) == polygon.allowed_id.end())
     return false;
 
-  const auto& points_repeated = polygon.points();
+  const auto& points_repeated = polygon.polygon.points();
   std::vector<ImageDetection::Point> points_vec(points_repeated.begin(),
                                                 points_repeated.end());
 
+  // Находим полигон пересечения
   std::vector<ImageDetection::Point> intersection =
       polygon_clipper_->GetInternalPolygon(std::move(points_vec),
                                            detection.box);
 
   if (intersection.empty()) return false;
 
-  if (PolygonArea(intersection) >= detection.box.area() * polygon.threshold())
+  // Проверяем порог пересечения
+  if (PolygonArea(intersection) >=
+      detection.box.area() * polygon.polygon.threshold())
     return true;
   return false;
 }

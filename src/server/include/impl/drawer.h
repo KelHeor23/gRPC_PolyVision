@@ -33,7 +33,6 @@ class Drawer : public IDrawer {
    * @param image Изображение.
    * @param polygons Вектор полигонов в protobuf-формате.
    */
-  void DrawPolygons(
-      cv::Mat& image,
-      const std::vector<ImageDetection::Polygon>& polygons) const override;
+  void DrawPolygons(cv::Mat& image,
+                    const std::vector<Polygon>& polygons) const override;
 };

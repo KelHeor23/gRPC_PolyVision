@@ -7,6 +7,7 @@
 
 #include "proto/ImageAnalysis.grpc.pb.h"
 
+struct Polygon;
 /**
  * @interface IPolygonProcessor
  * @brief Выполняет операции над полигонами перед их использованием.
@@ -17,7 +18,9 @@ class IPolygonProcessor {
   /**
    * @brief Обрабатывает полигоны (например, сортирует).
    * @param polygons Вектор полигонов (модифицируется).
+   * @return Вектор отсортированных полигонов, со таблицей детектируемых
+   * объектов.
    */
-  virtual void ProcessPolygons(
-      std::vector<ImageDetection::Polygon>& polygons) const = 0;
+  virtual std::vector<Polygon> ProcessPolygons(
+      std::vector<ImageDetection::Polygon> polygons) const = 0;
 };
