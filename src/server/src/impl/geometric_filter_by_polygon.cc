@@ -30,8 +30,8 @@ std::vector<Detection> GeometricFilterByPolygon::Apply(
 bool GeometricFilterByPolygon::CheckPolygonForOwnership(
     const Polygon& polygon, const Detection& detection) {
   // Проверяем что детектирует классы найденного объекта
-  if (std::find(polygon.allowed_id.begin(), polygon.allowed_id.end(),
-                detection.class_id) == polygon.allowed_id.end())
+  if (std::ranges::find(polygon.allowed_id.begin(), polygon.allowed_id.end(),
+                        detection.class_id) == polygon.allowed_id.end())
     return false;
 
   const auto& points_repeated = polygon.polygon.points();
