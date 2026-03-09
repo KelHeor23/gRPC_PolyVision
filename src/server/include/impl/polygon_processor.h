@@ -3,7 +3,7 @@
  * @file polygon_processor.h
  * @brief Реализация процессора полигонов (сортировка).
  */
-#include "impl/polygon.h"
+
 #include "interfaces/i_polygon_processor.h"
 
 class IClassMapper;
