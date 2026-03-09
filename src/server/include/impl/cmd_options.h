@@ -49,7 +49,7 @@ class CommandOptions {
   /**
    * @brief Выводит справку по использованию программы в std::cout.
    */
-  void PrintHelp();
+  void PrintHelp() const;
 
  private:
   bool show_polygons_ = false;  ///< Флаг запроса на отрисовку полигонов

@@ -1,7 +1,7 @@
 #include "polygons/polygon_parser.h"
 
 std::optional<ImageDetection::PolygonList> PolygonParser::Parse(
-    const boost::json::value& root) {
+    const boost::json::value& root) const {
   if (!root.is_object()) {
     return std::nullopt;
   }
@@ -43,7 +43,7 @@ std::optional<ImageDetection::PolygonList> PolygonParser::Parse(
 }
 
 std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
-    const boost::json::value& val, std::size_t index) {
+    const boost::json::value& val, std::size_t index) const {
   if (!val.is_object()) return std::nullopt;
 
   const auto& obj = val.as_object();
@@ -98,7 +98,7 @@ std::optional<ImageDetection::Polygon> PolygonParser::ParseSinglePolygon(
 }
 
 std::optional<google::protobuf::RepeatedPtrField<std::string>>
-PolygonParser::ParseClassNames(const boost::json::value& val) {
+PolygonParser::ParseClassNames(const boost::json::value& val) const {
   if (!val.is_array()) return std::nullopt;
 
   const auto& arr = val.as_array();

@@ -26,7 +26,7 @@ class IDrawer {
    */
   virtual void DrawDetections(cv::Mat& image,
                               const std::vector<Detection>& detections,
-                              std::shared_ptr<IClassMapper> mapper) = 0;
+                              std::shared_ptr<IClassMapper> mapper) const = 0;
 
   /**
    * @brief Рисует контуры полигонов.
@@ -34,5 +34,6 @@ class IDrawer {
    * @param polygons Полигоны.
    */
   virtual void DrawPolygons(
-      cv::Mat& image, const std::vector<ImageDetection::Polygon>& polygons) = 0;
+      cv::Mat& image,
+      const std::vector<ImageDetection::Polygon>& polygons) const = 0;
 };

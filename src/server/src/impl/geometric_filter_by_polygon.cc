@@ -9,8 +9,7 @@
 
 std::vector<Detection> GeometricFilterByPolygon::Apply(
     const std::vector<Detection>& detections,
-    const std::vector<ImageDetection::Polygon>& polygons, cv::Size image_size,
-    const std::string& polygons_name) {
+    const std::vector<ImageDetection::Polygon>& polygons) {
   std::vector<Detection> filtered;
   for (auto& it : detections) {
     auto owner_polygon =
@@ -44,7 +43,7 @@ bool GeometricFilterByPolygon::CheckPolygonForOwnership(
 }
 
 double GeometricFilterByPolygon::PolygonArea(
-    const std::vector<ImageDetection::Point>& polygon) {
+    const std::vector<ImageDetection::Point>& polygon) const {
   const size_t n = polygon.size();
   if (n < 3) return 0.0;
 

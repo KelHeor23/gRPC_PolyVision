@@ -19,5 +19,6 @@ class IJsonParser {
    * @param json Строка с JSON-данными.
    * @return Значение Boost.JSON или std::nullopt при ошибке парсинга.
    */
-  virtual std::optional<boost::json::value> Parse(const std::string& json) = 0;
+  virtual std::optional<boost::json::value> Parse(
+      const std::string& json) const = 0;
 };

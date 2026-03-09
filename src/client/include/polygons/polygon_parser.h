@@ -18,7 +18,7 @@ class PolygonParser : public IPolygonParser {
    * @return PolygonList или nullopt, если данные некорректны.
    */
   std::optional<ImageDetection::PolygonList> Parse(
-      const boost::json::value& root) override;
+      const boost::json::value& root) const override;
 
  private:
   /**
@@ -28,7 +28,7 @@ class PolygonParser : public IPolygonParser {
    * @return Полигон или nullopt при ошибке.
    */
   std::optional<ImageDetection::Polygon> ParseSinglePolygon(
-      const boost::json::value& val, std::size_t index);
+      const boost::json::value& val, std::size_t index) const;
 
   /**
    * @brief Парсит массив имён классов.
@@ -36,5 +36,5 @@ class PolygonParser : public IPolygonParser {
    * @return Вектор строк или nullopt при ошибке.
    */
   std::optional<google::protobuf::RepeatedPtrField<std::string>>
-  ParseClassNames(const boost::json::value& val);
+  ParseClassNames(const boost::json::value& val) const;
 };

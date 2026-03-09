@@ -45,6 +45,12 @@ int main(int argc, char *argv[]) {
     if (polygons_file_path.empty()) polygons_file_path = "images/2.json";
 
     cv::Mat image = cv::imread(img_file_path);
+
+    if (image.empty()) {
+      std::cerr << "Failed to load image: " << img_file_path << std::endl;
+      return 1;
+    }
+
     Polygons polygons;
     if (!polygons.LoadFromFile(polygons_file_path)) {
       std::cerr << "Failed to load polygons from file" << std::endl;

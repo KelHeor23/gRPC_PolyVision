@@ -15,7 +15,7 @@ ClassMapper::ClassMapper(const std::string& file_name) {
     // Удаляем пробельные символы
     line.erase(line.find_last_not_of(" \n\r\t") + 1);
     line.erase(0, line.find_first_not_of(" \n\r\t"));
-    classes_.push_back(line);
+    if (!line.empty()) classes_.push_back(line);
   }
 }
 

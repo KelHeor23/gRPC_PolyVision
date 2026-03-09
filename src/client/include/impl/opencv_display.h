@@ -21,11 +21,12 @@ class OpenCVDisplay : public IDisplay {
    * @param image Изображение (cv::Mat).
    * @param window_name Имя окна.
    */
-  void Show(const cv::Mat& image, const std::string& window_name) override;
+  void Show(const cv::Mat& image,
+            const std::string& window_name) const override;
 
   /**
    * @brief Ожидает нажатие клавиши в течение заданного времени.
    * @param delay Время ожидания в миллисекундах (0 – бесконечно).
    */
-  void WaitKey(int delay) override;
+  void WaitKey(int delay) const override;
 };

@@ -42,7 +42,7 @@ class YoloDetector : public IDetector {
    * @return Вектор детекций.
    */
   std::vector<Detection> ProcessOutput(const std::vector<cv::Mat>& outs,
-                                       const cv::Size& img_size);
+                                       const cv::Size& img_size) const;
 
  private:
   cv::dnn::Net net_;      ///< Загруженная сеть YOLO

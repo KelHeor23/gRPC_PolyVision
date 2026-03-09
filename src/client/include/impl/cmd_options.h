@@ -55,7 +55,7 @@ class CommandOptions {
   /**
    * @brief Выводит справку по использованию программы в std::cout.
    */
-  void PrintHelp();
+  void PrintHelp() const;
 
  private:
   std::string image_file_;  ///< Путь к файлу изображения

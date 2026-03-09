@@ -1,6 +1,7 @@
 #include "polygons/json_parser.h"
 
-std::optional<boost::json::value> JsonParser::Parse(const std::string& json) {
+std::optional<boost::json::value> JsonParser::Parse(
+    const std::string& json) const {
   try {
     return boost::json::parse(json);
   } catch (...) {
