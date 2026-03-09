@@ -13,7 +13,6 @@
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 struct Detection;
-class IClassMapper;
 
 /**
  * @class GeometricFilterByPolygon
@@ -23,13 +22,11 @@ class IClassMapper;
 class GeometricFilterByPolygon : public IObjectFilter {
  public:
   /**
-   * @brief Конструктор с внедрением процессора полигонов.
-   * @param polygon_clipper Объект для порлучения внутренних полигонов
-   * @param mapper Маппер классов.
+   * @brief Конструктор класса выполняющего фильтрацию объектов по полигонам
+   * @param polygon_clipper Объект для получения внутренних полигонов
    */
-  GeometricFilterByPolygon(std::unique_ptr<IPolygonClipper> polygon_clipper,
-                           std::shared_ptr<IClassMapper> mapper)
-      : polygon_clipper_(std::move(polygon_clipper)), mapper_(mapper) {}
+  GeometricFilterByPolygon(std::unique_ptr<IPolygonClipper> polygon_clipper)
+      : polygon_clipper_(std::move(polygon_clipper)) {}
 
   /**
    * @brief Применяет фильтрацию к детекциям.
@@ -37,9 +34,8 @@ class GeometricFilterByPolygon : public IObjectFilter {
    * @param polygons Полигоны (могут быть модифицированы процессором).
    * @return Отфильтрованный вектор детекций.
    */
-  std::vector<Detection> Apply(
-      const std::vector<Detection>& detections,
-      const std::vector<ImageDetection::Polygon>& polygons) override;
+  std::vector<Detection> Apply(const std::vector<Detection>& detections,
+                               const std::vector<Polygon>& polygons) override;
 
  private:
   /**
@@ -50,7 +46,7 @@ class GeometricFilterByPolygon : public IObjectFilter {
    * @param detection Размер изображения.
    * @return Отфильтрованный вектор детекций.
    */
-  bool CheckPolygonForOwnership(const ImageDetection::Polygon& polygon,
+  bool CheckPolygonForOwnership(const Polygon& polygon,
                                 const Detection& detection);
 
   /**
@@ -65,6 +61,4 @@ class GeometricFilterByPolygon : public IObjectFilter {
 
  private:
   std::unique_ptr<IPolygonClipper> polygon_clipper_;  ///< обрезальщик полигонов
-  std::shared_ptr<IClassMapper>
-      mapper_;  ///< Класс работающий со списком детектируемых объектов в модели
 };

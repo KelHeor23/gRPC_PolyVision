@@ -5,6 +5,7 @@
  */
 #include "proto/ImageAnalysis.grpc.pb.h"
 
+struct Polygon;
 struct Detection;
 /**
  * @interface IObjectFilter
@@ -21,5 +22,5 @@ class IObjectFilter {
    */
   virtual std::vector<Detection> Apply(
       const std::vector<Detection>& detections,
-      const std::vector<ImageDetection::Polygon>& polygons) = 0;
+      const std::vector<Polygon>& polygons) = 0;
 };

@@ -9,6 +9,7 @@
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 struct Detection;
+struct Polygon;
 class IClassMapper;
 
 /**
@@ -33,7 +34,6 @@ class IDrawer {
    * @param image Изображение.
    * @param polygons Полигоны.
    */
-  virtual void DrawPolygons(
-      cv::Mat& image,
-      const std::vector<ImageDetection::Polygon>& polygons) const = 0;
+  virtual void DrawPolygons(cv::Mat& image,
+                            const std::vector<Polygon>& polygons) const = 0;
 };

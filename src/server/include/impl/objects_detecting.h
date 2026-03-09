@@ -37,10 +37,9 @@ class ObjectsDetecting : public IImageProcessor {
    * @brief Выполняет полный цикл обработки изображения.
    * @param image Изображение (модифицируется – на нём рисуются результаты).
    * @param polygons Вектор полигонов.
-   * @param file_name Имя набора полигонов (для кэширования).
    */
-  void Process(cv::Mat& image, std::vector<ImageDetection::Polygon>& polygons,
-               const std::string& file_name) override;
+  void Process(cv::Mat& image,
+               std::vector<ImageDetection::Polygon>& polygons) override;
 
   /**
    * @brief Включает/отключает отрисовку полигонов (для отладки).

@@ -4,6 +4,7 @@
 #include "impl/detection.h"
 #include "impl/drawer.h"
 #include "impl/geometric_filter_by_polygon.h"
+#include "impl/polygon.h"
 #include "impl/polygon_processor.h"
 #include "impl/yolo_detector.h"
 
@@ -19,21 +20,21 @@ ObjectsDetecting::ObjectsDetecting(
       polygon_processor_(std::move(polygon_processor)) {}
 
 void ObjectsDetecting::Process(cv::Mat& image,
-                               std::vector<ImageDetection::Polygon>& polygons,
-                               const std::string& polygons_name) {
+                               std::vector<ImageDetection::Polygon>& polygons) {
   // Обработка полигонов
-  polygon_processor_->ProcessPolygons(polygons);
+  std::vector<Polygon> sorted_polygons =
+      polygon_processor_->ProcessPolygons(polygons);
 
   // Если нужно, можно отрисовать полигоны на изображении
   if (draw_polygons_) {
-    drawer_->DrawPolygons(image, polygons);
+    drawer_->DrawPolygons(image, sorted_polygons);
   }
 
   // Детекция
   auto detections = detector_->Detect(image);
 
   // Фильтрация по зонам
-  detections = object_filter_->Apply(detections, polygons);
+  detections = object_filter_->Apply(detections, sorted_polygons);
 
   // Отрисовка
   drawer_->DrawDetections(image, detections, class_mapper_);

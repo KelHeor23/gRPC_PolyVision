@@ -27,7 +27,9 @@ class IClassMapper {
   /**
    * @brief Преобразует список имён в список идентификаторов.
    * @param allowed_names Имена классов.
-   * @return Вектор соответствующих идентификаторов.
+   * @return Вектор соответствующих идентификаторов.  Вектор работает быстрее
+   * при небольшом колчиестве данных, если количество детектируемых классов
+   * будет увеличено, то лучше перейти на unordered_set
    */
   virtual std::vector<int> GetAllowedIds(
       const std::vector<std::string>& allowed_names) const = 0;
