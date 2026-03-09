@@ -30,13 +30,7 @@ Status ImageProcessingServer::ProcessImage(
     // Извлекаем имя набора
     std::string polygons_name = polygon_list.name();
 
-    // Извлекаем имена классов
-    std::vector<std::string> class_names;
-    for (const auto& name : polygon_list.class_names()) {
-      class_names.push_back(name);
-    }
-
-    // Сбор всех чанков изображения (без изменений)
+    // Сбор всех чанков изображения
     std::vector<uint8_t> image_buffer;
     while (stream->Read(&request)) {
       if (request.has_image_data()) {
@@ -57,7 +51,7 @@ Status ImageProcessingServer::ProcessImage(
     cv::Mat img = std::move(*img_opt);
 
     // Обработка изображения с передачей полигонов, имени и имён классов
-    processor_->Process(img, polygons, polygons_name, class_names);
+    processor_->Process(img, polygons, polygons_name);
 
     // Кодирование результата
     auto encoded_opt = encoder_->Encode(img, ".jpg", 95);

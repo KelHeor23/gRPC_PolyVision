@@ -27,11 +27,8 @@ class YoloDetector : public IDetector {
    * @brief Детектирует объекты на изображении.
    * @param image Входное изображение.
    * @return Вектор обнаруженных объектов.
-   * @param class_names Набор имен детектируемых объектов
    */
-  std::vector<Detection> Detect(
-      const cv::Mat& image,
-      const std::vector<std::string>& class_names) override;
+  std::vector<Detection> Detect(const cv::Mat& image) override;
 
  private:
   /**

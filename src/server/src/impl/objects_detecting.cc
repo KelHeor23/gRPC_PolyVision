@@ -20,8 +20,7 @@ ObjectsDetecting::ObjectsDetecting(
 
 void ObjectsDetecting::Process(cv::Mat& image,
                                std::vector<ImageDetection::Polygon>& polygons,
-                               const std::string& polygons_name,
-                               const std::vector<std::string>& class_names) {
+                               const std::string& polygons_name) {
   // Обработка полигонов
   polygon_processor_->ProcessPolygons(polygons);
 
@@ -31,7 +30,7 @@ void ObjectsDetecting::Process(cv::Mat& image,
   }
 
   // Детекция
-  auto detections = detector_->Detect(image, class_names);
+  auto detections = detector_->Detect(image);
 
   // Фильтрация по зонам
   detections = object_filter_->Apply(detections, polygons);

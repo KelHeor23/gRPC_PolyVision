@@ -14,7 +14,6 @@
 
 class PolygonsRealTest : public ::testing::Test {
  protected:
-  // Вспомогательная функция для создания временного файла с заданным содержимым
   std::filesystem::path CreateTempFile(const std::string& content) {
     std::filesystem::path temp_dir = std::filesystem::temp_directory_path();
     std::srand(std::time(nullptr));
@@ -36,7 +35,7 @@ class PolygonsRealTest : public ::testing::Test {
   std::vector<std::filesystem::path> temp_files_;
 };
 
-// Успешная загрузка корректного JSON с двумя полигонами (без class_names)
+// Успешная загрузка корректного JSON с двумя полигонами (пустые class_names)
 TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   std::string json_content = R"({
         "polygons": [
@@ -44,13 +43,15 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
                 "type": 0,
                 "priority": 1,
                 "threshold": 0.5,
-                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}, {"x":10,"y":20}]
+                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}, {"x":10,"y":20}],
+                "class_names": []
             },
             {
                 "type": 1,
                 "priority": 2,
                 "threshold": 0.8,
-                "points": [{"x":30,"y":30}, {"x":40,"y":30}, {"x":40,"y":40}]
+                "points": [{"x":30,"y":30}, {"x":40,"y":30}, {"x":40,"y":40}],
+                "class_names": []
             }
         ]
     })";
@@ -67,7 +68,6 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   const auto& polygon_list = polygons.GetPolygonList();
   const auto& polygons_ref = polygon_list.polygons();
   ASSERT_EQ(polygons_ref.size(), 2);
-  EXPECT_EQ(polygon_list.class_names_size(), 0);  // class_names не было в JSON
 
   const auto& p0 = polygons_ref[0];
   EXPECT_EQ(p0.type(), 0);
@@ -82,6 +82,7 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   EXPECT_EQ(p0.points(2).y(), 20);
   EXPECT_EQ(p0.points(3).x(), 10);
   EXPECT_EQ(p0.points(3).y(), 20);
+  EXPECT_EQ(p0.class_names_size(), 0);
 
   const auto& p1 = polygons_ref[1];
   EXPECT_EQ(p1.type(), 1);
@@ -94,18 +95,19 @@ TEST_F(PolygonsRealTest, LoadValidFileSuccess) {
   EXPECT_EQ(p1.points(1).y(), 30);
   EXPECT_EQ(p1.points(2).x(), 40);
   EXPECT_EQ(p1.points(2).y(), 40);
+  EXPECT_EQ(p1.class_names_size(), 0);
 }
 
-// Успешная загрузка JSON с полигонами и именами классов
+// Успешная загрузка JSON с полигонами, содержащими имена классов
 TEST_F(PolygonsRealTest, LoadValidFileWithClassNamesSuccess) {
   std::string json_content = R"({
-        "class_names": ["car", "pedestrian"],
         "polygons": [
             {
                 "type": 0,
                 "priority": 1,
                 "threshold": 0.5,
-                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}]
+                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}],
+                "class_names": ["car", "pedestrian"]
             }
         ]
     })";
@@ -118,22 +120,23 @@ TEST_F(PolygonsRealTest, LoadValidFileWithClassNamesSuccess) {
 
   EXPECT_TRUE(result);
   const auto& polygon_list = polygons.GetPolygonList();
-  EXPECT_EQ(polygon_list.class_names_size(), 2);
-  EXPECT_EQ(polygon_list.class_names(0), "car");
-  EXPECT_EQ(polygon_list.class_names(1), "pedestrian");
-  EXPECT_EQ(polygon_list.polygons_size(), 1);
+  ASSERT_EQ(polygon_list.polygons_size(), 1);
+  const auto& p = polygon_list.polygons(0);
+  EXPECT_EQ(p.class_names_size(), 2);
+  EXPECT_EQ(p.class_names(0), "car");
+  EXPECT_EQ(p.class_names(1), "pedestrian");
 }
 
-// Неверный формат class_names (не массив) -> ошибка загрузки
+// Неверный формат class_names внутри полигона -> ошибка загрузки
 TEST_F(PolygonsRealTest, InvalidClassNamesFormatFails) {
   std::string json_content = R"({
-        "class_names": "not an array",
         "polygons": [
             {
                 "type": 0,
                 "priority": 1,
                 "threshold": 0.5,
-                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}]
+                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}],
+                "class_names": "not an array"
             }
         ]
     })";
@@ -199,13 +202,15 @@ TEST_F(PolygonsRealTest, AllPolygonsInvalid) {
                 "type": 0,
                 "priority": 1,
                 "threshold": 0.5,
-                "points": [{"x":10,"y":10}, {"x":20,"y":10}]  // только 2 точки
+                "points": [{"x":10,"y":10}, {"x":20,"y":10}],  // только 2 точки
+                "class_names": []
             },
             {
                 "type": 1,
                 "priority": 2,
                 "threshold": 0.8,
-                "points": [{"x":30,"y":30}]  // только 1 точка
+                "points": [{"x":30,"y":30}],  // только 1 точка
+                "class_names": []
             }
         ]
     })";
@@ -226,24 +231,27 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
                 "type": 0,
                 "priority": 1,
                 "threshold": 0.5,
-                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}]
+                "points": [{"x":10,"y":10}, {"x":20,"y":10}, {"x":20,"y":20}],
+                "class_names": ["classA"]
             },
             {
                 "type": 1,
                 "priority": 2,
                 "threshold": 0.8,
-                "points": [{"x":30,"y":30}, {"x":40,"y":30}]
+                "points": [{"x":30,"y":30}, {"x":40,"y":30}],
+                "class_names": ["classB"]
             },
             {
                 "type": 0,
                 "priority": 3,
                 "threshold": 0.9,
-                "points": [{"x":50,"y":50}, {"x":60,"y":50}, {"x":60,"y":60}, {"x":50,"y":60}]
+                "points": [{"x":50,"y":50}, {"x":60,"y":50}, {"x":60,"y":60}, {"x":50,"y":60}],
+                "class_names": ["classC"]
             }
         ]
     })";
 
-  // Проверяем напрямую работу PolygonParser (для локализации ошибки)
+  // Проверяем напрямую работу PolygonParser
   auto json_val = boost::json::parse(json_content);
   PolygonParser parser;
   auto direct_result = parser.Parse(json_val);
@@ -275,6 +283,8 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
   EXPECT_EQ(polygons_ref[0].points(1).y(), 10);
   EXPECT_EQ(polygons_ref[0].points(2).x(), 20);
   EXPECT_EQ(polygons_ref[0].points(2).y(), 20);
+  EXPECT_EQ(polygons_ref[0].class_names_size(), 1);
+  EXPECT_EQ(polygons_ref[0].class_names(0), "classA");
 
   // Второй валидный полигон (4 точки)
   EXPECT_EQ(polygons_ref[1].type(), 0);
@@ -289,4 +299,6 @@ TEST_F(PolygonsRealTest, MixedValidInvalidPolygons) {
   EXPECT_EQ(polygons_ref[1].points(2).y(), 60);
   EXPECT_EQ(polygons_ref[1].points(3).x(), 50);
   EXPECT_EQ(polygons_ref[1].points(3).y(), 60);
+  EXPECT_EQ(polygons_ref[1].class_names_size(), 1);
+  EXPECT_EQ(polygons_ref[1].class_names(0), "classC");
 }

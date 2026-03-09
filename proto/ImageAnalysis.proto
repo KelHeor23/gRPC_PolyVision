@@ -17,13 +17,13 @@ message Polygon {
   PolygonType type = 2;                 // тип полигона
   int32 priority = 3;                   // меньшее число - выше приоритет
   float threshold = 4;                  // порог площади пересечения (0..1)
+  repeated string class_names = 5;      // списко имен классов детектируемых в полигоне
 }
 
 
 message PolygonList {
   string name = 1;
-  repeated Polygon polygons = 2;
-  repeated string class_names = 3; 
+  repeated Polygon polygons = 2;   
 }
 
 message ProcessRequest {

@@ -18,9 +18,7 @@ class IDetector {
   /**
    * @brief Выполняет детекцию.
    * @param image Входное изображение.
-   * @param class_names Набор имен детектируемых объектов
    * @return Вектор обнаруженных объектов.
    */
-  virtual std::vector<Detection> Detect(
-      const cv::Mat& image, const std::vector<std::string>& class_names) = 0;
+  virtual std::vector<Detection> Detect(const cv::Mat& image) = 0;
 };

@@ -17,9 +17,8 @@ YoloDetector::YoloDetector(const Config& cfg,
   if (net_.empty()) throw std::runtime_error("Failed to load YOLO network");
 }
 
-std::vector<Detection> YoloDetector::Detect(
-    const cv::Mat& image, const std::vector<std::string>& class_names) {
-  allowed_ids_ = mapper_->GetAllowedIds(class_names);
+std::vector<Detection> YoloDetector::Detect(const cv::Mat& image) {
+  // allowed_ids_ = mapper_->GetAllowedIds(class_names);
   cv::Mat blob;
   cv::dnn::blobFromImage(image, blob, 1 / 255.0, input_size_, cv::Scalar(),
                          true, false);
