@@ -4,21 +4,17 @@
 #include <opencv2/dnn.hpp>
 #include <stdexcept>
 
-#include "impl/class_mapper.h"
 #include "impl/detection.h"
 
-YoloDetector::YoloDetector(const Config& cfg,
-                           std::shared_ptr<IClassMapper> mapper)
+YoloDetector::YoloDetector(const Config& cfg)
     : input_size_(cfg.input_size),
       conf_threshold_(cfg.conf_threshold),
-      nms_threshold_(cfg.nms_threshold),
-      mapper_(mapper) {
+      nms_threshold_(cfg.nms_threshold) {
   net_ = cv::dnn::readNetFromDarknet(cfg.model_config, cfg.model_weights);
   if (net_.empty()) throw std::runtime_error("Failed to load YOLO network");
 }
 
 std::vector<Detection> YoloDetector::Detect(const cv::Mat& image) {
-  // allowed_ids_ = mapper_->GetAllowedIds(class_names);
   cv::Mat blob;
   cv::dnn::blobFromImage(image, blob, 1 / 255.0, input_size_, cv::Scalar(),
                          true, false);
@@ -51,10 +47,6 @@ std::vector<Detection> YoloDetector::ProcessOutput(
 
       if (confidence >= conf_threshold_) {
         int class_id = class_id_point.x;
-        // Фильтр по разрешённым классам
-        if (std::find(allowed_ids_.begin(), allowed_ids_.end(), class_id) ==
-            allowed_ids_.end())
-          continue;
 
         int center_x = static_cast<int>(data[0] * img_size.width);
         int center_y = static_cast<int>(data[1] * img_size.height);

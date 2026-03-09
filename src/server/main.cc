@@ -39,9 +39,9 @@ void RunServer(int argc, char** argv) {
                 .classes_file = "YOLO/coco.names"};
 
     auto class_mapper = std::make_shared<ClassMapper>(conf.classes_file);
-    auto yolo_detector = std::make_unique<YoloDetector>(conf, class_mapper);
+    auto yolo_detector = std::make_unique<YoloDetector>(conf);
     auto object_filter = std::make_unique<GeometricFilterByPolygon>(
-        std::make_unique<SutherlandHodgmanClipper>());
+        std::make_unique<SutherlandHodgmanClipper>(), class_mapper);
 
     auto object_detector = std::make_unique<ObjectsDetecting>(
         class_mapper, std::move(yolo_detector), std::move(object_filter),

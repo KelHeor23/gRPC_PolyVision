@@ -13,6 +13,7 @@
 #include "proto/ImageAnalysis.grpc.pb.h"
 
 struct Detection;
+class IClassMapper;
 
 /**
  * @class GeometricFilterByPolygon
@@ -24,9 +25,11 @@ class GeometricFilterByPolygon : public IObjectFilter {
   /**
    * @brief Конструктор с внедрением процессора полигонов.
    * @param polygon_clipper Объект для порлучения внутренних полигонов
+   * @param mapper Маппер классов.
    */
-  GeometricFilterByPolygon(std::unique_ptr<IPolygonClipper> polygon_clipper)
-      : polygon_clipper_(std::move(polygon_clipper)) {}
+  GeometricFilterByPolygon(std::unique_ptr<IPolygonClipper> polygon_clipper,
+                           std::shared_ptr<IClassMapper> mapper)
+      : polygon_clipper_(std::move(polygon_clipper)), mapper_(mapper) {}
 
   /**
    * @brief Применяет фильтрацию к детекциям.
@@ -62,4 +65,6 @@ class GeometricFilterByPolygon : public IObjectFilter {
 
  private:
   std::unique_ptr<IPolygonClipper> polygon_clipper_;  ///< обрезальщик полигонов
+  std::shared_ptr<IClassMapper>
+      mapper_;  ///< Класс работающий со списком детектируемых объектов в модели
 };

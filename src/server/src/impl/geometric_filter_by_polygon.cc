@@ -4,6 +4,7 @@
 #include <ranges>
 #include <vector>
 
+#include "impl/class_mapper.h"
 #include "impl/detection.h"
 #include "impl/polygon_clipper_sutherland_hodgman.h"
 
@@ -27,6 +28,14 @@ std::vector<Detection> GeometricFilterByPolygon::Apply(
 
 bool GeometricFilterByPolygon::CheckPolygonForOwnership(
     const ImageDetection::Polygon& polygon, const Detection& detection) {
+  std::vector<std::string> class_names_vec(polygon.class_names().begin(),
+                                           polygon.class_names().end());
+  std::vector<int> allowed_id = mapper_->GetAllowedIds(class_names_vec);
+
+  if (std::find(allowed_id.begin(), allowed_id.end(), detection.class_id) ==
+      allowed_id.end())
+    return false;
+
   const auto& points_repeated = polygon.points();
   std::vector<ImageDetection::Point> points_vec(points_repeated.begin(),
                                                 points_repeated.end());
