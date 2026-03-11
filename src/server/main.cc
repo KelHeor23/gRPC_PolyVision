@@ -66,6 +66,7 @@ void RunServer(int argc, char** argv) {
                                 std::move(object_detector));
 
   grpc::ServerBuilder builder;
+  builder.AddChannelArgument("grpc.default_thread_count", 1);
   builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
   builder.RegisterService(&service);
 
