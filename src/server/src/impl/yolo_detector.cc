@@ -1,81 +1,22 @@
 #include "impl/yolo_detector.h"
 
-#include <algorithm>
-#include <opencv2/dnn.hpp>
-#include <stdexcept>
-
 #include "impl/detection.h"
+#include "impl/detection_output_parser.h"
+#include "impl/image_preprocessor.h"
+#include "impl/inference_backend.h"
 
-YoloDetector::YoloDetector(const Config& cfg)
-    : input_size_(cfg.input_size),
-      conf_threshold_(cfg.conf_threshold),
-      nms_threshold_(cfg.nms_threshold) {
-  net_ = cv::dnn::readNetFromDarknet(cfg.model_config, cfg.model_weights);
-  if (net_.empty()) throw std::runtime_error("Failed to load YOLO network");
-}
+YoloDetector::YoloDetector(std::unique_ptr<IImagePreprocessor> preprocessor,
+                           std::unique_ptr<IInferenceBackend> backend,
+                           std::unique_ptr<IDetectionOutputParser> parser,
+                           float confThreshold, float nmsThreshold)
+    : preprocessor_(std::move(preprocessor)),
+      backend_(std::move(backend)),
+      parser_(std::move(parser)),
+      confThreshold_(confThreshold),
+      nmsThreshold_(nmsThreshold) {}
 
 std::vector<Detection> YoloDetector::Detect(const cv::Mat& image) {
-  cv::Mat blob;
-  cv::dnn::blobFromImage(image, blob, 1 / 255.0, input_size_, cv::Scalar(),
-                         true, false);
-  net_.setInput(blob);
-
-  std::vector<cv::Mat> outs;
-  std::vector<std::string> outNames = net_.getUnconnectedOutLayersNames();
-  net_.forward(outs, outNames);
-
-  return ProcessOutput(outs, image.size());
-}
-
-std::vector<Detection> YoloDetector::ProcessOutput(
-    const std::vector<cv::Mat>& outs, const cv::Size& img_size) const {
-  std::vector<cv::Rect> boxes;
-  std::vector<float> confidences;
-  std::vector<int> class_ids;
-
-  for (const auto& out : outs) {
-    for (int i = 0; i < out.rows; ++i) {
-      const float* data = out.ptr<float>(i);
-      float objectness = data[4];
-      if (objectness < conf_threshold_) continue;
-
-      cv::Mat scores(1, out.cols - 5, CV_32F, const_cast<float*>(data + 5));
-      double confidence;
-      cv::Point class_id_point;
-      cv::minMaxLoc(scores, nullptr, &confidence, nullptr, &class_id_point);
-      confidence *= objectness;
-
-      if (confidence >= conf_threshold_) {
-        int class_id = class_id_point.x;
-
-        int center_x = static_cast<int>(data[0] * img_size.width);
-        int center_y = static_cast<int>(data[1] * img_size.height);
-        int width = static_cast<int>(data[2] * img_size.width);
-        int height = static_cast<int>(data[3] * img_size.height);
-        int left = center_x - width / 2;
-        int top = center_y - height / 2;
-
-        cv::Rect box(left, top, width, height);
-
-        // Обрезаем бокс по границам изображения
-        box &= cv::Rect(0, 0, img_size.width, img_size.height);
-        if (box.area() <= 0) continue;
-
-        boxes.push_back(box);
-        confidences.push_back(static_cast<float>(confidence));
-        class_ids.push_back(class_id);
-      }
-    }
-  }
-
-  std::vector<int> indices;
-  cv::dnn::NMSBoxes(boxes, confidences, conf_threshold_, nms_threshold_,
-                    indices);
-
-  std::vector<Detection> detections;
-  detections.reserve(indices.size());
-  for (int idx : indices) {
-    detections.push_back({class_ids[idx], confidences[idx], boxes[idx]});
-  }
-  return detections;
+  auto blob = preprocessor_->preprocess(image);
+  auto outputs = backend_->forward(blob);
+  return parser_->parse(outputs, image.size(), confThreshold_, nmsThreshold_);
 }

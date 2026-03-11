@@ -3,45 +3,50 @@
  * @file yolo_detector.h
  * @brief Реализация детектора на базе YOLO (Darknet).
  */
+#include <vector>
+
 #include "config.h"
 #include "interfaces/i_detector.h"
+
+class IImagePreprocessor;
+class IInferenceBackend;
+class IDetectionOutputParser;
 
 struct Detection;
 
 /**
  * @class YoloDetector
- * @brief Выполняет детекцию объектов с помощью нейросети YOLO.
+ * @brief Оркестратор, объединяющий предобработку, инференс и парсинг.
+ *
+ * Этот класс следует принципу инверсии зависимостей, принимая абстракции
+ * для каждого этапа. Он реализует интерфейс IDetector.
  */
 class YoloDetector : public IDetector {
  public:
   /**
-   * @brief Конструктор, загружающий сеть и настраивающий разрешённые классы.
-   * @param cfg Конфигурация.
-   * @throws std::runtime_error если сеть не загружена.
+   * @brief Конструктор.
+   * @param preprocessor Умный указатель на предобработчик изображений.
+   * @param backend      Умный указатель на бэкенд инференса.
+   * @param parser       Умный указатель на парсер выходов.
+   * @param confThreshold Порог уверенности.
+   * @param nmsThreshold  Порог NMS.
    */
-  YoloDetector(const Config& cfg);
+  YoloDetector(std::unique_ptr<IImagePreprocessor> preprocessor,
+               std::unique_ptr<IInferenceBackend> backend,
+               std::unique_ptr<IDetectionOutputParser> parser,
+               float confThreshold, float nmsThreshold);
 
   /**
-   * @brief Детектирует объекты на изображении.
-   * @param image Входное изображение.
-   * @return Вектор обнаруженных объектов.
+   * @brief Выполняет детекцию объектов на изображении.
+   * @param image Входное изображение в формате BGR.
+   * @return std::vector<Detection> Список обнаруженных объектов.
    */
   std::vector<Detection> Detect(const cv::Mat& image) override;
 
  private:
-  /**
-   * @brief Обрабатывает выходные тензоры сети, применяет NMS и фильтрацию по
-   * классам.
-   * @param outs Выходные слои сети.
-   * @param img_size Размер исходного изображения.
-   * @return Вектор детекций.
-   */
-  std::vector<Detection> ProcessOutput(const std::vector<cv::Mat>& outs,
-                                       const cv::Size& img_size) const;
-
- private:
-  cv::dnn::Net net_;      ///< Загруженная сеть YOLO
-  cv::Size input_size_;   ///< Размер входа сети
-  float conf_threshold_;  ///< Порог уверенности
-  float nms_threshold_;   ///< Порог NMS
+  std::unique_ptr<IImagePreprocessor> preprocessor_;  ///< Предобработчик.
+  std::unique_ptr<IInferenceBackend> backend_;  ///< Бэкенд инференса.
+  std::unique_ptr<IDetectionOutputParser> parser_;  ///< Парсер выходов.
+  float confThreshold_;  ///< Порог уверенности.
+  float nmsThreshold_;   ///< Порог NMS.
 };
