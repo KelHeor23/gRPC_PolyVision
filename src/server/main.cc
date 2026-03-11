@@ -10,8 +10,11 @@
 
 #include "impl/class_mapper.h"
 #include "impl/cmd_options.h"
+#include "impl/detection_output_parser.h"
 #include "impl/drawer.h"
 #include "impl/geometric_filter_by_polygon.h"
+#include "impl/image_preprocessor.h"
+#include "impl/inference_backend.h"
 #include "impl/objects_detecting.h"
 #include "impl/polygon_clipper_sutherland_hodgman.h"
 #include "impl/polygon_processor.h"
@@ -38,8 +41,16 @@ void RunServer(int argc, char** argv) {
                 .model_config = "YOLO/yolov4.cfg",
                 .classes_file = "YOLO/coco.names"};
 
+    auto preprocessor = std::make_unique<YoloPreprocessor>(conf.input_size);
+    auto backend = std::make_unique<OpenCvDnnBackend>();
+    backend->loadModel(conf.model_config, conf.model_weights);
+    auto parser = std::make_unique<YoloOutputParser>();
+
+    auto yolo_detector = std::make_unique<YoloDetector>(
+        std::move(preprocessor), std::move(backend), std::move(parser),
+        conf.conf_threshold, conf.nms_threshold);
+
     auto class_mapper = std::make_shared<ClassMapper>(conf.classes_file);
-    auto yolo_detector = std::make_unique<YoloDetector>(conf);
     auto object_filter = std::make_unique<GeometricFilterByPolygon>(
         std::make_unique<SutherlandHodgmanClipper>());
 

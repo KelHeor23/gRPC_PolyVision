@@ -8,6 +8,9 @@ add_library(server_lib STATIC
     src/impl/drawer.cc
     src/impl/polygon_processor.cc
     src/impl/cmd_options.cc
+    src/impl/image_preprocessor.cc
+    src/impl/inference_backend.cc
+    src/impl/detection_output_parser.cc
 )
 
 target_include_directories(server_lib PUBLIC
